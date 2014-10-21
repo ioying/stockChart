@@ -1,0 +1,109 @@
+{subtemplate common/header}
+<div class="content datalist">
+<form id="form1" method="post" action="plugin.php?id=stock&mod=edit_formula">
+		<!--{if $stocklist_edit}-->
+		<!--{loop $stocklist_edit $stock_edit}-->
+	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+		<div id="container">
+		
+
+			<div id="header">
+						<div class="STYLE2" id="chart">测试绘图区:</div> 		
+						<div class="STYLE2" id="txtHint"></div> 	
+			</div>
+			<div id="prompt"><h2>当前编辑公式编号:&nbsp{$_GET['stockid']} &nbsp</h2> &nbsp
+			
+				<input name="formulaname" type="text" class="px" id="formulaname" value="$stock_edit[formulaname]" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="8" style="width:120px; height:20px;font-size:12px;"/>{lang stock:stock_formulaname}
+				<div class='remarks'>&nbsp 不超过15个字符，公式命名规则详见：xxx。</div>&nbsp
+				<input name="description" type="text" class="px" id="description" value="$stock_edit[description]" onchange="checkLength(this,20);" onkeyup="checkLength(this,20);" size="8" style="width:120px; height:20px;font-size:12px;"/>{lang stock:stock_description}
+				<div class='remarks'>&nbsp 公式中文名称或简要描述，限20个字. 命名规则详见：xxx。</div>&nbsp
+				<br>&nbsp
+				<input type="radio" name="mainmap" id="mainmap" value="1" <!--{if $stock_edit[mainmap] == 1}-->checked="checked"<!--{/if}-->/>在主图上叠加&nbsp&nbsp&nbsp
+				<input type="radio" name="mainmap" id="mainmap" value="2" <!--{if $stock_edit[mainmap] == 2}-->checked="checked"<!--{/if}-->/>副图显示&nbsp&nbsp&nbsp<br>&nbsp
+				<input type="radio" name="Permission" id="Permission" value="1" <!--{if $stock_edit[Permission] == 1}-->checked="checked"<!--{/if}-->/>允许源码公开&nbsp&nbsp&nbsp
+		   	<input type="radio" name="Permission" id="Permission" value="2" <!--{if $stock_edit[Permission] == 2}-->checked="checked"<!--{/if}-->/>源码保密&nbsp&nbsp&nbsp<br>
+			&nbsp{lang stock:stock_comment}&nbsp
+				 <textarea name="comment" rows="7" cols="30" id="comment"   style="width:98%; height:78px;font-size:12px;"  >$stock_edit[comment]</textarea>
+		   </div>
+			<div id="menu1">
+				
+				<textarea name="formula"  id="formula"   >$stock_edit[formula]</textarea>
+			</div>
+
+			<div id="content">
+			<input type="button" onclick="submitparser();" id="parser_it" name="parser_it" value=" 测试 " style="width:100  height:118px; font-size:22px;"/>
+			<input type="button" onclick="submitdraw();" name="draw_it" value=" 绘图 " style="width:100  height:118px; font-size:22px;" /><br>
+			<button type="submit" id="Submit_edit" value="true" name="Submit_edit" tabindex="1" style=" font-size:22px;" disabled= 'disable'; title='保存前请先点测试按钮！'><span>&nbsp保存指标公式 </span></button>
+				<div >&nbsp&nbsp常用函数  &nbsp&nbsp&nbsp 更多函数 此处另作treeview</div>
+				<select name="func" size="10" onclick="addfunc(this.value)">
+					<option value="ma(c,5)" selected="selected">ma(,n)   </option>
+					<option value="REF(c,1)">ref(x,n) </option>
+					<option value="abs(c)">abs(x)     </option>
+					<option value="">abcdefghigklmnopqrstuvwxyz     </option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+				</select>
+			</div>
+			
+
+			<div id="footer">
+			<div>
+				<textarea name="after_parser" type="hidden" rows="10" cols="30" id="after_parser"   style="width:570px; height:40px;font-size:12px;"  ></textarea>
+				<!--此处向js传递用户id, 为了生成JSON文件名  type="hidden" -->
+				<input type="hidden"  name="uid"  id="uid" style="width:50px;" value=$_G['uid'] />
+				<input name="stockid" type="hidden"  class="px" id="stockid" value="$_GET['stockid']" size="8" style="width:20px; height:20px;font-size:12px;"/>
+			</div>
+			</div>
+
+		</div>
+
+
+	
+<!--**********************************************************************************-->
+ 
+  
+  <script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("formula"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    //         mode: "text/html",
+            tabMode: "indent",
+            width: '100%',
+            height: '1500px',
+            autoMatchParens: true,
+            textWrapping: true,
+            lineNumbers: true,
+			lineWrapping:true
+  });
+  //使用主题
+     editor.setOption("theme", "ambiance");	
+	 editor.setOption("font-size", "20px");	
+ 
+</script>
+  
+  
+  
+  
+
+<!--
+<input type="button" onclick="submitcontent();" name="test_it" value="    测试     " />
+<input type="button" onclick="submitcontent_old();" value="    old测试     " />
+<input type="button" onclick="submitparser();" name="parser_it" value="    测试解析     " />
+<input type="button" onclick="submitdraw();" name="draw_it" value="    DRAW    " />
+
+  <tr>
+    <td colspan="3" align="center"><button type="submit" id="Submit_edit1" class="pn" value="true" name="Submit_edit1" tabindex="1"><span>{lang stock:stock_htm_36}</span></button></td>
+  </tr>
+-->
+ <!--************************************** 
+  <!--************************************************************************-->
+  <!--{/loop}-->
+<!--{/if}-->
+
+</form>
+<script type="text/javascript">checkLength(document.getElementById('message'));</script>
+</div></div></div>
+{subtemplate common/footer}

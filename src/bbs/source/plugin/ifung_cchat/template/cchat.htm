@@ -1,0 +1,64 @@
+{subtemplate common/header}
+<style type="text/css">
+#cchat_place { height:500px; margin-bottom:5px;}
+.readme { margin-bottom:5px; }
+</style>
+
+<div id="pt" class="bm cl">
+  <div class="z"><a href="index.php" class="nvhm">$_G[setting][bbname]</a><em>&rsaquo;</em><a href="plugin.php?id=ifung_cchat:cchat">{$plugin[ifung_name]}</a></div>
+</div>
+
+<div id="ct" class="ct2 wp cl">
+	<div class="mn"  id="cchat_place">
+		<script type="text/javascript" src="{$cchat_path}template/cmp.js"></script> 
+		<script type="text/javascript">
+		var flashvars = {
+	roomname : "{$plugin[ifung_cchat_roomname]}",
+	roomid : "{$plugin[ifung_cchat_roomid]}"					
+};
+		var username = "{$cchat_username}";
+		if (username) {
+		flashvars.username = username;
+		}
+		
+		var htm = CMP.create("cchat", "100%", "100%", "{$cchat_path}template/cchat.swf",flashvars, { wmode : "Opaque" });
+		document.getElementById("cchat_place").innerHTML = htm;
+		</script> 
+	</div> 
+	<div class="sd"> 
+		<div class="bm"> 
+            <div class="bm_h cl"> 
+                <h2>{lang ifung_cchat:readme}</h2> 
+            </div> 
+            <div class="bm_c"> 
+                <ul class="xl"> 
+                    <li>{$plugin[ifung_readme]}</li> 
+                </ul> 
+            </div> 
+         </div>
+        <div class="bm"> 
+            <div class="bm_h cl"> 
+                <h2>{lang ifung_cchat:explain}</h2> 
+            </div> 
+            <div class="bm_c"> 
+                <ul class="xl"> 
+                    <li>{$plugin[ifung_explain]}</li> 
+                </ul> 
+            </div> 
+        </div>
+        <div class="bm"> 
+            <div class="bm_h cl"> 
+                <h2>{lang ifung_cchat:copy}</h2> 
+            </div> 
+            <div class="bm_c"> 
+                <ul class="xl"> 
+                    <li>{lang ifung_cchat:name}</li> 
+                    <li>{lang ifung_cchat:version}</li>
+                    <li>{lang ifung_cchat:thiswork}cchat &copy;<a href="http://bbs.cenfun.com" target="_blank">CenFun</a></li> 
+                    <li>&copy;<a href="http://ifung.cn" target="_blank">iFung</a></li> 
+                </ul> 
+            </div> 
+        </div>
+	</div>
+</div>
+{subtemplate common/footer}

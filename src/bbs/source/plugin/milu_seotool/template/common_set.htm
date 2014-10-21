@@ -1,0 +1,12 @@
+<!--{template milu_seotool:header}-->
+
+<form action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post" {if $info['enctype'] == 'file'}enctype="multipart/form-data"{/if} name="form12" id="form12"> 
+ <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table class="tb tb2 ">
+<tbody>
+{$info['show']}
+<tr><td colspan="15"><div class="fixsel"><input type="submit" class="btn" id="submit_editsubmit" name="editsubmit" title="{lang milu_seotool:enter_sumit_title}" value="{if $info['submit_name']}{$info['submit_name']}{else}{lang milu_seotool:submit}{/if}"></div></td></tr><script type="text/JavaScript">_attachEvent(document.documentElement, 'keydown', function (e) { entersubmit(e, 'editsubmit'); });</script>
+</tbody>
+</table>
+
+</form>

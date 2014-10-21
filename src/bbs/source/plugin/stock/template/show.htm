@@ -1,0 +1,117 @@
+<div class="content" style="background:url(source/plugin/stock/template/images/wall.gif);">
+<div id="content_stock">
+  <!--{loop $stocklist $stock}-->
+  <div id="cc{$stock[id]}" class="drag scrip1 "  > 
+  <table width="146px" height="421px" cellspacing="0" cellpadding="0" border="0"  style="background:url(source/plugin/stock/template/images/a9.gif);" >
+   <tbody>  
+    <tr >  <!--style="height:170px;"    -->
+      <td >
+       </td>
+	    <td >
+       </td> 
+	   <td >
+       </td>
+	    <td >
+       </td>
+	    <td >
+       </td>
+	   <td >
+       </td>   
+	   <td ><div id="stockid" class="shead">$stock[id]</div>
+       </td>
+    </tr>
+    <tr height=250px>
+		<td>
+		</td>
+		
+		<td  style="padding-top:55px;" > <div <div class="sbody" > $stock[mothername] </div>
+		</td>  
+		<td style="padding-top:55px;" > <div class="sbody" style="width:12px;height:170px;overflow:hidden"> $stock[fathername]</div>
+		</td>
+		  <td width=4px>
+	  </td>
+				  <td width=55px valign="top"  style="padding-top:5px;" >
+				  <div class="sbot" style="width:50px;height:170px;overflow:hidden;font-size:50px;font-weight:bold"> $stock[holyname]</div>
+	  </td>
+			  <td width=23px>
+      </td>
+	  <td width=25px valign="top" style="padding-top:1px; font-size:20px;" ><div class="sadd">吉祥地</div>
+      </td>
+
+	  <td>
+			
+	  </td>
+	  
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <!--{/loop}-->   
+</div>
+
+<script type="text/javascript">
+//window.onresize=location.reload
+
+//alert(document.documentElement.scrollWidth)  窗口当前宽度
+var elements = document.getElementById('content_stock').childNodes;
+var zIndex = elements.length;
+var line = 0;
+var row = 0;
+var level = 0;
+var center ;
+var firststock=0 ;
+// alert(zIndex)
+//center = screen.availWidth/2-75 ;  屏幕宽度
+var center = document.documentElement.scrollWidth/2-75 ;
+
+for(var i=0; i<elements.length; i++){
+   if(elements[i].tagName && elements[i].tagName == 'DIV'){
+//     elements[i].style.top = Math.ceil(480 * Math.random()) + "px";
+//		elements[i].style.top = Math.ceil(1  ) + "px";
+//       elements[i].style.top = Math.ceil( 0 ) + "px";
+//       elements[i].style.left = Math.ceil(screen.availWidth * Math.random()) + "px";
+    //    if ( firststock == 0 ){
+	//	elements[i].style.top = line*425+"px";
+	//	elements[i].style.left = (screen.availWidth/2-75)+"px";
+	//	firststock = 1 ;
+	//	} else 
+		
+        if ( row % 2 == 0 ) {
+				elements[i].style.left = ( center - level*150)+"px";
+				level = level + 1 ;
+		}  else {
+				elements[i].style.left = ( center + level*150)+"px";
+				}
+		
+						   row = row + 1 ; 	
+ 
+		elements[i].style.top = (line*425+20)+"px";
+	//	elements[i].style.left = row*150+"px";
+          // alert(row)    center*2
+
+		     if ((row+1)*156> screen.availWidth ){
+          // 	  alert(row);
+	    row = 0;
+		level = 0 ;
+		line = line + 1;
+		document.getElementById('content_stock').style.height = 430 * (line + 1)  +"px";
+		}
+		
+/*      
+
+
+          if(i%3 == 0){
+				elements[i].style.left = Math.ceil(screen.availWidth /2+i*100) + "px";
+				}else{
+				elements[i].style.left = Math.ceil(screen.availWidth /2-i*100) + "px";
+				}
+*/
+				//elements[i].innerHTML="left"+elements[i].style.left+"top"+elements[i].style.top;
+      elements[i].style.zIndex = zIndex;
+      zIndex = zIndex - 1;
+	 //  alert("top"+elements[i].style.top+"left"+elements[i].style.left  )
+   }
+}
+
+</script>
+</div>

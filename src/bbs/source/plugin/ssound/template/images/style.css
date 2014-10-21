@@ -1,0 +1,10 @@
+#e_tsound{
+  background:url(ssound_big.png) no-repeat 6px 3px;
+}
+.b2r #e_tsound{
+  background:url(ssound_small.png) no-repeat 2px 2px;
+}
+#ssound_fast1{ position:absolute; width:106px; height:40px; background:url(but_fast.jpg) no-repeat; overflow:hidden; margin-left:390px; margin-top:-10px;}
+#ssound_fast1 a{ display:block; height:40px; width:106px;}
+#ssound_fast2{ position:absolute; width:106px; height:40px; background:url(but_fast.jpg) no-repeat; overflow:hidden; margin-left:390px; margin-top:-175px;}
+#ssound_fast2 a{ display:block; height:40px; width:106px;}

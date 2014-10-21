@@ -1,0 +1,256 @@
+{subtemplate common/header}
+<!----><script type="text/javascript" src="source/plugin/lighting/jquery.min.js"></script>
+<script type="text/javascript" src="source/plugin/lighting/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="source/plugin/lighting/lighting.func.js"></script>
+
+<div id="pt" class="bm cl">
+<div class="z"><a href="./" class="nvhm">$_G[setting][bbname]</a><em>&rsaquo;</em><a href="plugin.php?id=lighting">{lang lighting:lighting_htm_1}</a><!--{if $_GET[mod] == 'admin_check'}--><em>&rsaquo;</em>{lang lighting:lighting_htm_46}<!--{elseif $_GET[mod] == 'add_mood'}--><em>&rsaquo;</em>{lang lighting:lighting_htm_8}<!--{/if}--></div>
+</div>
+
+<div id="ct" class="wp cl">
+  <div class="mn">
+    <div class="bm">
+      <ul class="tb cl">
+        <li<!--{if empty($_GET[mod])}--> class="current"<!--{/if}-->><a href="plugin.php?id=lighting">{lang lighting:lighting_htm_1}</a></li>
+
+        <li<!--{if $_GET[mod] == 'user_mood'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lighting&mod=user_mood">{lang lighting:lighting_htm_18}</a></li>
+        <li<!--{if $_GET[mod] == 'members_mood'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lighting&mod=members_mood">{lang lighting:lighting_htm_38}</a></li>
+        <!--{if $_G[adminid] == '1'}-->
+        <li<!--{if $_GET[mod] == 'admin_check'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lighting&mod=admin_check">{lang lighting:lighting_htm_46}</a></li>
+        <!--{/if}-->
+ <!--       <li><a onclick="showDialog('{lang lighting:lighting_side_htm_3}', 'notice', '{lang lighting:lighting_side_htm_2}?', null, 0)" href="javascript:;">{lang lighting:lighting_side_htm_2}?</a></li>
+        <li><a onclick="showDialog('<strong>Mood Wall {lang lighting:lighting_htm_1} V{$_G[setting][plugins][version][lighting]}</strong><br />{lang lighting:lighting_side_htm_5}xiechunye<br />{lang lighting:lighting_side_htm_6}<a href=\'http://teen-s.coms.hk\' title=\'Marco129@{lang lighting:lighting_side_htm_7}\' target=\'_blank\'>Marco129</a>', 'notice', '{lang lighting:lighting_side_htm_4}', null, 0)" href="javascript:;">{lang lighting:lighting_side_htm_4}</a></li>
+-->		
+        <li style="float:right;"<!--{if $_GET[mod] == 'add_mood'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lighting&mod=add_mood">{lang lighting:lighting_htm_8}</a></li>
+      </ul>
+
+<!--{if empty($_GET[mod])}-->
+<div class="content" style="background:url(source/plugin/lighting/template/images/wall.gif);">
+<div id="content_light">
+<!--gnineh
+<ul class="gnineh">-->
+
+  <!--{loop $moodlist $mood}-->
+  <div id="cc{$mood[id]}" class="drag scrip1 gnineh"  >
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+ 
+    <tr>
+      <td>
+	  <img src="source/plugin/lighting/template/images/a7_1.png" height="144" width="144 border="0" >
+	        <div class="info">
+			 <img src="{$_G[setting][ucenterurl]}/avatar.php?uid={$mood[uid]}&size=small">
+			<h2><a style="font-size:14px;" href="{$_G[siteurl]}?{$mood[uid]}" target="_blank">$mood[username]</a></h2>
+            <p>$mood[message]</p>
+        </div>
+     <!-- <div class="sbody">$mood[message]</div>   height="24" width="24"
+      <div class="sbot"><h2 style="*margin-top:-15px;"><img src="{$_G[setting][ucenterurl]}/avatar.php?uid={$mood[uid]}&size=small" border="0" height="24" width="24"><a style="font-size:14px;" href="{$_G[siteurl]}?{$mood[uid]}" target="_blank">$mood[username]</a></h2></div>
+      -->
+	  </td>
+    </tr>
+<!--	<tr>
+	<td>
+	<div title=$mood[message] >$mood[username]</div>
+	</td>
+	</tr> -->
+    </tbody>
+  </table>
+  </div>
+  
+  
+  <!--
+		<li>
+		<a href="" title=$mood[username]:$mood[message] titlebg="green" >
+	  <img alt=$mood[username] src="source/plugin/lighting/template/images/a7_1.png" height="144" width="144 border="0" ></a>
+        <div class="info">
+			<h2>$mood[username]</h2>
+            <p>$mood[message]</p>
+        </div>
+	-->	
+	</li>
+	
+  
+  <!--{/loop}-->   
+</div>
+<script type="text/javascript">
+<!--
+//蜡烛位置
+var row=0
+var elements = document.getElementById('content_light').childNodes;
+var zIndex = elements.length;
+//alert(zIndex)
+for(var i=0; i<elements.length; i++){
+   if(elements[i].tagName && elements[i].tagName == 'DIV'){
+ //     elements[i].style.top = Math.ceil(480 * Math.random()) + "px";
+ //     elements[i].style.left = Math.ceil(700 * Math.random()) + "px";
+        elements[i].style.top = Math.ceil( i ) + "px";
+        elements[i].style.left = Math.ceil(130 * row) + "px";
+     row = row + 1;
+ elements[i].style.zIndex = zIndex;
+      zIndex = zIndex - 1;
+   }
+}
+//-->
+</script>
+</div></div></div></div>
+
+<!--{elseif $_GET[mod] == 'add_mood'}-->
+<!--//新增点灯祈愿-->
+<h1 class="mt"><strong>&nbsp;{lang lighting:lighting_htm_8}</strong></h1>
+<div class="content">
+<div class="datalist">
+<form action="plugin.php?id=lighting&mod=add_mood" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural">
+    <td>1. {lang lighting:lighting_htm_12}({lang lighting:lighting_htm_13})</td>
+  </tr>
+  <tr>
+    <td align="left"><input name="message" type="text" class="px" id="message" onkeyup="checkLength(this);" size="100%" style="height:40px;font-size:22px;" /><br />{lang lighting:lighting_htm_14}<span id="chLeft">100</span>{lang lighting:lighting_htm_15}</td>
+  </tr>
+  <tr>
+    <td align="left"><button type="submit" id="Submit_member" class="pn pnc" value="true" name="Submit_member" tabindex="1"><span>{lang lighting:lighting_htm_16}</span></button></td>
+  </tr>
+</table>
+</form>
+
+</div></div>
+
+<!--{elseif $_GET[mod] == 'user_mood'}-->
+<div class="content datalist">
+<form action="plugin.php?id=lighting&mod=user_mood" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="600" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="5%">{lang lighting:lighting_htm_19}ID</td>
+<!--   <td width="5%">{lang lighting:lighting_htm_19}</td>  -->
+    <td width="64%">{lang lighting:lighting_htm_21}</td>
+    <td width="18%">{lang lighting:lighting_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+<!--{if $moodlist_user}-->
+  <!--{loop $moodlist_user $mood_user}-->
+  <tr align="center">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_user['id']}" /></td>
+    <td width="5%">$mood_user[id]</td>
+ <!--   <td width="5%"><img src="source/plugin/lighting/template/images/mood/$mood_user[mood].gif" /></td> -->
+    <td width="64%">$mood_user[message]</td>
+    <td width="18%">$mood_user[dateline]</td>
+    <td width="5%"><a href="plugin.php?id=lighting&mod=edit_mood&moodid=$mood_user[id]">{lang lighting:lighting_htm_23}</a></td>
+  </tr>
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" />&nbsp;{lang lighting:lighting_htm_24}&nbsp;
+    <button type="submit" id="del_mood" class="pn" value="true" name="del_mood" tabindex="1"><span>{lang lighting:lighting_htm_25}</span></button></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang lighting:lighting_htm_26}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'edit_mood'}-->
+<div class="content datalist">
+<form method="post" action="plugin.php?id=lighting&mod=edit_mood">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+<!--{if $moodlist_edit}-->
+  <!--{loop $moodlist_edit $mood_edit}-->
+  <input type="hidden" name="moodid" value="$mood_edit[id]">
+  <tr class="colplural">
+    <td colspan="2" align="center"><h1 class="mt">{lang lighting:lighting_htm_21} - {lang lighting:lighting_htm_19}ID&#65306;$mood_edit[id]</h1></td>
+  </tr>
+
+ 
+  <tr>
+    <td>{lang lighting:lighting_htm_21}:</td>
+    <td><input name="message" type="text" class="px" id="message" onkeyup="checkLength(this);" value="$mood_edit[message]" size="100%" style="height:40px;font-size:22px;"/><br />{lang lighting:lighting_htm_14}<span id="chLeft">100</span>{lang lighting:lighting_htm_15}</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><button type="submit" id="Submit_edit" class="pn" value="true" name="Submit_edit" tabindex="1"><span>{lang lighting:lighting_htm_21}</span></button></td>
+  </tr>
+  <!--{/loop}-->
+<!--{/if}-->
+</table>
+</form>
+<script type="text/javascript">checkLength(document.getElementById('message'));</script>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'members_mood'}-->
+<div class="content datalist">
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="10%">{lang lighting:lighting_htm_40}</td>
+    <td width="5%">{lang lighting:lighting_htm_19}ID</td>
+<!--    <td width="5%">{lang lighting:lighting_htm_19}</td> -->
+    <td width="70%">{lang lighting:lighting_htm_21}</td>
+    <td width="15%">{lang lighting:lighting_htm_22}</td>
+  </tr>
+<!--{if $moodlist_members}-->
+  <!--{loop $moodlist_members $mood_members}-->
+  <tr align="center">
+      <td width="10%" align="left">&nbsp;<img src="{$_G[setting][ucenterurl]}/avatar.php?uid=$mood_members[uid]&size=small" border="0" height="24" width="24"> <a href="{$_G[siteurl]}?$mood_members[uid]" target="_blank">$mood_members[username]</a></td>
+      <td width="5%">$mood_members[id]</td>
+ <!--     <td width="5%"><img src="source/plugin/lighting/template/images/mood/$mood_members[mood].gif" /></td> -->
+      <td width="70%">$mood_members[message]</td>
+      <td width="15%">$mood_members[dateline]</td>
+  </tr>
+  <!--{/loop}-->
+  <!--{if !empty($multipage)}-->
+  <tr><td colspan="5"><div class="pages_btns">$multipage</div></td></tr><!--{/if}-->
+<!--{else}-->
+  <tr>
+    <td colspan="5" align="center">{lang lighting:lighting_htm_44}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'admin_check'}-->
+<h1 class="mt"><strong>&nbsp;{lang lighting:lighting_htm_47}</strong></h1>
+<div class="content datalist">
+<form action="plugin.php?id=lighting&mod=admin_check" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="6%">{lang lighting:lighting_htm_19}ID</td>
+<!--    <td width="15%">{lang lighting:lighting_htm_19}</td>  -->
+    <td width="10%">{lang lighting:lighting_htm_40}</td>
+    <td width="60%">{lang lighting:lighting_htm_21}</td>
+    <td width="15%">{lang lighting:lighting_htm_22}</td>
+  </tr>
+<!--{if $moodlist_admin}-->
+  <!--{loop $moodlist_admin $mood_admin}-->
+  <tr align="center">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_admin['id']}" /></td>
+    <td width="6%">$mood_admin[id]</td>
+    <td width="10%" align="left">&nbsp;<a href="{$_G[siteurl]}?$mood_admin[uid]" target="_blank">$mood_admin[username]</a></td>
+  <!--  <td width="5%"><img src="source/plugin/lighting/template/images/mood/$mood_admin[mood].gif" /></td>  -->
+    <td width="60%">$mood_admin[message]</td>
+    <td width="15%">$mood_admin[dateline]</td>
+  </tr>
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" />&nbsp;{lang lighting:lighting_htm_24}&nbsp;
+    <button type="submit" id="admin_edit" class="pn" value="true" name="admin_del" tabindex="1"><span>{lang lighting:lighting_htm_25}</span></button></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang lighting:lighting_htm_55}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+<!--{/if}-->
+{subtemplate common/footer}

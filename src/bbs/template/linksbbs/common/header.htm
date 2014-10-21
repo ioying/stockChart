@@ -1,0 +1,60 @@
+<!--{subtemplate common/header_common}-->
+	<meta name="application-name" content="$_G['setting']['bbname']" />
+	<meta name="msapplication-tooltip" content="$_G['setting']['bbname']" />
+	<!--{if $_G['setting']['portalstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][1]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['portal']) ? 'http://'.$_G['setting']['domain']['app']['portal'] : $_G[siteurl].'portal.php'};icon-uri={$_G[siteurl]}{IMGDIR}/portal.ico" /><!--{/if}-->
+	<meta name="msapplication-task" content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico" />
+	<!--{if $_G['setting']['groupstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico" /><!--{/if}-->
+	<!--{if helper_access::check_module('feed')}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico" /><!--{/if}-->
+	<!--{if $_G['basescript'] == 'forum' && $_G['setting']['archiver']}-->
+		<link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
+	<!--{/if}-->
+	<!--{if !empty($rsshead)}-->$rsshead<!--{/if}-->
+	<!--{if widthauto()}-->
+		<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
+		<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+	<!--{/if}-->
+	<!--{if $_G['basescript'] == 'forum' || $_G['basescript'] == 'group'}-->
+		<script type="text/javascript" src="{$_G[setting][jspath]}forum.js?{VERHASH}"></script>
+	<!--{elseif $_G['basescript'] == 'home' || $_G['basescript'] == 'userapp'}-->
+		<script type="text/javascript" src="{$_G[setting][jspath]}home.js?{VERHASH}"></script>
+	<!--{elseif $_G['basescript'] == 'portal'}-->
+		<script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+	<!--{/if}-->
+	<!--{if $_G['basescript'] != 'portal' && $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+		<script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+	<!--{/if}-->
+	<!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+	<link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
+	<!--{/if}-->
+	<link rel="stylesheet" type="text/css" href="http://a.links123.net/g/src/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/iread/css/top-bar.css?{VERHASH}">
+</head>
+
+<body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
+	<div id="append_parent"></div><div id="ajaxwaitid"></div>
+	<div class="top-bar">
+        <ul class="lf">
+            <li><a href="http://www.links123.com/" target="_blank">首页</a></li>
+            <li><a href="http://english.links123.com/" target="_blank">英语角</a></li>
+            <li><a href="http://english.links123.com/IndexV2/index?t=chinese" target="_blank">汉语角</a></li>
+            <li><a href="http://www.links123.com/Home/Index/nav.html" target="_blank">导航</a></li>
+            <li><a href="http://www.links123.com/Suggestion.html" target="_blank">留言板</a></li>
+        </ul>
+        <div class="uc rf">
+		<!--{if $_G['uid']}-->
+            <!--<a href="/">消息 <em class="msg-tip">2</em></a> -->
+            <a href="/" class="J_username"> $_G['username']<i class="b-tip"></i></a>
+            <ul class="pop-navlist" style="display:none;">
+                <li class="t-tip"></li>
+                <li class="person"><a href="http://www.links123.com/Members/Index"><i class="gh-ico gh-ico-person"></i>个人中心</a></li>
+                <li><a href="http://www.links123.com/Members/Collection"><i class="gh-ico gh-ico-heart"></i>我的收藏</a></li>
+                <li><a href="http://www.links123.com/Members/Recommend"><i class="gh-ico gh-ico-good"></i>我赞过的</a></li>
+                <li><a href="#"><i class="gh-ico gh-ico-phone"></i>手机绑定</a></li>
+                <li class="logout"><a href="//passport.links123.com/logout?f=http://www.links123.com/"> <i class="gh-ico gh-ico-close"></i>退出登录</a></li>
+            </ul>
+            <!--{else}-->
+            <a href="http://passport.links123.com/?f=http://village.links123.com/" class="login login-bg">登录</a><a href="http://passport.links123.com/register?f=http://village.links123.com/" class="join">快速注册</a>
+            <!--{/if}-->
+        </div>
+    </div>
+	<div id="wp" class="wp">

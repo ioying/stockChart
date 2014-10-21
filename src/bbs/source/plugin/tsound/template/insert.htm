@@ -1,0 +1,46 @@
+{template common/header_ajax}
+<div style="width:470px">
+<h3 class="flb mn sr"><em>{lang tsound:title}</em><a href="javascript:;" id="lastsound" onclick="insertLast()" style="display:none"><em style="color:red;padding-left:20px;text-decoration:underline">{lang tsound:lastsound}</em></a> <span> 
+
+<a href="javascript:;" class="flbc" onclick="hideWindow('tsound', 0, 1);" title="{lang close}">{lang close}</a> 
+
+</span> </h3>
+{$flash}
+</div>
+<script type="text/javascript" reload="1">
+function OnezCall(type,s){
+  if(type=='upload'){
+    if(s.substr(0,2)!='ok'){
+      alert(s);
+      return;
+    }
+    s=s.substr(2);
+    insertSound(s);
+  }else if(type=='status'){
+  }
+}
+function insertLast(){
+  insertSound(lsound);
+}
+function insertSound(s){
+  var txt = '[tsound]' + s + '[/tsound]';
+  
+  try{
+    insertText(txt, strlen(txt), 0);
+  }catch(e){
+	try{  
+      seditor_insertunit('fastpost', txt);
+	}catch(e1){
+		try{
+			edit_insert(txt);
+		}catch(e2){
+			seditor_insertunit('send',txt);
+		}
+			
+	}
+  }
+  hideWindow('tsound', 0, 1);
+  doane(event);
+}
+</script> 
+{template common/footer_ajax}

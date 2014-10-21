@@ -1,0 +1,58 @@
+<!--{template milu_seotool:header}-->
+<script type="text/javascript">
+
+function flink_ask_op(id, status){
+	showDialog('', 'info', loading_html('{lang milu_seotool:send_asking}'));
+	jq.post(PLUGIN_URL+'flink&myac=seotool_ajax_func&af=flink_ask_op&inajax=1&tpl=no&id='+id+'&status='+status,null,function (msg) {
+		if(msg != 1 || msg == '') {
+			showDialog(msg, 'notice');
+			return;
+		}else{
+			showDialog('{lang milu_seotool:op_success}', 'right', '', function (){location.href = PLUGIN_URL+'flink&myac={$_GET[myac]}'},'','','','','',3);
+		}
+	});
+}
+
+function flink_ask_detail(id, type){
+	showWindow('flink_window', PLUGIN_URL+'flink&myac=seotool_ajax_func&af=flink_ask_detail&inajax=1&tpl=no&id='+id+'&type='+type);
+}
+
+</script>
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post">
+<table class="tb tb2 " id="tips">
+<tbody><tr><th class="partition">{lang milu_seotool:search_args}</th></tr>
+<tr><td class="tipsblock" s="1">{$info['search_show']} <input type="submit" class="btn" id="submit_search" name="search_submit" value="{lang milu_seotool:search}"></td></tr></tbody></table>
+
+</form>
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post"> 
+ <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table class="tb tb2 nobdt fixpadding">
+<tbody><tr>
+  <th colspan="22" class="partition">{$info['show_title']}</th></tr>
+<tr class="header">
+  <th width="200">{lang milu_seotool:sitename_view_visit}</th>
+  <th width="250">{lang milu_seotool:remark_desc}</th>
+
+  <th width="100">{lang milu_seotool:ask_date}</th>
+  <th width="80">{lang milu_seotool:qq_contact}</th>
+  <th width="80">{lang milu_seotool:status}</th>
+  <th width="100">{lang milu_seotool:op}</th>
+</tr>
+<!--{if $info['list']}-->
+<!--{loop $info['list'] $key $rs}-->
+<tr class="hover"><td width="200">{$rs['sitename']}</td>
+  <td width="250">{$rs['remark']}</td>
+  <td width="100">{$rs['dateline']}</td>
+  <td width="80">{eval echo seoOutput::show_qq($rs['qq'], 1)}</td>
+  <td width="80">{$info['flink_status_arr'][$rs['status']]}</td>
+  <td width="100">{eval echo show_flink_op($rs['id'], $info['type'],$rs['status'])}</td>
+  </tr>
+<!--{/loop}-->
+<!--{else}-->
+<tr>
+  <td colspan="22" align="center">{lang milu_seotool:no_data}</td>
+</tr>
+ <!--{/if}-->
+<script type="text/JavaScript">_attachEvent(document.documentElement, 'keydown', function (e) { entersubmit(e, 'creditsubmit'); });</script></tbody></table>
+
+</form>

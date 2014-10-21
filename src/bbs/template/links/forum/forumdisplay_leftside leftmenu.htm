@@ -1,0 +1,146 @@
+<script>
+function showHidebak(){     
+
+document.cookie="CookieMenuViews=1" ;
+alert('a');
+} 
+
+ if(document.getElementById && document.getElementById(objectId)) { 
+ return document.getElementById(objectId); 
+ } 
+ else if (document.all && document.all(objectId)) { 
+ return document.all(objectId); 
+ } 
+ else if (document.layers && document.layers[objectId]) { 
+ return document.layers[objectId]; 
+ } 
+ else { 
+ return false; 
+ } 
+} 
+///
+function showHide(e,objname){     
+    var obj = getObject(objname); 
+	alert("in");
+    if(obj.style.display == "none"){ 
+        obj.style.display = "block"; 
+        e.className="xias"; 
+    }else{ 
+        obj.style.display = "none"; 
+        e.className="rights"; 
+    } 
+} 
+--> 
+</script> 
+<style type="text/css"> 
+body { font-size:12px; margin:0px; padding:0; text-align:left;} 
+dl,dt,dd,ul,ol,li,p,div,input,h1,h2,h3,h4,h5,h6 { margin:0; padding:0;} 
+li { list-style:none;} 
+.libiao_menu { margin-bottom:15px;} 
+.libiao_menu h3 a { margin-top:15px; margin-bottom:15px; display:block; width:130px; height:28px; font-size:14px; text-align:left; padding-left:0px; padding-top:13px; color:#0066cc;} 
+.libiao_menu dl { margin-left:0px; margin-top:5px;} 
+.libiao_menu dl dt { font-size:14px; line-height:24px;} 
+.libiao_menu dl dt a { padding-left:0px; color:#333;} 
+.libiao_menu dl dt a.rights { background:url(http://p1.mb5u.com/texiao/0/20100522230639214.gif) no-repeat 0 3px;} 
+.libiao_menu dl dt a.xias { background:url(http://p1.mb5u.com/texiao/0/20100522230639214.gif) no-repeat 0 -41px;} 
+.libiao_menu dl dd { padding-left:0px;} 
+.libiao_menu dl dd ul {} 
+.libiao_menu dl dd ul li { font-size:14px; line-height:24px;} 
+.libiao_menu dl dd ul li a { color:#06c;} 
+</style>
+<!--{if $leftside['favorites']}-->
+	<h2 class="mbn"><a href="home.php?mod=space&do=favorite&type=forum">{lang favorite_forums}</a></h2>
+	<dl id="lf_fav" class="bdl_fav mbm">
+		<!--{loop $leftside['favorites'] $favfid $fdata}-->
+			<dd>
+				<!--{if !empty($_G['cache']['forums'][$favfid]['domain']) && !empty($_G['setting']['domain']['root']['forum'])}-->
+					<a href="http://{$_G['cache']['forums'][$favfid]['domain']}.{$_G['setting']['domain']['root']['forum']}" title="$fdata[0]">$fdata[0]</a>
+				<!--{else}-->
+					<a href="forum.php?mod=forumdisplay&fid=$favfid">$fdata[0]</a>
+				<!--{/if}-->
+				
+			</dd>
+		<!--{/loop}-->
+	</dl>
+<!--{else}-->
+	<h2 class="bdl_h">{lang forum_nav}</h2>
+<!--{/if}-->
+
+ <!-- xx{ xx eval setcookie("CookieMenuViews", "1",time()+36000;  xx}xx  --> 
+<div class="libiao_menu"> 
+<!--{loop $leftside['forums'] $upfid $gdata}-->
+	<dl class="{if $fgroupid == $upfid || $_G['setting']['leftsideopen']}a{/if}" id="lf_$upfid">
+		<dt><a href="javascript:;" hidefocus="true" onclick="leftside('lf_$upfid')" title="$gdata['name']">$gdata['name']</a></dt>
+	<!--{loop $gdata['sub'] $subfid $name}-->
+		<dd{if $_G['fid'] == $subfid || $_G['forum']['fup'] == $subfid} class="bdl_a"{/if}>
+		
+			<!--{if !empty($_G['cache']['forums'][$subfid]['domain']) && !empty($_G['setting']['domain']['root']['forum'])}-->
+				<a href="http://{$_G['cache']['forums'][$subfid]['domain']}.{$_G['setting']['domain']['root']['forum']}" title="$name"><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+			<!--{else}--> 
+			
+				
+					<a href="javascript:;" class="xias" onclick="showHide(this,'items0');">aa<img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" /></a>
+					<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick="showHide(this,'items0')" title="$name" >&nbsp$name</a>
+				
+					 
+				<!--	$_COOKIE["LastViews"] ++ $_GET['fid'] onclick='document.cookie="LastViews=$subfid"' -->
+							
+							
+			
+			     <!--{if 1>2 && $_COOKIE["CookieMenuViews"] == '1'}--> <!--document.cookie="CookieMenuViews=0"  onclick="showHide(this,'items0') -->
+				<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick='document.cookie="LastViews=$subfid"' title="$name" ><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+				<!--{else}--> 
+			<!--	<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick='document.cookie="LastViews=$subfid"' title="$name" ><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>   -->
+				<!--{/if}-->
+			<!--{/if}-->
+		
+		</dd>  
+
+		
+		
+		<!-- onclick="showHide(this,'items0'); showHide onclick="display('thread_types')"   &&  $_COOKIE["CookieMenuViews"] ==1-->
+		<!-- subfid:$subfid fid:$_G['fid'] ,forum:$_G['forum']['threadtypes'] -->
+		<!-- 分类列表 移动到左侧菜单 仿印象效果  forumdisplay_leftside.htm  by TT 20140309    ttp bm cl-->
+				<!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || count($_G['forum']['threadsorts']['types']) > 0}-->
+				<div id="items0" style="display: block;"> 	
+					<ul id="thread_types" class="" style=''>
+						<!--{hook/forumdisplay_threadtype_inner}-->
+						<!-- <li id="ttp_all" {if !$_GET['typeid'] && !$_GET['sortid']}class="xw1 a"{/if}><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_G['forum']['threadsorts']['defaultshow']}&filter=sortall&sortall=1{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">{lang forum_viewall}</a></li> -->
+						
+						<!--{if $_G['forum']['threadtypes'] && $_G['fid'] == $subfid   }-->
+						
+							<!--{loop $_G['forum']['threadtypes']['types'] $id $name}-->
+								<!--{if $_GET['typeid'] == $id}-->
+								<li class=""><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['sortid']}&filter=sortid&sortid=$_GET['sortid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->&nbsp$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+								<!--{else}-->
+								<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=typeid&typeid=$id$forumdisplayadd[typeid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->&nbsp&nbsp<img class="vm" src="$_G['style']['styleimgdir']note.gif" alt="" /> &nbsp$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+								<!--{/if}-->
+								
+								
+								
+							<!--{/loop}-->
+						<!--{/if}-->
+
+						<!--{if $_G['forum']['threadsorts']}-->
+							<!--{if $_G['forum']['threadtypes']}--><li><span class="pipe">|</span></li><!--{/if}-->
+							<!--{loop $_G['forum']['threadsorts']['types'] $id $name}-->
+								<!--{if $_GET['sortid'] == $id}-->
+								<li class="xw1 a"><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['typeid']}&filter=typeid&typeid=$_GET['typeid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+								<!--{else}-->
+								<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=sortid&sortid=$id$forumdisplayadd[sortid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+								<!--{/if}-->
+							<!--{/loop}-->
+						<!--{/if}-->
+						<!--{hook/forumdisplay_filter_extra}-->
+					</ul>
+				</div>	
+					<script type="text/javascript">showTypes('thread_types1');</script>
+				<!--{/if}-->
+		
+		
+		
+		
+	<!--{/loop}-->
+	</dl>
+<!--{/loop}-->
+</div>

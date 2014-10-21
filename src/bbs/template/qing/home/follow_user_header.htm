@@ -1,0 +1,46 @@
+<div class="mtn ctrl flw_hd">
+	<!--{if helper_access::check_module('follow')}-->
+	<div class="tns">
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<th>
+					<span><a href="home.php?mod=follow&uid=$uid&do=view">{lang follow}</a></span>
+					<p><a href="home.php?mod=follow&uid=$uid&do=view">$space['feeds']</a></p>
+				</th>
+				<th>
+					<span><a href="home.php?mod=follow&do=following&uid=$uid">{lang follow_add}</a></span>
+					<p><a href="home.php?mod=follow&do=following&uid=$uid">$space['following']</a></p>
+				</th>
+				<td>
+					<span><a href="home.php?mod=follow&do=follower&uid=$uid">{lang follow_follower}</a></span>
+					<p><a href="home.php?mod=follow&do=follower&uid=$uid" id="followernum_$uid">$space['follower']</a></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!--{/if}-->
+<!--{if !$viewself}-->
+	<div class="mtw ptn o cl">
+		<div id="followflag" class="z" {if !isset($flag[$_G['uid']])}style="display: none"{/if}>
+			<!--{if $flag[$_G['uid']]['mutual']}-->
+			<span class="z flw_status_2">{lang follow_follower_mutual}</span>
+			<!--{else}-->
+			<span class="z flw_status_1">{lang follow_followed},</span>
+			<!--{/if}-->
+			<a id="a_followmod_{$uid}" href="home.php?mod=spacecp&ac=follow&op=del&fuid=$uid&from=head" onclick="ajaxget(this.href);doane(event);" class="z xi2">{lang follow_del}</a>
+			<!--{if helper_access::check_module('follow')}-->
+			<a href="home.php?mod=spacecp&ac=follow&op=add&hash={FORMHASH}&special={if $flag[$_G['uid']]['status'] == 1}2{else}1{/if}&fuid=$uid&from=head" class="{if $flag[$_G['uid']]['status'] == 1}flw_specialunfo{else}flw_specialfo{/if}" id="specialflag_$uid" onclick="ajaxget(this.href);doane(event);" title="{if $flag[$_G['uid']]['status'] == 1}{lang follow_del_special_following}{else}{lang follow_add_special_following}{/if}"><!--{if $flag[$_G['uid']]['status'] == 1}-->{langfollow_del_special_following}<!--{else}-->{lang follow_add_special_following}<!--{/if}--></a>
+			<!--{/if}-->
+		</div>
+		<div id="unfollowflag" class="z" {if isset($flag[$_G['uid']])}style="display: none"{/if}>
+			<!--{if isset($flag[$uid])}-->
+			<span class="z flw_status_1">{lang follow_user_followed}</span>
+			<!--{/if}-->
+			<!--{if helper_access::check_module('follow')}-->
+			<a id="a_followmod_{$uid}" href="home.php?mod=spacecp&ac=follow&op=add&hash={FORMHASH}&fuid=$uid&from=head" onclick="ajaxget(this.href);doane(event);" class="flw_btn_fo">{lang follow_add}</a>
+			<!--{/if}-->
+		</div>
+		<a href="home.php?mod=spacecp&ac=pm&op=showmsg&handlekey=showmsg_$space[uid]&touid=$space[uid]&pmid=0&daterange=2" id="a_sendpm_$space[uid]" class="z pm2" onclick="showWindow('showMsgBox', this.href, 'get', 0)" title="{lang send_pm}">{echo '站内信'}</a>
+	</div>
+<!--{/if}-->
+</div>

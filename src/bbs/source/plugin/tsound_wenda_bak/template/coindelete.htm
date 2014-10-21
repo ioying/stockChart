@@ -1,0 +1,27 @@
+{template common/header_ajax}
+<div class="mod-answer-form js-form" style="border: 0">
+<div class="bd">
+
+<button id="test" class="pn pnc" onclick="deleteWeida($qid)">{lang tsound_wenda:coindelete}</button>
+<button class="pn pnc" onclick="hideWindow('tsound_wenda_other', 0, 1);">{lang
+tsound_wenda:coincancel}</button>
+</div>
+</div>
+
+<script type="text/javascript" reload="1">
+
+function deleteWeida(qid){
+	if(confirm('{lang tsound_wenda:ifdelete}')){
+		var x = new Ajax();
+		x.get('plugin.php?id=tsound_wenda&action=coindelete&deleteaction=yes&qid='+qid, function(s){
+			alert('{lang tsound_wenda:deleteok}');
+			location.href='plugin.php?id=tsound_wenda:tsound_wenda';
+		});
+			
+	}
+
+	
+}
+</script>
+
+{template common/footer_ajax}

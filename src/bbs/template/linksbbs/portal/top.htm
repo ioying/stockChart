@@ -1,0 +1,136 @@
+<!--{template common/header_top}-->
+
+<div class="container page_index rank_list">
+		<div class="top_bar clearfix">
+			<div class="wrapper">
+			<div class="login_bar pull-right">
+				<!--{if $_G['uid']}-->
+					<ul class="nav">
+						<li><a href="/">Hello, $_G['username']<i class="b_tip"></i></a></li>
+					</ul>
+					<ul class="pop_navlist" style="display:none;">
+						<li class="t_tip"></li>
+						<li class="person"><a href="http://www.links123.com/Members/Index"><i class="gh-ico gh-ico-person"></i>个人中心</a></li>
+						<li><a href="http://www.links123.com/Members/Collection"><i class="gh-ico gh-ico-heart"></i>我的收藏</a></li>
+						<li><a href="http://www.links123.com/Members/Recommend"><i class="gh-ico gh-ico-good"></i>我赞过的</a></li>
+						<li><a href="#" class="j_link_phone_bind"><i class="gh-ico gh-ico-phone"></i>手机绑定</a></li>
+						<li class="logout"><a href="//passport.links123.com/logout?f=http://www.links123.com/">	<i class="gh-ico gh-ico-close"></i>退出登录</a></li>
+					</ul>
+					<!--{else}-->
+					<ul class="nav hide">
+						<li><a href="###" title="登录">登录</a></li>
+						<li><a href="###" title="快速注册">快速注册</a></li>
+					</ul>
+	            <!--{/if}-->
+				</div>
+
+				<ul class="pull-left nav">
+					<li><a href="http://www.links123.com/" target="_blank">首页</a></li>
+		            <li><a href="http://english.links123.com/" target="_blank">英语角</a></li>
+		            <li><a href="http://english.links123.com/IndexV2/index?t=chinese" target="_blank">汉语角</a></li>
+		            <li><a href="http://www.links123.com/Home/Index/nav.html" target="_blank">导航</a></li>
+		            <li><a href="http://village.links123.com/" target="_blank">读书</a></li>
+		            <li><a href="http://www.links123.com/Suggestion.html" target="_blank">留言板</a></li>
+				</ul>
+			</div>
+		</div><!-- /.top_bar -->
+
+		<div class="nav_bar clearfix">
+			<div class="wrapper">
+				<h1 class="brand pull-left"><a href="###" title="另客村论坛首页">另客村</a>iread</h1>
+				<ul class="pull-right nav">
+					<li><a href="/portal.php">另客阅读</a></li>
+		            <li><a href="http://www.links123.com/Event.html" target="_blank">另客奖学金</a></li>
+		            <!-- 
+		            <li><a href=";" title="">外教免费课程</a></li>
+		            <li><a href=";">答疑解惑</a></li>
+		             -->
+		            <li><a href="/forum.php?mod=forumdisplay&fid=38">另客云团队</a></li>
+		            <li class="desk-rank"><a href="/portal.php?mod=top" target="_blank">桌面大赛排行榜</a></li>
+				</ul>
+			</div>
+		</div><!-- /.nav_bar -->
+
+		<div class="main_page wrapper_1024	clearfix">
+
+			<div class="rank_list_btn mt20">
+			<h2 class="font-gray">排行榜直达电梯</h2>
+				<a href="###" class="btn btn-middle">总排行</a>
+				<a href="###" class="btn btn-middle b07ec7">最佳原创</a>
+				<a href="###" class="btn btn-middle f1bc8e">最多原创</a>
+				<a href="###" class="btn btn-middle e17e7a">最佳文摘</a>
+				<a href="###" class="btn btn-middle 84c7bb">最多阅读</a>
+				<a href="###" class="btn btn-middle db80b6">最多点评</a>
+			</div>
+
+			<div class="grid">
+				<div class="row">
+						<div class="left_bar">
+							<div class="cell all">
+								<h2 class="font-gray">总排行</h2>
+								<ul class="rank_list_mod">
+									<li><em>1st</em><span class="name">admin</span><span class="commend">26次推荐</span><span class="read">1.34k阅读</span><span class="original">1,251篇原创</span></li>
+									<li class="last"><span class="name">你的排名为1,325</span><span class="commend">26次推荐</span><span class="read">1.34k阅读</span><span class="original">1,251篇原创</span></li>
+								</ul>
+
+							</div><!--/.cell-->
+							<div class="cell original">
+								<h2 class="font-gray">最多原创</h2>
+								<ul class="rank_list_mod">
+									<li><em>1st</em><span class="name">admin</span><span class="original">1,251篇原创</span></li>
+								</ul>
+
+							</div><!--/.cell-->
+							<div class="cell digest">
+								<h2 class="font-gray">最多文摘</h2>
+								<ul class="rank_list_mod">
+									<li><em>1st</em><span class="name">admin</span><span class="original">1,251篇原创</span></li>
+								</ul>
+							</div><!--/.cell-->
+						</div>
+					<div class="right_bar">
+						<div class="cell cell6">
+						<h2 class="font-gray">最佳原创</h2>
+							<ul class="rank_article_list_mod b07ec7">
+								<li><a href="/">如果再次遇见隔壁村的李狗蛋，我会打断他的腿！</a><span class="name">admin</span><span class="commend">26次推荐</span></li>
+							</ul>
+					</div><!-- /.cell6 -->
+					<div class="cell cell6">
+						<h2 class="font-gray">最佳原创</h2>
+							<ul class="rank_article_list_mod e17e7a">
+								<li><a href="/">如果再次遇见隔壁村的李狗蛋，我会打断他的腿！</a><span class="name">admin</span><span class="commend">26次推荐</span></li>
+							</ul>
+					</div><!-- /.cell6 -->
+					<div class="cell6">
+							<div class="cell comments">
+								<h2 class="font-gray">最多点评</h2>
+								<ul class="rank_list_mod">
+									<li><em>1st</em><span class="name">admin</span><span class="original">1,251篇原创</span></li>
+								</ul>
+							</div><!--/.cell-->
+							<div class="cell read">
+								<h2 class="font-gray">最多阅读</h2>
+								<ul class="rank_list_mod">
+									<li><em>1st</em><span class="name">admin</span><span class="original">1,251篇原创</span></li>
+								</ul>
+							</div><!--/.cell-->
+					</div>
+					</div>
+				</div><!--/.row-->
+			</div><!-- /.grid -->
+
+		</div><!-- /.main_page -->
+
+		<div class="footer wrapper_1024 clearfix">
+			<ul class="nav">
+				<li><a href="###" title="关于另客">关于另客</a></li>
+				<li><a href="###" title="联系我们">联系我们</a></li>
+				<li><a href="###" title="留言板">留言板</a></li>
+				<li><a href="###" title="推荐链接">推荐链接</a></li>
+				<li><a href="###" title="申请友链">申请友链</a></li>
+			</ul>
+		</div><!-- /.footer -->
+
+	</div><!-- /.container -->
+
+<!--{template common/footer_iread}-->

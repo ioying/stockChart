@@ -1,0 +1,125 @@
+{subtemplate common/header} 
+
+ 
+<div id="pt" class="bm cl">
+	<!--{if empty($gid) && $announcements}-->
+	<div class="y">
+		<div id="an">
+			<dl class="cl">
+				<dt class="z xw1">{lang announcements}:&nbsp;</dt>
+				<dd>
+					<div id="anc"><ul id="ancl">$announcements</ul></div>
+				</dd>
+			</dl>
+		</div>
+		<script type="text/javascript">announcement();</script>
+
+
+	</div>
+	<!--{/if}-->
+	<div class="z">
+	 
+	<a href="./" class="nvhm">$_G[setting][bbname]</a><em>&rsaquo;</em><a href="./">$_G[setting][bbname]</a> <em>&rsaquo;</em>
+	
+   <a href="plugin.php?id=wmff_jianfan:wmff_jianfan">$wmff_jianfan_biaoti</a></div>
+	<div class="z"><!--{hook/index_status_extra}--></div>
+</div>
+ 
+<!--wanmeiff.com go -->
+		<style> 
+#tip {
+padding-left: 20px;
+padding-right:20px;
+}
+.pnc, a.pnc {
+padding: 5px;
+}
+.px {
+margin-top: 10px;
+}
+.wmffzhana.y {
+float: right;
+padding-right: 16px;
+}
+.wmffxzss{float:left;padding-left: 10px;}
+</style>
+<SCRIPT LANGUAGE="JavaScript" src="source/plugin/wmff_jianfan/wanmeiff.com_js/fanti_corvert$wmff_jianfan_gbut.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function zhuanhuan($s)
+{
+    var ch=chk('ch');
+	var content=document.getElementById('content').value;
+	if(ch=='fanti')
+    {
+        var contentout=traditionalized(content);
+		//document.getElementById('source').value='zh-CN';
+        //document.getElementById('to').value='zh-TW';
+    }
+    else
+    {
+        //document.getElementById('source').value='zh-TW';
+        //document.getElementById('to').value='zh-CN';
+		var contentout=simplized(content);
+    }
+    //translate();
+	document.getElementById('contentout').value=contentout;
+}
+function qingkong()
+{
+	document.getElementById('content').value='';
+	document.getElementById('contentout').value='';
+
+}
+function   chk(name){   
+  var   obj   =   document.getElementsByName(name);   
+  for   (i=0;i<obj.length;i++){   
+  if   (obj[i].checked){   
+  return obj[i].value;  
+  return;   
+  }   
+  }   
+  }  
+//-->
+</SCRIPT>
+<div id="mainBox">
+  <div id="tip">
+      <div id="tip_content">        
+ $wmff_jianfan_jianjie
+        </div>
+  </div>
+	<div class="blank_20"></div>
+    <div class="jianfan">     
+	 <div style="padding:5px 20px 0 20px;">
+	  
+ 
+ $wmff_jianfan_weizhi
+	 <textarea class="px" onload="this.value=''" name="content" id="content" rows="6" style="width:100%;height:150px;"></textarea>	 
+	 </div>	 
+	 <div style="padding:10px 10px;">
+	    <div class="wmffxzss" ><table><tr><td align=center colspan=3><font size=-1><span style="text-align:left;">
+	
+
+		<label class="pwfc" ><input id=ch type=radio name=ch value="fanti" checked>{lang wmff_jianfan:bl_zhcft}</label>
+		
+		<label class="pwfc" ><input id=ch type=radio name=ch value="jianti">{lang wmff_jianfan:bl_zhcjt}</label></span></font></td></tr></table></div>
+		<div class="wmffzhana y" >
+		<a class="pn pnc" href="javascript:void(0);" onclick='zhuanhuan("fanti")'>{lang wmff_jianfan:bl_kszh}</a>
+		 <a class="pn pnc" href="javascript:void(0);" onclick='qingkong()'>{lang wmff_jianfan:bl_qingkong}</a></div>	 
+	 </div>	 
+	 <input type="hidden" value="" id='source'>
+	 <input type="hidden" value="" id='to'>
+	 <div class="blank_10"></div>
+	 <div style="padding:0px 20px 20px 20px">
+	 <textarea class="px" onload="this.value=''" name="contentout" id="contentout" rows="6" style="width:100%;height:150px;"></textarea>	 
+	 </div>
+	 <div style="clear:both"></div>
+</div>	
+	 
+</div>
+<!--wanmeiff.com end -->
+
+</div>
+ 
+
+{subtemplate common/footer}

@@ -1,0 +1,138 @@
+<!--{subtemplate common/header}-->
+
+
+<div class="mbox">
+ <div class="mbox_l">
+<!--左侧导航 开始 -->
+<div class="mbox_box">
+	<div class="mbox_wp">
+			<div class="tns">
+			<table cellspacing="0" cellpadding="4" border="0"><tr><th class="bbn">{lang ychat:template_zxwj}<br /><span>{$num}</span>&nbsp;{lang ychat:template_wei}</th></tr></table>
+			</div>
+			<!-- 用户登录后显示 -->
+			<!--{if ($_G['uid']!=0)}-->
+				<div class="tns">
+					<div class="member">
+						 <div class="mainpart">
+							  <p class="avatarpic"><a target="_blank" href="home.php?mod=space&uid={$_G['uid']}&do=profile"><!--{avatar($_G[uid],middle)}--></a></p>
+							   <p class="name">UID:<a href="home.php?mod=space&uid={$_G['uid']}&do=profile" >{$_G["uid"]}</a></p>
+							 <p class="name"><a href="home.php?mod=space&uid={$_G['uid']}&do=profile" >{$nickname}</a></p>
+						</div>
+					 <p><a href="home.php?mod=spacecp" target="_blank">{lang ychat:template_grzx}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="home.php?mod=spacecp&ac=credit&op=buy">{lang ychat:template_zxcz}</a></p>
+					 </div>
+					 </div>
+					 <div class="tns">
+					 <div class="member">
+					  <p class="fans" style="display: block; "><span class="noBg"><a href="home.php?mod=follow&do=feeds&uid={$_G['uid']}" target="_blank">$userinfo['feeds']</a><br>
+           {lang ychat:template_gbo}</span><span><a href="home.php?mod=follow&do=following&uid={$_G['uid']}" target="_blank">$userinfo['following']</a><br>
+             {lang ychat:template_guanzhu}</span><span><a href="home.php?mod=follow&do=follower&uid={$_G['uid']}" target="_blank">$userinfo['follower']</a><br>
+            {lang ychat:template_fensi}</span></p>
+			</div>
+				</div>
+			<!--{/if}-->
+			<!-- 结束-->
+			<!--{loop $bcategoryarr $bvalue}-->
+			<div class="tns">
+			<div class="muli-title-duo"><span class="titletext" style="font-size:14px;color: #333;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$bvalue["bCategoryName"]}{lang ychat:template_zkuo}{$bvalue["countrolenum"]}{lang ychat:template_ren}{lang ychat:template_ykuo}</span></div>
+			<div class="klcn">
+			 <ul>
+				<!--{loop $bvalue['categoryArr'] $value}-->
+				<li><span style="float: left;"><a href="plugin.php?id=ychat&mod=rooms&cid={$value['categoryID']}" >{$value["categoryName"]}</a></span><span style="float: right; color:#CCCCCC">{$value["cnum"]}{lang ychat:template_ren}</span></li>
+				<!--{/loop}-->
+			 </ul>
+			</div>
+			</div>
+			<!--{/loop}-->
+		
+		<!--{if $appflag}-->
+		<div class="tns">
+		<div class="muli-title-game"><span class="titletext" style="font-size:14px;color: #333;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang ychat:template_yulzx}</span></div>
+		<div class="module cl xl xl1">
+		<ol>
+		<!--{loop $applist $appvalue}-->
+			<li><img class="vm" src="{$appvalue['icon_small']}" width="16" height="16" alt="{$appvalue['title']}" /> <a href="{$appvalue['url']}" target='_blank'>{$appvalue['title']}</a></li>
+		<!--{/loop}-->
+		</ol>
+</div>
+		
+		</div>
+		<!--{/if}-->
+		<br />
+ </div>
+</div>
+
+<!--左侧导航 结束 -->
+
+
+
+ </div><!--mbox_l end -->
+
+ 
+
+ <div class="mbox_c">
+
+  <div class="mbox_c_wp">
+		<div class="dxb_bc">
+		<div class="module cl slidebox">
+		<ul class="slideshow">
+			{$ychat_plugin['slideshow']}
+		</ul>
+		</div>
+		<script type="text/javascript">
+				runslideshow();
+		</script>
+		</div>
+		<div class="title frame-title"><span class="titletext">{lang ychat:template_tuijianpd}</span></div>
+		<div class="zblist_wp">
+		<!--{loop $room2arr $room2value}-->
+		<div class="box_w130"> <span><font>{$room2value['cnum']}/{$room2value['rolenum']}</font></span>
+		<p align="center" class="pic"> <a target="_blank" title="{lang ychat:template_fangjianhao}{$room2value['roomID']}" href="plugin.php?id=ychat&mod=chat&roomID={$room2value['roomID']}"> <img src="{$room2value['image']}" alt="{$room2value['roomName']}" width="132" height="104" onerror="this.src='source/plugin/ychat/images/nophoto.jpg'" /></a> <a target="_blank" title="{lang ychat:template_fangjianhao}{$room2value['roomID']}" href="plugin.php?id=ychat&mod=chat&roomID={$room2value['roomID']}">{$room2value['roomName']}</a>
+		</div>
+		<!--{/loop}-->
+</div>
+ </div>
+
+</div>
+
+ <div class="mbox_r">
+
+ <div class="mbox_r_box">
+ <!-- 用户没有登录显示 -->
+ <!--{if ($_G['uid']==0)}-->
+	<div class="userLog" id="guest_panel_index" style="display: block; ">
+        
+        <div class="tourist">
+          <p class="logBtn"><span><a class="log_reg" href="member.php?mod=register">{lang ychat:template_lijizhuce}</a><a class="log_in"  href="member.php?mod=logging&amp;action=login" onclick="showWindow('login', this.href)">{lang ychat:template_denglu}</a></span></p>
+          <p class="logCoop">{lang ychat:template_qitadenglu}<a class="log_qq" title="{lang ychat:template_qqdenglu}" href="connect.php?mod=login&op=init&referer=plugin.php?id=ychat&statfrom=login_simple">{lang ychat:template_qqdenglu}</a></p><br />
+        </div>
+        <!--/.tourist--> 
+      </div>
+ <!--{/if}-->
+ <div><span style='font-size:18px;font-weight:normal;'>{lang ychat:template_gonggao}</span><span class="subtitle" style="font-size:12px;float:right;"><a href="forum.php?mod=announcement" target="_blank" style="color:rgb(255, 0, 0) !important;">{lang ychat:template_gengduo}</a></span></div>
+ <p>&nbsp;</p>
+ <!--{loop $list $listvalue}-->
+ <span style='fontcolor:#333333'>[{$listvalue['starttime']}]<a href="{$listvalue['url']}" target="_blank">{$listvalue['title']}</a></span><hr size=1 style="color: #999999;border-style:dotted;" />
+<!--{/loop}-->
+<p>&nbsp;</p>
+<div><span style='font-size:18px;font-weight:normal;'>{lang ychat:template_liwupaihangban}</span><span class="subtitle" style="font-size:12px;float:right;color:rgb(255, 0, 0);">{lang ychat:template_bqbang}</span></div>
+<div class="gift_list">
+{$shtml}</div>
+<p>&nbsp;</p>
+<div ><span style='font-size:18px;font-weight:normal;'>{lang ychat:template_rqfang}</span></div>
+<!--{loop $roomarr $roomvalue}-->
+<div class="user"><img src="./source/plugin/ychat/images/num/num{$roomvalue['order']}.jpg" alt="d" width="16" height="16" class="lazy micro_photo" style="display: inline; " /><span class="name"><a class="link" href="plugin.php?id=ychat&mod=chat&roomID={$roomvalue['roomID']}" title="{lang ychat:template_fangjianhao}{$roomvalue['roomID']}">{$roomvalue['roomName']}</a></span><span class="num">{$roomvalue['cnum']}/{$roomvalue['rolenum']}</span></div>
+<!--{/loop}-->
+<p>&nbsp;</p>
+<div><span style='font-size:18px;font-weight:normal;'>{lang ychat:template_kfzxin}</span></div>
+
+
+<div class="connt_r_kf">
+ {$ychat_plugin['contact']}
+</div>
+ </div>
+ </div>
+
+
+
+
+<!--{subtemplate common/footer}-->

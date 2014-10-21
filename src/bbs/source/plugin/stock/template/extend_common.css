@@ -1,0 +1,31 @@
+/*
+	Formula Editor 
+	Copyright (c) 2009-2014 Ioying (http://www.ttlele.com)
+	$Id: extend_common.css 2013-12-21 ioying $
+*/
+
+.datalist { zoom: 1; }
+.datalist table { margin-bottom: 30px; width: 100%; border: 1px solid {COMMONBORDER}; }
+.datalist th, .datalist td { padding: 4px 5px; border: 1px solid {COMMONBORDER}; font-weight: 400; }
+.datalist th img { vertical-align: top; }
+.datalist table .stat_subject { border-right: none; }
+.datalist table .stat_num { padding-right: 15px; text-align: right; border-left: none; }
+
+.datalist .datatable { margin-bottom: 10px; }
+.datalist .datatable, .datalist .datatable th, .datalist .datatable td { border-width: 1px 0; }
+.datalist .fixtable { table-layout: fixed; }
+
+.colplural, .colplural th, .colplural td, th.highlight, td.highlight { background-color: {COMMONBG}; }
+
+#content_stock { position: relative; height: 483px; }
+/*#content_stock div { width: 24px; }*/
+#content_stock .drag { cursor: move; }
+#content_stock .scrip1 { color: #4b4b4b; position: absolute; }
+/*
+#content_stock .scrip1 .shead { padding-left: 1px; padding-top: 5px; height: 18px; }
+#content_stock .scrip1 .sbody { width:11px;height:170px;overflow:hidden }
+#content_stock .scrip1 .sbot { width:50px;height:170px;overflow:hidden;font-size:50px;font-weight:bold }
+#content_stock .scrip1 .sadd {padding-top:1px; font-size:20px;}
+
+#contentstock .scrip_stock.shead { padding-left: 18px; background: url(../../source/plugin/stock/template/images/a9.gif); padding-top:40px; height: 108px; }  
+*/

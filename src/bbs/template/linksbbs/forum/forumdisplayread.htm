@@ -1,0 +1,174 @@
+<!--{template common/header_bbs}-->
+<!--{if $_G['forum']['ismoderator']}-->
+	<script type="text/javascript" src="{$_G[setting][jspath]}forum_moderate.js?{VERHASH}"></script>
+<!--{/if}-->
+<!--{if empty($_G['forum']['picstyle']) || $_G['cookie']['forumdefstyle']}-->
+	<script type="text/javascript">var lasttime = $_G['timestamp'];var listcolspan= '{if !$_GET['archiveid'] && $_G['forum']['ismoderator']}6{else}5{/if}';</script>
+<!--{/if}-->
+<script type="text/javascript" src="{$_G[setting][jspath]}/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	var jQuery = jQuery.noConflict();
+	function preview_note(thread_id, tbody, lastpost, dateline, author, subject, lastposter) {
+		var noteObj = jQuery('.note-content');
+		noteObj.find('.title').text(subject);
+		noteObj.find('.meta').html('');
+		if (subject) {
+			noteObj.find('.meta').html('<span>创建时间: ' + dateline + ' by <span class="name">' + author + '</span></span><span>修改时间：' + lastpost + '  by <span class="name">' + lastposter + '</span></span>');
+		}
+		noteObj.find('.text').html('');
+		noteObj.find('.text').attr('id', tbody);
+		if (thread_id) {
+			previewThread(thread_id, tbody);
+		}
+	}
+</script>
+ <div class="note-main">
+        <div class="lf-sidebar">
+        <div class="search">
+            <form action="/">
+                <input type="text" placeholder="搜索队员或笔记" class="search-ipt">
+                <button type="button" class="search-btn"></button>
+            </form>
+        </div>
+        <!--{loop $leftside['forums'] $upfid $gdata}-->
+        <div class="lf-sidebar-mod">
+            <div class="title">$gdata['name']<img src="/static/note/imgs/tip-ico.png" class="tip-ico"></div>
+            <div class="content">
+			<!--{loop $gdata['sub'] $subfid $name}-->
+				<dd{if $_G['fid'] == $subfid || $_G['forum']['fup'] == $subfid} class="bdl_a"{/if}>
+
+					<!--{if !empty($_G['cache']['forums'][$subfid]['domain']) && !empty($_G['setting']['domain']['root']['forum'])}-->
+						<a href="http://{$_G['cache']['forums'][$subfid]['domain']}.{$_G['setting']['domain']['root']['forum']}" title="$name"><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+					<!--{else}--> 
+
+					     <!--{if $_COOKIE["CookieMenuViews"] == '1'}--> 
+						<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick='document.cookie="CookieMenuViews=0"' title="$name" ><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+						<!--{else}--> 
+						<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick='document.cookie="CookieMenuViews=1"' title="$name" ><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+						<!--{/if}-->
+					<!--{/if}-->
+
+				</dd>
+				<!-- onclick="showHide(this,'items0'); showHide onclick="display('thread_types')"-->
+				<!-- subfid:$subfid fid:$_G['fid'] ,forum:$_G['forum']['threadtypes'] -->
+				<!-- 分类列表 移动到左侧菜单 仿印象效果  forumdisplay_leftside.htm  by TT 20140309    ttp bm cl-->
+						<!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || count($_G['forum']['threadsorts']['types']) > 0}-->
+
+							<ul id="thread_types" class="" style=''>
+								<!--{hook/forumdisplay_threadtype_inner}-->
+								<!-- <li id="ttp_all" {if !$_GET['typeid'] && !$_GET['sortid']}class="xw1 a"{/if}><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_G['forum']['threadsorts']['defaultshow']}&filter=sortall&sortall=1{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">{lang forum_viewall}</a></li> -->
+								<!--{if $_G['forum']['threadtypes'] && $_G['fid'] == $subfid  &&  $_COOKIE["CookieMenuViews"] ==1 }-->
+									<!--{loop $_G['forum']['threadtypes']['types'] $id $name}-->
+										<!--{if $_GET['typeid'] == $id}-->
+										<li class=""><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['sortid']}&filter=sortid&sortid=$_GET['sortid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->&nbsp$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+										<!--{else}-->
+										<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=typeid&typeid=$id$forumdisplayadd[typeid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->&nbsp&nbsp<img class="vm" src="$_G['style']['styleimgdir']note.gif" alt="" /> &nbsp$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+										<!--{/if}-->
+
+
+
+									<!--{/loop}-->
+								<!--{/if}-->
+
+								<!--{if $_G['forum']['threadsorts']}-->
+									<!--{if $_G['forum']['threadtypes']}--><li><span class="pipe">|</span></li><!--{/if}-->
+									<!--{loop $_G['forum']['threadsorts']['types'] $id $name}-->
+										<!--{if $_GET['sortid'] == $id}-->
+										<li class="xw1 a"><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['typeid']}&filter=typeid&typeid=$_GET['typeid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+										<!--{else}-->
+										<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=sortid&sortid=$id$forumdisplayadd[sortid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+										<!--{/if}-->
+									<!--{/loop}-->
+								<!--{/if}-->
+								<!--{hook/forumdisplay_filter_extra}-->
+							</ul>
+
+							<script type="text/javascript">showTypes('thread_types1');</script>
+						<!--{/if}-->
+			<!--{/loop}-->
+			</div>
+        </div>
+		<!--{/loop}-->
+
+        </div>
+        <div class="rf-sidebar">
+            <div class="lf note-list">
+                <div class="title"><img src="/static/note/imgs/notebook-ico.png" alt="" class="notebook-ico">$navtitle</div>
+                <div class="note-list">
+                    <ul>
+                        <!--{if $_G['forum_threadcount']}-->
+                        <!--{loop $_G['forum_threadlist'] $key $thread}-->	
+                        <li>
+                            <!-- <div class="tag"><a href="/" class="pink">Top</a><a href="/">Top</a></div>  -->
+                            <h3  onclick="preview_note('{echo $thread['moved'] ? $thread[closed] : $thread[tid]}', '$thread[id]', '$thread[lastpost]', '$thread[dateline]','$thread[author]', '$thread[subject]', '$thread[lastposter]');">$thread[subject]</h3>
+                            <span class="time-ago">{$thread[lastpost]}</span>
+                            <span class="summary" id="content_$thread[tid]" title="{lang content_actions}" onclick="CONTENT_TID='$thread[tid]';CONTENT_ID='$thread[id]';showMenu({'ctrlid':this.id,'menuid':'content_menu'})">$thread[typehtml] $thread[sorthtml]</span>
+                        </li>						
+						<!--{/loop}-->
+						<!--{else}-->
+							{lang forum_nothreads}
+						<!--{/if}-->
+                    </ul>
+                    <div class="note-list-bottom">
+                        排列顺序：<span class="on">更新</span>  <span>创建</span>  <span>标题</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lf note-content">
+                <div class="title"><h2>$_G['forum_threadlist'][0][subject]</h2></div>
+                <div class="meta"><span>创建时间: $_G['forum_threadlist'][0][dateline] by <span class="name">$_G['forum_threadlist'][0][author]</span></span><span>修改时间：{$_G['forum_threadlist'][0][lastpost]}  by <span class="name">$_G['forum_threadlist'][0][lastposter]</span></span></div>
+                <div class="content">
+                    <div class="content-bg">
+                        <!-- <div class="praise-btn lf"><span>0</span></div> -->
+                        <div class="text J_note_text" id="$_G[forum_threadlist][0][id]">
+                        <script>preview_note('$_G[forum_threadlist][0][tid]', '$_G[forum_threadlist][0][id]', '$_G[forum_threadlist][0][lastpost]', '$_G[forum_threadlist][0][dateline]','$_G[forum_threadlist][0][author]', '$_G[forum_threadlist][0][subject]', '$_G[forum_threadlist][0][lastposter]');</script>
+                        </div>
+                        <!-- <div class="content-bottom-bar tag"><a href="/">编辑笔记</a><a href="/">删除笔记</a></div> -->
+                    </div>
+                    <!--
+                    <div class="revert-bar clearfix">
+                        <form action="/">
+                            <textarea name="" id="" class="content-bg" placeholder="输入您的点评"></textarea>
+                            <button type="button" class="submit-btn">发表点评</button>
+                        </form>
+                    </div>
+                    
+                    <div class="content-bg comment clearfix">
+                        <ul>
+                            <li class="comment-list">
+                                <div class="clearfix comment-wrapper">
+                                    <div class="comment-main">
+                                        <span class="name">Jim：</span>
+                                        <span>LINKS a bilingual community/video keyword/desk/English Corner old/Chinese Corner/Log in...</span>
+                                        <span class="time-ago">2小时前</span>
+                                    </div>
+                                    <div class="comment-meta"><span class="lf"><a href="/" class="reply">回复</a><a href="/" class="up">赞(123)</a></span><span class="rf comment-user-bar"><a href="/">编辑</a><a href="/">删除</a></span></div>
+                                </div>
+                                <div class="re-comment">
+                                    <div class="comment-main">
+                                        <span class="name">Jim：</span>
+                                        <span>LINKS a bilingual community/video keyword/desk/English Corner old/Chinese Corner/Log in...</span>
+                                        <span class="time-ago">2小时前</span>
+                                    </div>
+                                    <div class="comment-meta"><span class="lf"><a href="/" class="reply">回复</a><a href="/" class="up">赞(123)</a></span><span class="rf comment-user-bar"><a href="/">编辑</a><a href="/">删除</a></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- 底部分页 -->
+<!--{if $_G['setting']['threadmaxpages'] > 1 && $page && !$subforumonly}-->
+	<script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, <!--{if $page > 1}-->1<!--{else}-->0<!--{/if}-->, <!--{if $page < $_G['setting']['threadmaxpages'] && $page < $_G['page_next']}-->1<!--{else}-->0<!--{/if}-->, 'forum.php?mod=forumdisplay&fid={$_G[fid]}&filter={$filter}&orderby={$_GET[orderby]}{$forumdisplayadd[page]}&{$multipage_archive}', $page);}</script>
+<!--{/if}-->
+
+<!--{if empty($_G['forum']['picstyle']) && $_GET['orderby'] == 'lastpost' && empty($_GET['filter']) }-->
+	<script type="text/javascript">checkForumnew_handle = setTimeout(function () {checkForumnew($_G[fid], lasttime);}, checkForumtimeout);</script>
+<!--{/if}-->
+<!--{if empty($_G['setting']['disfixednv_forumdisplay']) }--><script>fixed_top_nv();</script><!--{/if}-->
+
+<!--{template common/footer_note}-->

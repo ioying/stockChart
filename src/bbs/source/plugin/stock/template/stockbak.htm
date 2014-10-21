@@ -1,0 +1,687 @@
+{subtemplate common/header}
+<script type="text/javascript" src="source/plugin/stock/jquery.min.js"></script>
+<script type="text/javascript" src="source/plugin/stock/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="source/plugin/stock/stock.func.js"></script>
+<!--绘制图表  试验
+<script src="http://localhost/highstockchart/js/highstock.js"></script>
+<script src="http://localhost/highstockchart/js/modules/exporting.js"></script>-->
+<!--代码高亮-->
+<script src="../CodeMirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="../CodeMirror/lib/codemirror.css">
+<script src="../CodeMirror/mode/javascript/javascript.js"></script>
+<!--  加载主题  -->
+<link rel="stylesheet" href="../CodeMirror/lib/codemirror.css">
+<link rel=stylesheet href="../CodeMirror/doc/docs.css">
+<link rel="stylesheet" href="../CodeMirror/theme/ambiance.css">
+<!--自定义页面函数-->
+<script src="source/plugin/stock/main.js"></script>
+<!-- 解决 innerHTML 动态 javascript 代码不执行的问题       
+<script src="source/plugin/stock/innerhtml.js"></script>  -->
+<!--代码高亮结束-->
+
+<!-- 这段显示当前论坛路径链接 为尽量节省页面横向空间 不要了  20140107 by ioying 
+<div id="pt" class="bm cl">
+<div class="z"><a href="./" class="nvhm"> $_G[setting][bbname]</a><em>&rsaquo;</em><a href="plugin.php?id=stock">xxx{xxx lang stock:stock_htm_1 xxx} xxx </a><!--xxx{xxxif $_GET[mod] == 'admin_check'xxx}xxx--><!--<em>&rsaquo;</em>{lang stock:stock_htm_46}<!--xxx{xxxelseif $_GET[mod] == 'add_mood'xxx}xxx--><!--<em>&rsaquo;</em>{lang stock:stock_htm_8}<!--xxx{xxx/ifxxx}xxx--> <!--</div>
+</div>
+
+-->
+
+<div id="ct" class="wp cl">
+  <div class="mn">
+  
+ 
+    <div class="bm">
+      <ul class="tb cl"> 
+        <li<!--{if empty($_GET[mod])}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock">{lang stock:stock_htm_1}</a></li>
+        <li<!--{if $_GET[mod] == 'user_formula'}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock&mod=user_formula">{lang stock:stock_htm_18}</a></li>
+        <li<!--{if $_GET[mod] == 'members_formula'}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock&mod=members_formula">{lang stock:stock_htm_38}</a></li>
+        <!--{if $_G[adminid] == '1'}-->
+        <li<!--{if $_GET[mod] == 'admin_check'}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock&mod=admin_check">{lang stock:stock_htm_46}</a></li>
+        <!--{/if}-->
+        <li><input name="stock_code" type="text" id="stock_code" style="width:50px;" value="600320" /></li>
+<!--		<a onclick="showDialog('{lang stock:stock_side_htm_3}', 'notice', '{lang stock:stock_side_htm_2}?', null, 0)" href="javascript:;">{lang stock:stock_side_htm_2}?</a></li>
+        <li><a onclick="showDialog('<strong>Mood Wall {lang stock:stock_htm_1} V{$_G[setting][plugins][version][stock]}</strong><br />{lang stock:stock_side_htm_5}smjy<br />{lang stock:stock_side_htm_6}<a href=\'http://www.smjy.org\' title=\'smjy{lang stock:stock_side_htm_7}\' target=\'_blank\'>ioying</a>', 'notice', '{lang stock:stock_side_htm_4}', null, 0)" href="javascript:;">{lang stock:stock_side_htm_4}</a></li>
+-->
+<li>
+		<div>
+			<select name="cycle" id="cycle">
+			<option value="min1">1分钟</option>
+			<option value="min5">5分钟</option>
+			<option value="min30">30分钟</option>
+			<option value="min60">60分钟</option>
+			<option value="day1" selected="selected">1日</option>
+			<option value="week1">周</option>
+			<option value="month1">月</option>
+			</select>
+        </div>
+</li>
+<li>
+
+		<div>
+			<select name="chart_numbers" id="cycle">
+			<option value="1">1图组合</option>
+			<option value="2" selected="selected">2图组合</option>
+			<option value="3" >3图组合</option>
+			<option value="4">4图组合</option>
+			<option value="5">5图组合</option>
+			<option value="6">6图组合</option>
+			<option value="7">7图组合</option>
+			</select>
+</div>			
+</li>
+        <li style="float:right;"<!--{if $_GET[mod] == 'add_Formula'}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock&mod=add_Formula">{lang stock:stock_addFormula}</a></li>
+      </ul>
+
+<!--{if empty($_GET[mod])}-->
+<div class="content" style="background:url(source/plugin/stock/template/images/wall.gif);">
+<div id="content_stock">
+  <!--{loop $moodlist $mood}-->
+  <div id="cc{$mood[id]}" class="drag scrip1 "  > 
+  <table width="146px" height="421px" cellspacing="0" cellpadding="0" border="0"  style="background:url(source/plugin/stock/template/images/a9.gif);" >
+   <tbody>  
+    <tr >  <!--style="height:170px;"    -->
+      <td >
+       </td>
+	    <td >
+       </td> 
+	   <td >
+       </td>
+	    <td >
+       </td>
+	    <td >
+       </td>
+	   <td >
+       </td>   
+	   <td ><div id="moodid" class="shead">$mood[id]</div>
+       </td>
+    </tr>
+    <tr height=250px>
+		<td>
+		</td>
+		
+		<td  style="padding-top:55px;" > <div <div class="sbody" > $mood[mothername] </div>
+		</td>  
+		<td style="padding-top:55px;" > <div class="sbody" style="width:12px;height:170px;overflow:hidden"> $mood[fathername]</div>
+		</td>
+		  <td width=4px>
+	  </td>
+				  <td width=55px valign="top"  style="padding-top:5px;" >
+				  <div class="sbot" style="width:50px;height:170px;overflow:hidden;font-size:50px;font-weight:bold"> $mood[holyname]</div>
+	  </td>
+			  <td width=23px>
+      </td>
+	  <td width=25px valign="top" style="padding-top:1px; font-size:20px;" ><div class="sadd">吉祥地</div>
+      </td>
+
+	  <td>
+			
+	  </td>
+	  
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <!--{/loop}-->   
+</div>
+
+<script type="text/javascript">
+//window.onresize=location.reload
+
+//alert(document.documentElement.scrollWidth)  窗口当前宽度
+var elements = document.getElementById('content_stock').childNodes;
+var zIndex = elements.length;
+var line = 0;
+var row = 0;
+var level = 0;
+var center ;
+var firststock=0 ;
+// alert(zIndex)
+//center = screen.availWidth/2-75 ;  屏幕宽度
+var center = document.documentElement.scrollWidth/2-75 ;
+
+for(var i=0; i<elements.length; i++){
+   if(elements[i].tagName && elements[i].tagName == 'DIV'){
+//     elements[i].style.top = Math.ceil(480 * Math.random()) + "px";
+//		elements[i].style.top = Math.ceil(1  ) + "px";
+//       elements[i].style.top = Math.ceil( 0 ) + "px";
+//       elements[i].style.left = Math.ceil(screen.availWidth * Math.random()) + "px";
+    //    if ( firststock == 0 ){
+	//	elements[i].style.top = line*425+"px";
+	//	elements[i].style.left = (screen.availWidth/2-75)+"px";
+	//	firststock = 1 ;
+	//	} else 
+		
+        if ( row % 2 == 0 ) {
+				elements[i].style.left = ( center - level*150)+"px";
+				level = level + 1 ;
+		}  else {
+				elements[i].style.left = ( center + level*150)+"px";
+				}
+		
+						   row = row + 1 ; 	
+ 
+		elements[i].style.top = (line*425+20)+"px";
+	//	elements[i].style.left = row*150+"px";
+          // alert(row)    center*2
+
+		     if ((row+1)*156> screen.availWidth ){
+          // 	  alert(row);
+	    row = 0;
+		level = 0 ;
+		line = line + 1;
+		document.getElementById('content_stock').style.height = 430 * (line + 1)  +"px";
+		}
+		
+/*      
+
+
+          if(i%3 == 0){
+				elements[i].style.left = Math.ceil(screen.availWidth /2+i*100) + "px";
+				}else{
+				elements[i].style.left = Math.ceil(screen.availWidth /2-i*100) + "px";
+				}
+*/
+				//elements[i].innerHTML="left"+elements[i].style.left+"top"+elements[i].style.top;
+      elements[i].style.zIndex = zIndex;
+      zIndex = zIndex - 1;
+	 //  alert("top"+elements[i].style.top+"left"+elements[i].style.left  )
+   }
+}
+
+</script>
+</div></div></div></div>
+<!--
+公式名称 公式描述 注释用法  公式内容  主图叠加  副图
+
+引入函数 禁用周期  买入规则   
+
+参数精灵
+
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `uid` mediumint(8) unsigned NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `bgpic` smallint(6) NOT NULL,
+  `mood` smallint(6) NOT NULL,
+  `message` text NOT NULL,
+  `dateline` int(10) NOT NULL,
+  `formulaname` varchar(15) NOT NULL COMMENT '公式名称',
+  `description` text NOT NULL COMMENT '公式描述',
+  `comment` text NOT NULL COMMENT '注释用法',
+   formula` text NOT NULL COMMENT '公式代码',
+  `mainmap` smallint(6) NOT NULL COMMENT '主图叠加',
+-->
+<!--{elseif $_GET[mod] == 'add_Formula'}-->
+
+
+
+
+<h1 class="mt"><strong>&nbsp;{lang stock:stock_addFormula}</strong></h1>
+<div class="content">
+<div class="datalist">
+<form action="plugin.php?id=stock&mod=add_Formula" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left"><input name="formulaname" type="text" class="px" id="formulaname" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>
+		<td><font size="4">{lang stock:stock_formulaname}</font>
+		</td>
+		<td><font size="2">请输入公式名称，尽量使用英文，命名规则详见：xxx。</font>
+		</td>
+	</tr>
+
+	<tr>
+		<td align="left"><input name="description" type="text" class="px" id="description" onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>
+		<td><font size="4">{lang stock:stock_description}</font>
+		</td>
+		<td><font size="2">请输入公式简要描述，限100个字. 命名规则详见：xxx。</font>
+		</td>
+	</tr>
+<!--  checkbox 值为数组   先用 radio --> 	
+		<tr>
+		   <td><font size="4">是否在主图显示&nbsp&nbsp&nbsp</font><input type="radio" name="mainmap" id="mainmap" value="1" /><font size="4">是&nbsp&nbsp&nbsp</font>
+		   
+		   <input type="radio" name="mainmap" id="mainmap" value="2" checked="checked"/>
+		   <font size="4">否</font></td>
+	<!--	
+		<td align="center"><input name="mainmap" type="checkbox" class="px" id="mainmap" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>-->
+		<td><font size="4">{lang stock:stock_mainmap}</font>
+		</td>
+		<td><font size="2">该指标是否在主图上显示。详见：xxx。</font>
+		</td>
+	</tr>
+	
+	
+	<tr class="colplural"> 
+ <td colspan="3" align="left"><font size="4">{lang stock:stock_comment}&nbsp</font><font size="2"> 请尽可能详细的介绍公式各参数的详细说明及使用方法</size>
+ </td>
+ 
+ </tr>
+	<tr class="colplural"> 
+  <td colspan="2" align="left">
+  <textarea name="comment" rows="10" cols="30" id="comment"   style="width:570px; height:240px;font-size:22px;"  ></textarea>
+  <td></td>
+  </tr>
+	
+	
+<!--	<tr>
+	    <td align="center"><input name="mothername" type="text" class="px" id="mothername" onchange="checkLength(this,16);"  onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>    
+		</td>
+		<td><font size="4">
+		{lang stock:stock_mothername}</font>
+		</td>
+		<td><font size="2">请输入母亲姓名，如顾忌隐私，可使用化名。</font>
+		</td>
+	</tr>
+    <tr>
+		<td align="center"><input name="gonedate" type="text" class="px" id="gonedate" onchange="checkLength(this,16);"  onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>   
+		</td>
+		<td><font size="4">{lang stock:stock_gonedate}</font>
+		</td>
+		<td><font size="2">请输入宝宝往生时间，如：1993年4月5日，也可输入大概范围，如1960年～1964年。</font>
+		</td>
+	</tr>
+	-->
+ <tr class="colplural"> 
+ <td colspan="3" align="left"><font size="4">公式代码</font>
+ </td>
+ 
+ </tr>
+ <tr class="colplural"> 
+  <td colspan="3" align="left">
+<!-- <textarea name="message" rows="10" cols="30" id="message" onchange="checkLength(this,500);" onkeyup="checkLength(this,500);"  style="width:370px; height:240px;font-size:22px;"  ></textarea>    -->
+ <textarea name="formula" rows="10" cols="30" id="formula"  style="width:370px; height:240px;font-size:22px;"  ></textarea>  
+  
+  <script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("formula"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true
+ 
+  });
+  //使用主题
+     editor.setOption("theme", "ambiance");	
+	 editor.setOption("font-size", "20px");	
+/*
+  var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].innerHTML;
+    editor.setOption("theme", theme);
+  }
+  var choice = document.location.search &&
+               decodeURIComponent(document.location.search.slice(1));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+  */
+</script>
+  
+  
+  
+  
+ </td>
+ 
+  </tr>
+<tr>
+ 		<td>
+
+		{lang stock:stock_htm_14}<span id="chLeft"></span>{lang stock:stock_htm_15}
+						<td>
+		</td>
+						<td>
+		</td>
+</tr>
+</table>
+<table> 
+  <!--<tr class="colplural"> 
+  <td align="center"><input name="message12" type="text" class="px" id="message12"  onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="100%" /><br />{lang stock:stock_htm_14}<span id="chLeft">100</span>{lang stock:stock_htm_15}</td>
+  </tr>
+    <td>3. {lang stock:stock_htm_12}({lang stock:stock_htm_13})</td>
+  </tr>
+ 
+  <tr>
+               <item id="stock_fathername"><![CDATA[父亲姓名]]></item>				
+				<item id="stock_mothername"><![CDATA[母亲姓名]]></item>				
+				<item id="stock_gonedate"><![CDATA[宝宝往生时间]]></item>				
+				<item id="stock_holyname">
+  
+
+  
+  <tr>-->
+    <td align="center"><button type="submit" id="Submit_member" class="pn pnc" value="true" name="Submit_member" tabindex="1"><span>{lang stock:stock_htm_16}</span></button></td>
+  </tr>
+</table>
+</form>
+
+</div></div></div></div></div>
+
+<!--{elseif $_GET[mod] == 'user_formula'}-->
+<div class="content datalist">
+<form action="plugin.php?id=stock&mod=user_formula" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="12%">{lang stock:stock_formulaname}</td>
+	<td width="55%">{lang stock:stock_description}</td>
+	<td width="7%">{lang stock:stock_hots}</td>
+    <td width="10%">{lang stock:stock_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+<!--{if $moodlist_user}-->
+  <!--{loop $moodlist_user $mood_user}-->
+  <tr align="left">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_user['id']}" /></td>
+    <td width="5%">$mood_user[id]</td>
+    <td width="12%">$mood_user[formulaname]</td>
+	<td width="55%">$mood_user[description]</td>
+	<td width="7%" align="right">$mood_user[hots]</td>
+    <td width="10%">$mood_user[dateline]</td> 
+    <td width="5%"><a href="plugin.php?id=stock&mod=edit_formula&moodid=$mood_user[id]">{lang stock:stock_htm_23}</a></td>
+  </tr>
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+	<!--this.form-->
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(delete[])" />&nbsp;{lang stock:stock_htm_24}&nbsp;
+    <button type="submit" id="del_formula" class="pn" value="true" name="del_formula" tabindex="1"><span>{lang stock:stock_htm_25}</span></button>
+	<button type="submit" id="test" class="pn" value="true" name="test" tabindex="1"><span>test</span></button>
+	</td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang stock:stock_htm_26}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'edit_formula'}-->
+<div class="content datalist">
+<form id="form1" method="post" action="plugin.php?id=stock&mod=edit_formula">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+<!--{if $moodlist_edit}-->
+  <!--{loop $moodlist_edit $mood_edit}-->
+<!--**********************************************************************************-->
+ <input type="hidden" name="moodid" value="$mood_edit[id]">
+ <!-- <tr class="colplural">
+    <td colspan="3" align="center"><h1 class="mt">{lang stock:stock_htm_28} - {lang stock:stock_htm_19}ID&#65306;$mood_edit[id]</h1></td>
+  </tr>-->
+<!------>
+<div class="STYLE2" id="chart">图表</div>
+<div class="STYLE2" id="txtHint">计算结果</div>
+<!--  <input  type="hidden"   name="select_cycle"  id="select_cycle" style="width:50px;" value='100'  />   --->
+	<tr>
+		<td align="left"><input name="formulaname" type="text" class="px" id="formulaname" value="$mood_edit[formulaname]" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="10" style="width:100px; height:20px;font-size:12px;"/>  
+		</td>
+		<td><font size="2">{lang stock:stock_formulaname}</font>
+		</td>
+		<td><font size="2">请输入公式名称，尽量使用英文，命名规则详见：xxx。</font>
+		</td>
+	</tr> 
+
+	
+		<tr>
+		<td align="left"><input name="description" type="text" class="px" id="description" value="$mood_edit[description]" onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="20" style="width:100px; height:20px;font-size:12px;"/>  
+		</td>
+		<td><font size="2">{lang stock:stock_description}</font>
+		</td>
+		<td><font size="2">请输入公式简要描述，限100个字. 命名规则详见：xxx。</font>
+		</td>
+	</tr>
+	
+			<tr>
+		   <td><font size="2">呈现方式&nbsp&nbsp&nbsp</font>
+		   <input type="radio" name="mainmap" id="mainmap" value="1" <!--{if $mood_edit[mainmap] == 1}-->checked="checked"<!--{/if}-->/><font size="2">在主图上显示&nbsp&nbsp&nbsp</font>
+		   	<input type="radio" name="mainmap" id="mainmap" value="2" <!--{if $mood_edit[mainmap] == 1}-->checked="checked"<!--{/if}-->/><font size="2">副图显示&nbsp&nbsp&nbsp</font>
+		   <input type="radio" name="mainmap" id="mainmap" value="3" <!--{if $mood_edit[mainmap] == 2}-->checked="checked"<!--{/if}-->/>
+		   <font size="2">作为副图与主图同时显示</font></td>
+
+		<td><font size="2">{lang stock:stock_mainmap}</font>
+		</td>
+		<td><font size="2">该指标是否在主图上显示。详见：xxx。</font>
+		</td>
+	</tr>
+	
+		<tr class="colplural"> 
+ <td colspan="3" align="left"><font size="2">{lang stock:stock_comment}&nbsp</font><font size="2"> 请尽可能详细的介绍公式各参数的详细说明及使用方法</size>
+ </td>
+ 
+ </tr>
+	<tr class="colplural"> 
+  <td colspan="2" align="left">
+  <textarea name="comment" rows="10" cols="30" id="comment"   style="width:570px; height:140px;font-size:12px;"  >$mood_edit[comment]</textarea>
+  <td><select name="func" size="7" onclick="addfunc(this.value)">
+        <option value="ma(,)" selected="selected">ma(x,y) </option>
+        <option value="REF(,)">ref(x,y) </option>
+        <option value="abs()">abs(x) </option>
+            </select></td>
+  </tr>
+
+ <tr class="colplural"> 
+ <td colspan="3" align="left"><font size="2">公式代码</font>
+ </td>
+ 
+ </tr>
+ <tr class="colplural"> 
+  <td colspan="3" align="left">
+<!-- <textarea name="message" rows="10" cols="30" id="message" onchange="checkLength(this,500);" onkeyup="checkLength(this,500);"  style="width:370px; height:240px;font-size:22px;"  ></textarea>    -->
+ <textarea name="formula" rows="10" cols="30" id="formula"  style="width:370px; height:240px;font-size:12px;"  >$mood_edit[formula]</textarea>  
+  
+  <script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("formula"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true
+ 
+  });
+  //使用主题
+     editor.setOption("theme", "ambiance");	
+	 editor.setOption("font-size", "20px");	
+/*
+  var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].innerHTML;
+    editor.setOption("theme", theme);
+  }
+  var choice = document.location.search &&
+               decodeURIComponent(document.location.search.slice(1));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+  */
+</script>
+  
+  
+  
+  
+ </td>
+ 
+  </tr>
+<tr>
+ 		<td>
+
+		{lang stock:stock_htm_14}<span id="chLeft"></span>{lang stock:stock_htm_15}
+						<td>
+		</td>
+						<td>
+		</td>
+</tr>
+<tr>
+	<td>
+	<textarea name="after_parser" rows="10" cols="30" id="after_parser"   style="width:570px; height:40px;font-size:12px;"  >'解析后' $_G['config'][db][1][dbpw] </textarea>
+	</td>
+	<!--此处向js传递用户id, 为了生成JSON文件名 -->
+	<td><input type="text" name="uid"  id="uid" style="width:50px;" value=$_G['uid'] />
+	</td>
+</tr>
+<input type="button" onclick="submitcontent();" name="test_it" value="    测试     " />
+<input type="button" onclick="submitcontent_old();" value="    old测试     " />
+<input type="button" onclick="submitparser();" name="parser_it" value="    解析     " />
+<input type="button" onclick="submitdraw();" name="draw_it" value="    DRAW    " />
+  <tr>
+    <td colspan="3" align="center"><button type="submit" id="Submit_edit" class="pn" value="true" name="Submit_edit" tabindex="1"><span>{lang stock:stock_htm_36}</span></button></td>
+  </tr>
+
+ <!--************************************** 
+  <!--************************************************************************-->
+  <!--{/loop}-->
+<!--{/if}-->
+</table>
+</form>
+<script type="text/javascript">checkLength(document.getElementById('message'));</script>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'members_formula'}-->
+<div class="content datalist">
+<table width="100%" cellpadding="0" cellspacing="0">
+
+  <tr class="colplural" align="center">
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="12%">{lang stock:stock_formulaname}</td>
+	<td width="53%">{lang stock:stock_description}</td>
+	<td width="5%">{lang stock:stock_hots}</td>
+    <td width="9%">{lang stock:stock_htm_22}</td>
+	<td width="13%">{lang stock:stock_htm_40}</td>
+   </tr>
+
+<!--
+  <tr class="colplural" align="center">
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="5%">{lang stock:stock_holyname}</td>
+	<td width="5%">{lang stock:stock_fathername}</td>
+	<td width="5%">{lang stock:stock_mothername}</td>
+	<td width="5%">{lang stock:stock_gonedate}</td>
+    <td width="45%">{lang stock:stock_htm_21}</td>
+    <td width="18%">{lang stock:stock_htm_22}</td>
+    <td width="5%">{lang stock:stock_htm_40}</td>
+
+  </tr>  -->
+<!--{if $moodlist_members}-->
+  <!--{loop $moodlist_members $mood_members}-->
+ 
+   <tr align="left">
+    <td width="5%">$mood_members[id]</td>
+    <td width="12%">$mood_members[formulaname]</td>
+	<td width="53%">$mood_members[description]</td>
+	<td width="5%" align="right">$mood_members[hots]</td>
+    <td width="9%">$mood_members[dateline]</td> 
+	<td width="13%" align="left">&nbsp;<img src="{$_G[setting][ucenterurl]}/avatar.php?uid=$mood_members[uid]&size=small" border="0" height="24" width="24"> <a href="{$_G[siteurl]}?$mood_members[uid]" target="_blank">$mood_members[username]</a></td></a></td>
+  </tr>
+ 
+ 
+ <!--
+ <tr align="center"> 
+	<td width="5%">$mood_members[id]</td>
+	<td width="5%">$mood_members[holyname]</td>
+	<td width="5%">$mood_members[fathername]</td>
+	<td width="5%">$mood_members[mothername]</td>   
+    <td width="5%">$mood_members[gonedate]</td>
+    <td width="45%">$mood_members[message]</td>
+    <td width="18%">$mood_members[dateline]</td>
+	<td width="5%" align="left">&nbsp;<img src="{$_G[setting][ucenterurl]}/avatar.php?uid=$mood_members[uid]&size=small" border="0" height="24" width="24"> <a href="{$_G[siteurl]}?$mood_members[uid]" target="_blank">$mood_members[username]</a></td>
+-->
+
+  </tr>
+  <!--{/loop}-->
+  <!--{if !empty($multipage)}-->
+  <tr><td colspan="5"><div class="pages_btns">$multipage</div></td></tr><!--{/if}-->
+<!--{else}-->
+  <tr>
+    <td colspan="5" align="center">{lang stock:stock_htm_44}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'admin_check'}-->
+<h1 class="mt"><strong>&nbsp;{lang stock:stock_htm_47}</strong></h1>
+<div class="content datalist">
+<form action="plugin.php?id=stock&mod=admin_check" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="15%">{lang stock:stock_formulaname}</td>
+	<td width="55%">{lang stock:stock_description}</td>
+	<td width="7%">{lang stock:stock_hots}</td>
+    <td width="10%">{lang stock:stock_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+
+<!----
+  <tr class="colplural" align="center">
+      <td width="3%">&nbsp;</td>
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="5%">{lang stock:stock_holyname}</td>
+	<td width="5%">{lang stock:stock_fathername}</td>
+	<td width="5%">{lang stock:stock_mothername}</td>
+	<td width="5%">{lang stock:stock_gonedate}</td>
+    <td width="45%">{lang stock:stock_htm_21}</td>
+    <td width="18%">{lang stock:stock_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+
+  </tr>  -->
+<!--{if $moodlist_admin}-->
+  <!--{loop $moodlist_admin $mood_admin}-->
+
+ <tr align="left">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_user['id']}" /></td>
+    <td width="5%">$mood_admin[id]</td>
+    <td width="15%">$mood_admin[formulaname]</td>
+	<td width="55%">$mood_admin[description]</td>
+	<td width="7%" align="right">$mood_admin[hots]</td>
+    <td width="10%">$mood_admin[dateline]</td> 
+    <td width="5%"><a href="plugin.php?id=stock&mod=edit_formula&moodid=$mood_admin[id]">{lang stock:stock_htm_23}</a></td>
+  </tr>
+
+
+
+<!--
+  <tr align="center">
+     <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_user['id']}" /></td>
+    <td width="5%">$mood_admin[id]</td>
+   <td width="5%">$mood_admin[holyname]</td>
+   <td width="5%">$mood_admin[fathername]</td>
+   <td width="5%">$mood_admin[mothername]</td>   
+    <td width="5%">$mood_admin[gonedate]</td>
+    <td width="45%">$mood_admin[message]</td>
+    <td width="18%">$mood_admin[dateline]</td>
+    <td width="5%"><a href="plugin.php?id=stock&mod=edit_formula&moodid=$mood_admin[id]">{lang stock:stock_htm_23}</a></td>
+  
+ <!-- 
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_admin['id']}" /></td>
+    <td width="6%">$mood_admin[id]</td>
+    <td width="15%" align="left">&nbsp;<a href="{$_G[siteurl]}?$mood_admin[uid]" target="_blank">$mood_admin[username]</a></td>
+    <td width="5%"><img src="source/plugin/stock/template/images/mood/$mood_admin[mood].gif" /></td>
+    <td width="50%">$mood_admin[message]</td>
+    <td width="15%">$mood_admin[dateline]</td>
+	
+  </tr>-->
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" />&nbsp;{lang stock:stock_htm_24}&nbsp;
+    <button type="submit" id="admin_edit" class="pn" value="true" name="admin_del" tabindex="1"><span>{lang stock:stock_htm_25}</span></button></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang stock:stock_htm_55}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+<!--{/if}-->
+{subtemplate common/footer}

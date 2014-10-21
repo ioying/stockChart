@@ -1,0 +1,122 @@
+<!--{template common/header_iread}-->
+<div class="iread-header">
+    <div class="clearfix">
+        <a href="<!--{if !$_G['uid']}-->http://passport.links123.com/?f=http://village.links123.com/<!--{/if}-->portal.php?mod=portalcp&ac=article" class="btn write-btn">写故事</a>
+        <div class="text">
+            <p class="iread-title">iRead</p>
+            <p class="iread-meta">讲述每个人的想法和故事</p>
+            <p class="en-iread-meta">Everyone’s ideas and stories</p>
+        </div>
+        <div class="iread-nav">
+        <ul>
+        <li class="<!--{if $catid == 0 && $view_type != 'me'}-->on<!--{/if}-->"><a href="/">所有文章</a></li>
+           <!--{loop $_G['cache']['portalcategory'] $category}-->
+			<!--{if $category['closed'] != 1}-->
+				<li class="<!--{if $category['catid'] == $catid}-->on<!--{/if}-->"><a href="{$category[caturl]}">$category[catname]</a></li>
+			<!--{/if}-->
+			<!--{/loop}-->
+		<!--{if $_G['uid']}-->
+		<li><a href="home.php?mod=space&do=favorite&type=all" target="_blank">我的收藏</a></li>
+        <li class="last <!--{if $view_type == 'me'}-->on<!--{/if}-->"><a href="portal.php?mod=list&vtype=me">我的iRead</a></li>
+        <li class="last <!--{if $view_type == 'me'}-->on<!--{/if}-->"><a href="/">Linkers</a></li>
+        <!--{/if}-->
+        </ul>
+        </div>
+    </div>
+</div>
+
+<style id="diy_style" type="text/css"></style>
+
+	<div class="list-main clearfix">
+        <div class="list-wrapper">
+            <ul class="iread-list">
+           	 	<!--{loop $list['list'] $value}-->
+				<!--{eval $article_url = fetch_article_url($value);}-->
+                    <li data-aid="$value[aid]" data-href="$article_url">
+
+                    <div class="meta"><div class="lf">此文章由 <a href="/portal.php?mod=list&muid=$value[uid]"><!--{if $value[username]}-->$value[username]<!--{else}-->由另客网<!--{/if}--></a> 发布</div><div class="rf"><span class="last-time">$value[dateline]</span><span class="attention">$value[viewnum]次点击</span></div></div>
+                        <!--{if $value['pic']}--><div class="thumb"><img src="$value['pic']" alt="$value[title]" class="tn" /></div><!--{else}--><!--{/if}-->
+                        <div class="text clearfix" <!--{if !$value[pic]}-->style="margin-left: 0px;"<!--{/if}-->>
+                            <h2><a href="/" title="查看" data-aid="$value[aid]">$value[title]</a></h2>
+                            <p>$value[summary]</p>
+                        </div>
+                        <a href="$article_url" target="_blank" class="btn view-new-tab" title="新页面查看">查看</a>
+                    </li>
+                    <!--{/loop}-->
+                    <!--{if $list['multi']}--><li class="node-line  next_page"><span><em><a href="#" class="next-page btn">下一页</a></em></span></li><!--{/if}-->
+                    <li class="node-line"><span><em><a href="/portal.php#iread_list_top" class="go-top btn">回到顶部</a></em></span></li>
+                </ul>
+        </div>
+        <div class="view-wrapper">
+            <div class="view-content">
+                <!--{if $value[pic]}--><img src="$article[pic]" alt="thumb"><!--{/if}-->
+                <h3 class="J-view-title">$article[title]</h3>
+                <div class="clearfix postmeta">
+	                <div class="lf postmeta_info">
+			$article[dateline]<span class="pipe">|</span> {lang view_publisher}: $article[username]<span class="pipe">|</span> {lang view_views}: $article[viewnum]<span class="pipe">|</span> {lang view_comments}: $article[commentnum]
+
+			<!--{if ($article['uid'] == $_G['uid'])}-->
+			<span class="pipe">|</span><a style="top:0;" href="portal.php?mod=portalcp&ac=article&op=edit&aid=$article[aid]">{lang edit}</a>
+			<span class="pipe">|</span><a style="top:0;" href="portal.php?mod=portalcp&ac=article&op=delete&aid=$article[aid]&optype=1" id="article_delete_$article[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a>
+			<!--{/if}-->
+	                </div>
+	                <div class="share-bar rf">
+						<a class="btn"  onclick="showWindow(this.id, this.href, 'get', 0); return false;" href="home.php?mod=spacecp&ac=favorite&type=article&id=$article[aid]&handlekey=favoritearticlehk_{$article[aid]}" id="a_favorite">分享</a> <a class="btn" href="/">复制文章链接</a>
+						<!-- <a class="share-btn btn" href="/">分享</a> -->
+					</div>
+                </div>
+                <div class="view-body">
+                    $article[content]
+                </div>
+                <div class="share-bar">
+                    <a href="/" class="btn">收藏 · 321</a> <a href="/" class="btn">赞 · 321</a>
+                </div>
+                <!-- 评论部分开始 -->
+			<div class="comment">
+            <div class="comment-post">
+                <h3>发表你的看法</h3>
+                <img src="<!--{if $_G[avatar]}-->$_G[avatar]<!--{else}-->http://avatar.links123.cn/avatar.jpg<!--{/if}-->" alt="" width="30" class="avatar">
+                <b class="name J_username_comment"><!--{if $_G['uid']}-->$_G['username']<!--{else}-->游客<!--{/if}--></b>
+                <form action="/" class="comment-post-form">
+                	<input type="hidden" value="$article[aid]" name="aid" class="J_aid"/>
+                    <textarea name="message" id="comment_message" placeholder="你怎么看？" class="comment-post-form-ipt"></textarea>
+                    <div class="clearfix"><a class="rf btn J_comment" href="#" >发表</a></div>
+                </form>
+            </div>
+            <div class="comment-post-list">
+            <h3>Linkers说 <a href="$common_url" class="xi2 rf">{lang view_all_comments}</a></h3>
+                <ul class="msg-list">
+                 <!--{loop $commentlist $comment}-->
+				<a name="comment_anchor_$comment[cid]"></a>
+				<li id="comment_{$comment[cid]}_li" class="ptm pbm bbda cl">
+					<img src="<!--{if $_G[avatar]}-->$_G[avatar]<!--{else}-->http://avatar.links123.cn/avatar.jpg<!--{/if}-->"" alt="" width="30" class="avatar">
+					<div class="comment-wrapper">
+                            <div class="post-meta">
+                                <div class="lf name">
+                                <!--{if !empty($comment['uid'])}-->
+									$comment[username]
+								<!--{else}-->
+									{lang guest}
+								<!--{/if}-->
+								</div>
+                                <div class="time-ago rf"><!--{date($comment[dateline])}--></div>
+                            </div>
+                            <div class="comment-main">
+                                <p><!--{if $_G[adminid] == 1 || $comment[uid] == $_G[uid] || $comment[status] != 1}-->$comment[message]<!--{else}--> {lang moderate_not_validate}<!--{/if}--></p>
+                            </div>
+                        </div>
+                        <div class="opts">
+                        </div>
+				</li>
+				<!--{/loop}-->
+                </ul>
+            </div>
+        </div>
+	<!-- 评论部分结束 -->
+            </div>
+        </div>
+
+	</div>
+<!--此处底部去掉-->
+
+<!--{template common/footer_iread}-->

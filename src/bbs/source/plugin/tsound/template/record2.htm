@@ -1,0 +1,49 @@
+<!--{if $_G['inajax']==1}-->
+{template common/header_ajax}
+<!--{else}-->
+{subtemplate common/header}
+<!--{/if}-->
+<link href="source/plugin/tsound/template/images/list.css" rel="stylesheet" type="text/css" />
+<div style="width:400px">
+<h3 class="flb mn sr"><em>{$ti}</em> <span> 
+<!--{if !empty($_G['gp_infloat']) && !isset($_G['gp_frommessage'])}--> 
+<a href="javascript:;" class="flbc" onclick="hideWindow('tsound', 0, 1);" title="{lang close}">{lang close}</a> 
+<!--{/if}--> 
+</span> </h3>
+<form method="get" action="{BASEURL}" autocomplete="off" id="postform" name="postform" onsubmit="return chkform(this)">
+<div class="c">
+<dl class="xld cl">
+<dt class="z">
+<div class="mbm pbm bbda">
+<p class="mtm xw0"><span>{lang tsound:ti_name}: </span>
+<input id="name" name="name" type="text" size="20" autocomplete="off" value="" class="px myinput">
+</p>
+<p class="mtm xw0"><span>{lang tsound:ti_readme}: </span>
+<textarea id="readme" name="readme" class="myinput readme"></textarea>
+</p>
+</div>
+<div class="xw"><span></span>
+<button type="submit" value="true" class="pn pnc"><strong>{lang tsound:btn_next}</strong></button>
+</div>
+</dt>
+</dl>
+</div>
+</form>
+</div>
+<script type="text/javascript" reload="1">
+function chkform(){
+  var name=$('name').value;
+  var readme=$('readme').value;
+  if(name.length<1){
+    alert('{lang tsound:err_name}');
+    return false;
+  }
+  showWindow('tsound', '{BASEURL}action=insert&isthread={$isthread}&type={$type}&name='+encodeURIComponent(name)+'&readme='+encodeURIComponent(readme));
+  return false;
+}
+</script> 
+<!--{if $_G['inajax']==1}-->
+{template common/footer_ajax}
+<!--{else}-->
+{subtemplate common/footer}
+<!--{/if}-->

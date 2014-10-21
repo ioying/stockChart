@@ -1,0 +1,115 @@
+﻿<?xml version="1.1" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="From"><![CDATA[股票公式在线编辑1 ]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[股票公式在线编辑2]]></item>
+			<item id="identifier"><![CDATA[stock]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[stock]]></item>
+			<item id="directory"><![CDATA[stock/]]></item>
+			<item id="copyright"><![CDATA[Stock Formula Editer by Ioying]]></item>
+			<item id="version"><![CDATA[1.2.3]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[stock]]></item>
+					<item id="menu"><![CDATA[股票公式在线编辑器]]></item>
+					<item id="url"><![CDATA[plugin.php?id=stock]]></item>
+					<item id="type"><![CDATA[1]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[在线编辑管理！]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5,X1.5.1,X2,X2.5,X3.0,X3.1]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="stock_inc_php_1"><![CDATA[如要获得最佳的浏览效果，请使用]]></item>
+				<item id="stock_inc_php_2"><![CDATA[错误，无效的操作]]></item>
+				<item id="stock_inc_php_3"><![CDATA[切勿使用非法途径编辑公式]]></item>
+				<item id="stock_inc_php_4"><![CDATA[请输入您的公式，请返回。]]></item>
+				<item id="stock_inc_php_5"><![CDATA[您已成功编辑公式记录！]]></item>
+				<item id="stock_inc_php_6"><![CDATA[删除成功！]]></item>
+				<item id="stock_inc_php_7"><![CDATA[切勿使用非法途径登记公式]]></item>
+								
+				<item id="stock_inc_php_9"><![CDATA[请选择您的公式图标，请返回。]]></item>
+				<item id="stock_inc_php_10"><![CDATA[您已成功登记公式！]]></item>
+				<item id="stock_inc_php_nameplease"><![CDATA[公式名字和公式内容为必填项，不能为空。]]></item>
+				<item id="stock_inc_php_firstholyname"><![CDATA[智]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="stock_htm_1"><![CDATA[图片版]]></item>
+				<item id="stock_htm_2"><![CDATA[第]]></item>
+				<item id="stock_htm_3"><![CDATA[条]]></item>
+				<item id="stock_htm_4"><![CDATA[]]></item>
+				<item id="stock_htm_5"><![CDATA[关闭公式]]></item>
+				<item id="stock_htm_6"><![CDATA[×]]></item>
+				<item id="stock_addFormula"><![CDATA[新增公式代码]]></item>
+				<item id="stock_hots"><![CDATA[热度]]></item>
+				<item id="stock_formulaname"><![CDATA[公式名称]]></item>
+				<item id="stock_description"><![CDATA[公式描述]]></item>
+				<item id="stock_comment"><![CDATA[注释及用法]]></item>
+				<item id="stock_mainmap"><![CDATA[主图叠加]]></item>				
+				<item id="stock_mothername"><![CDATA[母亲姓名]]></item>				
+				<item id="stock_gonedate"><![CDATA[宝宝往生时间]]></item>				
+				<item id="stock_holyname"><![CDATA[指标法名]]></item>				
+				<item id="stock_htm_13"><![CDATA[最多可以输入100个字]]></item>
+				<item id="stock_htm_14"><![CDATA[您还可以输入]]></item>
+				<item id="stock_htm_15"><![CDATA[字]]></item>
+				<item id="stock_htm_16"><![CDATA[发表指标公式]]></item>
+				<item id="stock_htm_18"><![CDATA[我的公式]]></item>
+				<item id="stock_htm_19"><![CDATA[公式]]></item>
+				<item id="stock_htm_22"><![CDATA[发表时间]]></item>
+				<item id="stock_htm_23"><![CDATA[编辑]]></item>
+				<item id="stock_htm_24"><![CDATA[全选]]></item>
+				<item id="stock_htm_25"><![CDATA[删除已选的公式]]></item>
+				<item id="stock_htm_26"><![CDATA[您还没有已登记的公式！]]></item>
+				<item id="stock_htm_28"><![CDATA[编辑我的指标公式]]></item>
+				<item id="stock_htm_31"><![CDATA[背景]]></item>
+				<item id="stock_htm_36"><![CDATA[编辑指标公式]]></item>
+				<item id="stock_htm_38"><![CDATA[公式库]]></item>
+				<item id="stock_htm_40"><![CDATA[公式发布者]]></item>
+				<item id="stock_htm_44"><![CDATA[没有坛友公式登记记录！]]></item>
+				<item id="stock_htm_46"><![CDATA[公式管理]]></item>
+				<item id="stock_htm_47"><![CDATA[指标公式管理]]></item>
+				<item id="stock_htm_55"><![CDATA[指标公式上并没有留言！]]></item>
+				<item id="stock_side_htm_1"><![CDATA[→]]></item>
+				<item id="stock_side_htm_2"><![CDATA[指标公式常见问题]]></item>
+				<item id="stock_side_htm_3"><![CDATA[股票公式在线编辑器详细说明]]></item>
+				<item id="stock_side_htm_4"><![CDATA[插件信息]]></item>
+				<item id="stock_side_htm_5"><![CDATA[原作者：]]></item>
+				<item id="stock_side_htm_6"><![CDATA[二次开发：]]></item>
+				<item id="stock_side_htm_7"><![CDATA[ttall]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+		<item id="license"><![CDATA[[list]感谢您选择使用本插件。安装本插件之前，请仔细阅读以下所有内容
+[b]安装注意事项[/b]
+[1]本插件为Discuz!新内核插件，绿色安装及绿色使用，适用于Discuz! X1.5-X2.5站点
+[2]是否更改Discuz!原有数据库：否
+[3]是否新增数据库：是
+[4]是否需要手动修改Discuz!文件：否
+
+[b]授权协议[/b]
+[1]本插件为Ioying设计开发，放弃拥有版权。
+[2]本插件为测试版本，暂未公开发布，如由于本插件的功能缺欠及未知BUG造成损失，深表歉意，但请自负后果。
+[3]以后如有商业版则另行声明。
+[4]安装和使用插件有风险，如因安装、使用此插件所造成的任何不良影响，作者不负责任何直接或间接的责任。
+[5]作者只是业余写插件的，不能经常维护本插件，对于插件本身的问题作者会给予修正，但不对任何第三方修改版本进行技术支持和升级。
+[6]您一旦开始安装本插件，即被视为完全理解并接受本授权协议的各项条款。
+[7]插件作者拥有对本授权协议的最终解释权。[/list]]]></item>
+                <item id="intro"><![CDATA[[b][color=green]【股票公式在线编辑器】[/color][/b]
+内部调试版
+本插件参考了xiechunye《心情墙》部分代码。 感谢！  （说实话，写得很...）
+]]></item>
+	</item>
+</root>

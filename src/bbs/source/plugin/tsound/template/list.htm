@@ -1,0 +1,44 @@
+{subtemplate common/header}
+<div id="wp" class="wp">
+  <div class="tb cl mlist">
+    <ul>
+      <li{$list[audio]}><a href="{BASEURL}type=audio">{lang tsound:audio}</a></li>
+      <li{$list[video]}><a href="{BASEURL}type=video">{lang tsound:video}</a></li>
+    </ul>
+  </div>
+  <br />
+  <div class="mn">
+    <div class="bmw">
+      <div class="bm_h">
+        <table width="100%" class="xs3 wx hm">
+          <tbody>
+            <tr>
+              <th width="*">{lang tsound:ti_thread}</th>
+              <th width="10%">{lang tsound:ti_name}</th>
+              <th width="20%">{lang tsound:ti_username}</th>
+              <th width="10%">{lang tsound:ti_sec}</th>
+              <th width="30%">{lang tsound:ti_time}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bm_c flist">
+        <table width="100%" border="0">
+          <tbody>
+<!--{loop $record $rs}-->
+            <tr>
+              <td width="*"><a href="forum.php?mod=viewthread&tid={$rs[tid]}" target="_blank">{$rs[thread]}</a></td>
+              <td width="10%">{$rs[name]}</td>
+              <td width="20%"><a href="home.php?mod=space&uid={$rs[uid]}" target="_blank">{$rs[username]}</a></td>
+              <td width="10%">{$rs[sec]}</td>
+              <td width="30%">{$rs[time]}</td>
+            </tr>
+<!--{/loop}-->
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </div>
+</div>
+{subtemplate common/footer}

@@ -1,0 +1,93 @@
+<!--{template milu_seotool:header}-->
+<style>
+.tipsblock2 span a{ font-weight:500; margin:0 5px 0 5px; color:#2366A8;}
+.tipsblock2 span font{ font-weight:500; margin:0 5px 0 10px; color:#000; font-size:12px;}
+</style>
+<script type="text/javascript">
+
+
+function flink_ask(id){
+	if(!is_lan == 'yes') {
+		showDialog("{lang milu_seotool:lan_no_share}", 'notice');
+		return;
+	}
+	var name = $('name_'+id).innerHTML;	
+	show_html_window('flink_ask', '{lang milu_seotool:flink_ask}', 410, 287, '<div class="c bart" style=" width:100%; height:210px;"><p style=" height:23px;line-height:23px;margin-top:15px;"><span style=" float:left;width:60px;">{lang milu_seotool:sitename}:</span>'+name+'</p><p style=" display:block; float:left; margin:10px 0;"><span style=" float:left;margin:0 0 10px 0; ">{lang milu_seotool:remark}: {lang milu_seotool:remark_notice}</span><textarea  class="warea" cols="50" id="remark" name="rules_desc" rows="6" ></textarea></p></div><p class="o pns"><button onclick="flink_ask_to('+id+');" class="pn pnc" name="dsf" type="submit"><span>{lang milu_seotool:ok}</span></button><button onclick="hideWindow(\'flink_ask\');" class="pn" name="dsf" type="reset"><em>{lang milu_seotool:cancel}</em></button></p>');
+	
+}
+
+function flink_ask_to(uid){
+	var remark = st_format_url(jq('#remark').val());
+	jq.post(PLUGIN_URL+'flink&myac=seotool_ajax_func&af=flink_ask_to&inajax=1&tpl=no&uid='+uid+'&remark='+remark,null,function (msg) {
+		if(msg != 1 || msg == '') {
+			showDialog(msg, 'notice');
+			return;
+		}else{
+			showDialog('{lang milu_seotool:send_success}', 'right');
+		}
+	});
+	hideWindow('flink_ask');
+}
+</script>
+<table class="tb tb2 " id="tips2">
+<tbody><tr><th class="partition">{lang milu_seotool:myinfo}</th></tr>
+<tr><td class="tipsblock2" s="1"><span>
+	<font>{lang milu_seotool:sitename}:</font>{$info['user_info']['sitename']} 
+    <font>{lang milu_seotool:site_cate}:</font>{$info['user_info']['catname']}	
+    <font>{lang milu_seotool:baidu_count}:</font><a href="http://www.baidu.com/s?wd=site:{$info['client']['host']}" target="_blank">{eval echo st_num_size($info['user_info']['baidu'])}</a>	
+    <font>{lang milu_seotool:google_count}:</font><a href="http://www.google.com.hk/search?ie=UTF-8&q=site:{$info['client']['domain']}" target="_blank">{eval echo st_num_size($info['user_info']['google'])}</a>	
+    <font>PR:</font><a href="http://pr.chinaz.com/?PRAddress={$info['client']['host']}" target="_blank">{$info['user_info']['pr']}</a>	
+    <font>{lang milu_seotool:bd_zhao}:</font><a href="http://www.baidu.com/s?wd={$info['client']['host']}" target="_blank">{$info['user_info']['show_baidusnap']}</a>	
+    <font>{lang milu_seotool:baidu_weight}:</font><a href="http://mytool.chinaz.com/baidusort.aspx?host={$info['client']['host']}&sortType=0" target="_blank">{$info['user_info']['baidu_weight']}</a>	
+    <font>{lang milu_seotool:modify_dateline}:</font>{$info['user_info']['show_modify_dateline']} </span>  
+    <a href="?{PLUGIN_GO}{$submit_pmod}&myac=update_info" style="color:#2366A8; margin-left:10px;">{lang milu_seotool:modify_info}</a></td></tr></tbody></table>
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post">
+<table class="tb tb2 " id="tips">
+<tbody><tr><th class="partition">{lang milu_seotool:search_args}</th></tr>
+<tr><td class="tipsblock" s="1">{$info['search_show']} <input type="submit" class="btn" id="submit_search" name="search_submit" value="{lang milu_seotool:search}"></td></tr></tbody></table>
+
+</form>
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post"> 
+ <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table class="tb tb2 nobdt fixpadding">
+<tbody><tr>
+  <th colspan="26" class="partition">{$info['show_title']}</th></tr>
+<tr class="header">
+  <th width="250">{lang milu_seotool:sitename_view_visit}</th>
+  <th width="150">{lang milu_seotool:site_cate}</th>
+  <th width="120">{lang milu_seotool:baidu_count}</th>
+  <th width="120">{lang milu_seotool:google_count}</th>
+  <th width="120">PR</th>
+  <th width="150">{lang milu_seotool:bd_zhao}</th>
+  <th width="85">{lang milu_seotool:baidu_weight}</th>
+  <th width="85">{lang milu_seotool:link_type}</th>
+
+  <th width="150">{lang milu_seotool:modify_dateline}</th>
+  <th width="180">{lang milu_seotool:op}</th>
+</tr>
+<!--{if $info['list']}-->
+<!--{loop $info['list'] $key $rs}-->
+<tr class="hover"><td width="250" id="name_{$rs['uid']}"><a href="{$rs['siteurl']}" target="_blank">{$rs['sitename']}</a></td>
+  <td width="150"><a href="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}&site_catid={$rs['site_catid']}">{$info['cat_site_arr'][$rs['site_catid']]}</a></td>
+  <td width="120">{eval echo st_num_size($rs['baidu'])}</td>
+  <td width="120">{eval echo st_num_size($rs['google'])}</td>
+  <td width="120">{eval echo seoOutput::show_page_rank($rs['pr']);}</td>
+  <td width="150">{eval if($rs['baidusnap']) echo date('Y-m-d', strtotime($rs['baidusnap']));}</td>
+  <td width="85">{eval echo seoOutput::show_baidu_rank($rs['baidu_weight']);}</td>
+  <td width="85">{$info['link_type_arr'][$rs['link_type']]}</td>
+  <td width="150">{eval if($rs['modify_dateline']) echo dgmdate($rs['modify_dateline'], 'u');}</td>
+  <td width="180" valign="middle">{eval $is_match = check_flink_match($rs,$info['flink_set'], $info['user_info']);}<!--{if $is_match == 1}--><a style=" margin:3px 8px 3px 0;display:block; width:50px; float:left" href="javascript:void(0)" onclick="flink_ask('{$rs[uid]}')">{lang milu_seotool:hits_visit}</a><!--{elseif $is_match == -9}-->{lang milu_seotool:yourself_}<!--{/if}--> <!--{if $rs['qq']}-->{eval echo seoOutput::show_qq($rs['qq'], 1)} <!--{/if}--></td>
+  </tr>
+
+<!--{/loop}-->
+<!--{else}-->
+<tr>
+  <td colspan="26" align="center">{lang milu_seotool:online_no_data}</td>
+</tr>
+ <!--{/if}-->
+ <tr class="hover">
+  <td colspan="10"><div class="cuspages right">{$info['multipage']}</div></td>
+  </tr>
+<script type="text/JavaScript">_attachEvent(document.documentElement, 'keydown', function (e) { entersubmit(e, 'creditsubmit'); });</script></tbody></table>
+
+</form>

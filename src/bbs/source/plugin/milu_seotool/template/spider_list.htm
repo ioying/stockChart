@@ -1,0 +1,45 @@
+<!--{template milu_seotool:header}-->
+
+
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post">
+<table class="tb tb2 " id="tips">
+<tbody><tr><th class="partition">{lang milu_seotool:search_args}</th></tr>
+<tr><td class="tipsblock" s="1"><div style="float:left">{$info['search_show']} <input type="submit" class="btn" id="submit_search" name="search_submit" value="{lang milu_seotool:search}"></div><ul class="search_tips"><h1>{lang milu_seotool:fast_search}:</h1>{$info['fast_search']}</ul></td></tr></tbody></table>
+
+</form>
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post"> 
+ <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table class="tb tb2 nobdt fixpadding">
+<tbody><tr>
+  <th colspan="31" class="partition">{$info['show_title']}</th></tr>
+<tr class="header">
+  <th width="180"> {lang milu_seotool:web_title}</th>
+  <th width="220">{lang milu_seotool:spider_url}</th>
+  <th width="120">{lang milu_seotool:spider_types}</th>
+  <th width="120">{lang milu_seotool:spider_group}</th>
+  {if VIP}<th width="120">{lang milu_seotool:status}</th>{/if}
+  <th width="120">{lang milu_seotool:spider_dateline}</th>
+
+<!--{if $info['list']}-->
+<!--{loop $info['list'] $key $rs}-->
+<tr class="hover">
+  <td width="180" ><a href="{$rs['page_url']}" title="{$rs['page_title']}" target="_blank">{$rs['show_title']}</a></td>
+  <td width="120"><a href="{$rs['page_url']}" target="_blank" title="{$rs['page_url']}">{$rs['show_url']}</a></td>
+  <td width="120">{$rs['spider_type']}</td>
+  <td width="120" valign="middle">{$rs['show_group']}</td>
+  {if VIP}<td width="120" valign="middle">{$rs['show_status']}</td>{/if}
+  <td width="120" valign="middle">{$rs['dateline']}</td>
+
+  </tr>
+<!--{/loop}-->
+<!--{else}-->
+<tr>
+  <td colspan="31" align="center">{lang milu_seotool:online_no_data}</td>
+</tr>
+ <!--{/if}-->
+ <tr>
+   <td colspan="31"><div class="fixsel" style="height:30px; line-height:30px;"><div class="cuspages right">{$info['multipage']}</div></td>
+ </tr>
+</table> 
+
+</form>

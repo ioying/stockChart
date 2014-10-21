@@ -1,0 +1,32 @@
+html{background:#F2DD9C url({IMGDIR}/asw6bg.jpg) repeat-y 50% 0!important;}
+/*
+#hd{background:url({IMGDIR}/asw6hd.jpg) no-repeat 50% -24px!important;height:260px;}
+#toptb{background:url({IMGDIR}/asw6hd.jpg) no-repeat 50% 0px;}
+.hdc { 
+height: 255px;
+ }
+*/
+body{background:url({IMGDIR}/ftasw6.jpg) no-repeat 50% 100%;}
+#ais56_com{background:url({IMGDIR}/asw6hd.jpg) no-repeat 50% 0px!important;}
+.hdc { 
+height: 180px!important;
+ }
+
+#um { padding-top: 0px; }
+#qmenu { margin-top:1px;background:url({IMGDIR}/ais56ssq.gif) no-repeat;height: 20px;
+line-height: 20px;
+margin: 0px 0px 0px;
+overflow: hidden;
+padding: 0px 0px 0px 0px;width:68px;}
+#nv,#nv li a:hover,#nv li.hover a:hover, #nv li.hover a{background:none}
+#nv li.a a { color: #000; }#nv li a:hover{ color: #A53003; }
+#nv li a { color:#4B5446;padding: 0px;text-align:center;display:block;width:88px;}
+#nv li ,#nv li.a {background:none;}
+#wp{min-height:450px;}
+.bmw .bm_h {border-left: 0px ;border-right:0px ;}
+.pnc, a.pnc {border:1px solid #F2EBDA;}.kk_xshow .header td {background: #F2EBDA!important;}
+#fastpostsubmit {background: url({IMGDIR}/pn.png) 0px -48px!important;}
+#nv ul{margin-left:230px;}#hd h2 {padding-top:70px}
+#scbar{background:none!important;height: 20px;line-height: 20px;width:400px;margin-left:280px;border:none!important}#scbar_txt { background:none!important;border: 0px solid #FFFFFF;font-size: 12px;outline: medium none currentColor;width: 200px;}.scbar_btn_td{width:68px;background:url({IMGDIR}/ais56ss.gif) no-repeat}#scbar_btn{text-indent:-9999px;background:none!important;}.scbar_txt_td{border:1px solid #F1EAD9}.scbar_type_td{border-top:1px solid #F1EAD9;border-bottom:1px solid #F1EAD9}.scbar_icon_td,.scbar_txt_td, .scbar_type_td{background:#FFE7BB!important;}.scbar_icon_td,.scbar_hot_td{display:none!important;}
+
+#pt{margin-top:20px}.scbar_txt_td{border:none!important}

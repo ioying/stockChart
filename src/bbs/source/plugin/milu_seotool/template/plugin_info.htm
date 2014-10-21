@@ -1,0 +1,175 @@
+
+<style>
+
+#check th,.a {
+
+  color: #6CA1B4;
+
+  font-weight: 700;
+
+  padding: 5px;
+
+}
+
+
+
+.tb .pdleft1 span{
+
+  padding-left: 67px;
+
+  text-align:left;
+
+  display:block;
+
+  
+
+}
+
+.tb .padleft span,.tb .padleft span{ 
+
+	padding-left:45px; 
+
+	text-align:left;
+
+    display:block;
+
+ }
+
+.nw span{
+
+  background: url("./install/images/bg_repno.gif") no-repeat scroll 45px -197px transparent;
+
+}
+
+.w span{ background:url("./install/images/bg_repno.gif") no-repeat 45px -148px; }
+
+</style>
+
+<table class="tb tb2 " id="tips">
+
+<tbody>
+
+
+
+<tr><th class="partition">{lang milu_seotool:user_info}</th></tr>
+
+<tr><td class="tipsblock" s="1"><ul id="tipslis">
+
+  <li>{lang milu_seotool:user_level}:  {$user_arr['show_user_name']} </li>
+  <li>{lang milu_seotool:_version}:  {PLUGIN_VERSION} Release {V_D} {$user_arr['show_upgrade']}</li>
+  <li style="height:35px; line-height:35px; list-style:none">{lang milu_seotool:ask_qq}:  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$user_arr['web_qq']}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{$user_arr['web_qq']}:41" alt="{lang milu_seotool:click_ask}" title="{lang milu_seotool:click_ask}"></a></li>
+
+</ul></td></tr>
+
+
+<tr><th class="partition">{lang milu_seotool:data_count}</th></tr>
+
+<tr><td class="tipsblock" s="1">
+
+<table class="tb" style="margin:5px;width:90%;" id="check">
+
+<tbody><tr>
+
+	<th width="30%"><span>{lang milu_seotool:count_field}</span></th>
+
+	<th width="29%" class="padleft"><span>{lang milu_seotool:result}</span></th>
+
+	<th width="41%" class="padleft"><span>{lang milu_seotool:shuoming}</span></th>
+
+</tr>
+
+<!--{loop $plugin_count_msg $key $rs}-->
+
+<tr>
+
+<td>{$rs['name']}</td>
+
+<td style="padding-left:40px;"><span>{$rs['show']}</span></td>
+
+<td class="padleft"><span>{if $rs['msg']}$rs['msg']{else}{lang milu_seotool:user_info}{lang milu_seotool:no_have}{/if}</span></td>
+
+</tr>
+
+<!--{/loop}-->
+
+</tbody></table>
+
+</td></tr>
+
+
+<tr><th class="partition">{lang milu_seotool:evo_check}</th></tr>
+
+<tr><td class="tipsblock" s="1">
+
+<table class="tb" style="margin:5px;width:90%;" id="check">
+
+<tbody><tr>
+
+	<th width="30%"><span>{lang milu_seotool:check_field}</span></th>
+
+	<th width="29%" class="padleft"><span>{lang milu_seotool:check_result}</span></th>
+
+	<th width="41%" class="padleft"><span>{lang milu_seotool:result_desc}</span></th>
+
+</tr>
+
+<!--{loop $evo_check_msg $key $rs}-->
+
+<tr>
+
+<td>{$rs['name']}</td>
+
+<td class="{if $rs['check']}w{else}nw{/if} pdleft1"><span>{if $rs['check']}{lang milu_seotool:suport}{else}{if $rs['tip']}{$rs['tip']}{else}{lang milu_seotool:no_suport}{/if}{/if}</span></td>
+
+<td class="padleft"><span>{if $rs['msg']}$rs['msg']{else}{lang milu_seotool:no_have}{/if}</span></td>
+
+</tr>
+
+<!--{/loop}-->
+
+</tbody></table>
+
+</td></tr>
+
+<tr>
+  <th class="partition">{lang milu_seotool:server_value}</th>
+</tr>
+
+<tr><td class="tipsblock" s="1">
+
+<table class="tb" style="margin:5px;width:90%;" id="check">
+
+<tbody><tr>
+
+	<th width="19%"><span>{lang milu_seotool:value_name}</span></th>
+
+	<th width="19%" class="padleft"><span>{lang milu_seotool:set_value}</span></th>
+
+	<th width="14%" class="padleft">{lang milu_seotool:recoment_value}</th>
+	<th width="28%" class="padleft"><span>{lang milu_seotool:shuoming}</span></th>
+
+</tr>
+
+<!--{loop $evo_config_arr $key $rs}-->
+
+<tr>
+
+<td>{$rs['name']}</td>
+
+<td><span style="padding-left:40px;">{if $rs['value']}{$rs['value']}{else}{lang milu_seotool:no_check_value}{/if}</span></td>
+
+<td style="padding-left:40px;"><span>{if $rs['best_value']}$rs['best_value']{else}{lang milu_seotool:no_have}{/if}</span></td>
+<td class="padleft"><span>{if $rs['msg']}$rs['msg']{else}{lang milu_seotool:no_have}{/if}</span></td>
+</tr>
+
+<!--{/loop}-->
+</tbody></table>
+
+</td></tr>
+
+
+
+</tbody></table>
+
+
+

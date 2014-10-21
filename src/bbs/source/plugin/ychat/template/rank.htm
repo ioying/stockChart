@@ -1,0 +1,94 @@
+<!--{subtemplate common/header_common}-->
+<LINK rel=stylesheet type=text/css href="./source/plugin/ychat/template/main.css">
+</head>
+<body>
+<DIV class=wrap>
+<DIV class="main clearfix">
+  <DIV class="PB clearfix">
+<DIV class="P3">
+<DIV class="p3_tit"></DIV>
+<DIV class="p3_c clearfix">
+<DIV class="p3_con">
+<!--{loop $giftquery $value}-->
+
+<DIV class=s_01 title="{$value['giftname']}" style="background:url(./source/plugin/ychat/images/{$value['pic']}) #fff no-repeat 1% 50%; ">
+<DIV class="s_con clearfix">
+<DIV class="s_user">
+<DIV class="s_img"><IMG 
+src="{$space['avatar']}" width="41" height="41"></DIV></DIV>
+<DIV class="s_info">
+<UL>
+  <LI>{lang ychat:template_shuliang}<SPAN class="fb">{$value["cc"]}</SPAN>{lang ychat:template_ci}</LI>
+  <LI>{lang ychat:template_yonghu}<A title="id{$value['uid']}" href="./home.php?mod=space&uid={$value['uid']}" 
+  target=_blank>{$value["username"]}({$value["uid"]})</A> </LI></UL></DIV></DIV></DIV>
+<!--{/loop}-->
+</DIV>
+</DIV></DIV></DIV>
+
+<DIV class="PB clearfix">
+<DIV class=P3>
+<DIV class=p32_tit></DIV>
+<DIV class="p3_c clearfix">
+<DIV class=p3_con>
+<!--{loop $bzstar $value}-->
+<DIV class=s_01 title={$value["giftname"]} style="background:url(./source/plugin/ychat/images/{$value['pic']}) #fff no-repeat 1% 50%; ">
+<DIV class="s_con clearfix">
+<DIV class=s_user>
+<DIV class=s_img><IMG  
+src="{$value['avatar']}" width="41" height="41"></DIV></DIV>
+<DIV class=s_info>
+<UL>
+  <LI>{lang ychat:template_shuliang}<SPAN class=fb>{$value["cc"]}</SPAN>{lang ychat:template_ci}</LI>
+  <LI>{lang ychat:template_yonghu}<A title=id:{$value["uid"]} href="./home.php?mod=space&uid={$value['uid']}" 
+  target=_blank>{$value["username"]}({$value["uid"]})</A> </LI></UL></DIV></DIV></DIV>
+<!--{/loop}-->
+
+</DIV>
+</DIV></DIV></DIV>
+
+<DIV class="PE clearfix">
+<DIV class=p6>
+<DIV class=p6_tit1></DIV>
+<DIV class="p6_c clearfix">
+<DIV class="p6_con clearfix">
+<UL>
+  <LI class=b1con><SPAN class=b_list1>{lang ychat:template_paiming}</SPAN> <SPAN class=b_list2>{lang ychat:template_yonghuming}</SPAN> 
+  <SPAN class=b_list3>{lang ychat:template_dianjilu}</SPAN> </LI>
+  <!--{loop $rqarr $value}-->
+  <LI><SPAN class=b_num1>{$value['num']}</SPAN><SPAN class=b_name><A title=id:{$value["uid"]}  
+  href="./home.php?mod=space&uid={$value['uid']}"  target=_blank>{$value["username"]}</A></SPAN><SPAN class=b_value>{$value["views"]}</SPAN></LI>
+  <!--{/loop}-->
+
+ </UL></DIV></DIV></DIV>
+<DIV class=p6>
+<DIV class=p6_tit2></DIV>
+<DIV class="p6_c clearfix">
+<DIV class="p6_con clearfix">
+<UL>
+  <LI class=b1con><SPAN class=b_list1>{lang ychat:template_paiming}</SPAN> <SPAN class=b_list2>{lang ychat:template_yonghuming}</SPAN> 
+  <SPAN class=b_list3>{lang ychat:template_hzshuliang}</SPAN> </LI>
+  <!--{loop $hzarr $value}-->
+  <LI><SPAN class=b_num1>{$value['num']}</SPAN><SPAN class=b_name><A title=id{$value["uid"]}  
+  href="./home.php?mod=space&uid={$value['uid']}"  target=_blank>{$value["username"]}</A></SPAN><SPAN 
+  class=b_value>{$value["znum"]}</SPAN></LI>
+  <!--{/loop}-->
+
+  </UL></DIV></DIV></DIV>
+<DIV class=p6>
+<DIV class=p6_tit3></DIV>
+<DIV class="p6_c clearfix">
+<DIV class="p6_con clearfix">
+<UL>
+  <LI class=b1con><SPAN class=b_list1>{lang ychat:template_paiming}</SPAN> <SPAN class=b_list2>{lang ychat:template_yonghuming}</SPAN> 
+  <SPAN class=b_list3>{lang ychat:template_xiaofei}</SPAN> </LI>
+    <!--{loop $xfarr $value}-->
+  <LI><SPAN class=b_num1>{$value['num']}</SPAN><SPAN class=b_name><A title=id:{$value["uid"]}
+  href="./home.php?mod=space&uid={$value['uid']}" target=_blank>{$value["username"]}</A></SPAN><SPAN 
+  class=b_value>{$value["price"]}</SPAN></LI>
+  <!--{/loop}-->
+
+ </UL></DIV></DIV></DIV></DIV></DIV>
+<DIV class=clear></DIV>
+<p>&nbsp;</p><p>&nbsp;</p>
+<!--{subtemplate common/footer}-->
+

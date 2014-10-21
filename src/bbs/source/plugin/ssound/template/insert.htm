@@ -1,0 +1,49 @@
+{template common/header_ajax}
+<div style="width:550px">
+<h3 class="flb mn sr"><em>语言发帖在线录音器</em><a href="javascript:;" id="lastsound" onclick="insertLast()" style="display:none"><em style="color:red;padding-left:20px;text-decoration:underline">插入上次的录制音频</em></a> <span> 
+<!--{if !empty($_G['gp_infloat']) && !isset($_G['gp_frommessage'])}--> 
+<a href="javascript:;" class="flbc" onclick="hideWindow('ssound', 0, 1);" title="{lang close}">{lang close}</a> 
+<!--{/if}--> 
+</span> </h3>
+{$flash}
+</div>
+<script type="text/javascript" reload="1">
+function OnezCall(type,s){
+  if(type=='upload'){
+    if(s.substr(0,7)!='http://'){
+      alert(s);
+      return;
+    }
+    setcookie('ssound',s);
+    insertSound(s);
+  }else if(type=='status'){
+  }
+}
+var lsound=getcookie('ssound');
+if(lsound.length>0){
+  $('lastsound').style.display='inline';
+}
+function insertLast(){
+  insertSound(lsound);
+}
+function insertSound(s){
+  var txt = '[ssound]' + s + '[/ssound]';
+  insertText(txt, strlen(txt), 0);
+  hideWindow('ssound', 0, 1);
+  doane(event);
+}
+function insertSound2(s){
+  var txt = '[ssound]' + s + '[/ssound]';
+  seditor_insertunit('fastpost', txt, '');
+  hideWindow('ssound', 0, 1);
+  doane(event);
+}
+function insertSound3(s){
+  var txt = '[ssound]' + s + '[/ssound]';
+  seditor_insertunit('post', txt, '');
+  hideWindow('ssound', 0, 1);
+  doane(event);
+}
+
+</script> 
+{template common/footer_ajax}

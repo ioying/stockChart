@@ -1,0 +1,22 @@
+<cchat 
+
+roomid = ""
+roomname = ""
+
+username = ""
+reserved = "admin,iFung"
+allow_rename = ""
+
+auto_live = ""
+cmp_url = "cmp.swf"
+cmp_autoload = ""
+
+announce = "欢迎来访 {roomname} %3Cbr%20%2F%3E1, 请遵纪守法文明交流，禁止发布任何非法和不和谐信息 %3Cbr%20%2F%3E2, 聊天室需UDP支持，rtmfp网络测试：http://cc.rtmfp.net/ %3Cbr%20%2F%3E3, 局域网聊天请设置rtmfp服务器为：rtmfp: %3Cbr%20%2F%3E4, 更多信息尽在晨风论坛：%3Ca%20href%3D%22http%3A%2F%2Fbbs.cenfun.com%2F%22%20target%3D%22_blank%22%3Ehttp%3A%2F%2Fbbs.cenfun.com%2F%3C%2Fa%3E"
+bgcolor = "ffffff"
+sound = "enter.mp3,message.mp3"
+admin = "8405EFAB269F0EBB71CC73ED4D7B7073"
+
+badwords = "机票,六合彩,枪支,摇头丸,迷歼药,妈的,日你,你妈,操你,操你妈,我草,共产党"
+counter = ""
+
+/>

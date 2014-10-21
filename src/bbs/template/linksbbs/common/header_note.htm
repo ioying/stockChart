@@ -1,0 +1,29 @@
+<!--{subtemplate common/header_common}-->
+	<meta name="application-name" content="$_G['setting']['bbname']" />
+	<meta name="msapplication-tooltip" content="$_G['setting']['bbname']" />
+	<meta name="msapplication-task" content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico" />
+	<!--{if widthauto()}-->
+		<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
+		<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+	<!--{/if}-->
+	<script type="text/javascript" src="{$_G[setting][jspath]}forum.js?{VERHASH}"></script>
+	<link rel="stylesheet" type="text/css" href="http://a.links123.net/g/src/base.css">
+	<link rel="stylesheet" type="text/css" href="http://a.links123.cn/g/src/gh/gh.css">
+	<link rel="stylesheet" type="text/css" href="/static/note/css/style.css?{VERHASH}">
+</head>
+
+<body>
+	<div class="top">
+        <div class="lf"><a href="/" class="iread-logo"></a></div>
+        <div class="lf new-note-btn">
+            <a href="forum.php?mod=post&action=newthread&fid=$_G[fid]"><img src="/static/note/imgs/new-ico.png" width="23" height="24"></a>
+            <span class="new-note-text">新建笔记</span>
+        </div>
+        <ul class="rf s-nav">
+            <li><a href="/portal.php">另客阅读</a></li>
+            <li><a href="http://www.links123.com/Event.html">另客奖学金</a></li>
+            <li><a href=";">外教免费课程</a></li>
+            <li><a href=";">答疑解惑</a></li>
+            <li><a href="/forum.php?mod=forumdisplay&fid=38">另客云团队</a></li>
+        </ul>
+    </div>

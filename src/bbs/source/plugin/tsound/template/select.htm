@@ -1,0 +1,28 @@
+{template common/header_ajax}
+<div style="width:367px;overflow:hidden">
+<h3 class="flb mn sr"><em>{lang tsound:select_title}</em> <span> 
+<!--{if !empty($_G['gp_infloat']) && !isset($_G['gp_frommessage'])}--> 
+<a href="javascript:;" class="flbc" onclick="hideWindow('tsound', 0, 1);" title="{lang close}">{lang close}</a> 
+<!--{/if}--> 
+</span> </h3>
+<div style="padding:10px;">
+<table>
+<tr>
+  <td>
+  <button type="button" class="pn pnc" value="true" name="tsubmit" onclick="location.href='forum.php?mod=post&action=newthread&fid={$fid}&auto=audio&isthread=1'">
+<span>{lang tsound:addaudio}</span>
+</button>
+  </td>
+  <td>
+  <button type="button" class="pn pnc" value="true" name="tsubmit" onclick="location.href='forum.php?mod=post&action=newthread&fid={$fid}&auto=video&isthread=1'">
+<span>{lang tsound:addvideo}</span>
+</button>
+  </td>
+</tr>
+</table>
+</div>
+</div>
+<script type="text/javascript" reload="1">
+{$js}
+</script> 
+{template common/footer_ajax}

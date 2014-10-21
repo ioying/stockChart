@@ -1,0 +1,127 @@
+/*base */
+/*实际使用的是线上的css文件，这里仅为查找方便 */
+body{font: normal normal 12px/20px 'arial'; padding: 0; margin: 0;}
+html{margin: 0; padding: 0}
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, button, p { margin: 0; padding: 0 }
+img, button { border: 0 }
+a, button { cursor: pointer }
+ol, ul { list-style: none }
+input, textarea, select {background:#fff; text-align: left; font-size: 100% }
+a img{vertical-align: top}
+a {color:#0074b8;text-decoration:none}
+a:hover {color:#cf000e}
+a.b07ec7,.b07ec7 a,.b07ec7 a:hover{color: #b07ec7; border-color:#b07ec7;}
+a.f1bc8e,.f1bc8e a,.f1bc8e a:hover{color: #f1bc8e; border-color:#f1bc8e;}
+a.e17e7a,.e17e7a a,.e17e7a a:hover{color: #e17e7a; border-color:#e17e7a;}
+a.7eb8d9,.7eb8d9 a,.7eb8d9 a:hover{color: #7eb8d9; border-color:#7eb8d9;}
+a.84c7bb,.84c7bb a,.84c7bb a:hover{color: #84c7bb; border-color:#84c7bb;}
+a.db80b6,.db80b6 a,.db80b6 a:hover{color: #db80b6; border-color:#db80b6;}
+hr{display: block;height: 1px; border: 0; background-color: #000;}
+i,em{font-style: normal;}
+
+input{outline: none; box-sizing: border-box;}
+input.input-mini{width: 30px; border-radius: 3px; padding: 2px; border:1px solid #ddd;}
+
+.checkbox{height: 30px; line-height: 30px;margin-left: 10px;}
+.checkbox input{display: inline-block; vertical-align: middle;}
+
+/* layout */
+.container{width: 100%; padding: 0; margin: 0;}
+.wrapper{padding: 0 20px;}
+.wrapper_1024{width: 1100px; margin: 0 auto;padding: 0 20px;}
+.mt20{margin-top: 20px;}
+
+/*tip*/
+.t_tip,.l_tip,.r_tip,.b_tip{width: 0;height: 0;font-size: 0;overflow: hidden;position: absolute;border-width: 4px;top: 8px;right: 0px;border-style: dashed dashed solid dashed;border-color: transparent transparent #fff;}
+.l_tip{border-color:transparent #fff transparent transparent;border-style:dashed solid dashed dashed; /*ie6 for dashed bug */}
+.r_tip{border-color:transparent transparent transparent #fff;border-style:dashed dashed dashed solid; /*ie6 for dashed bug */}
+.b_tip{border-color:#fff transparent transparent ;border-style:solid dashed dashed ; /*ie6 for dashed bug */}
+.t_tip{border-color:transparent transparent #fff;border-style:dashed dashed solid dashed; /*ie6 for dashed bug */}
+
+/* navigation */
+.nav li{float: left; list-style: none;}
+.nav li:last-child {margin-right: 10px;}
+.nav li:last-child a{padding-right: 15px;}
+.nav:after{clear:both;}
+.nav li a{background: #ccc; color: #000; padding: 3px; margin: 0 2px;}
+
+/* grid */
+.row .cell{display: inline-block; float: left; width: 32.3333333%; *width: 32%; margin: 0 0 0 1%;}
+.row{margin-left: -1%; width: 100%;}
+.row{overflow: hidden;}.row:after{clear:both;}
+.row .cell1{width: 60%}
+.row .cell2{width: 12.333%;}
+.row .cell5{width: 49%}
+.row .cell6{width: 64.6%}
+
+/* icon */
+.ico{display: inline-block; background-repeat: no-repeat; vertical-align: middle; text-align: center; font-style: normal;}
+
+/* buttons */
+.btn{display: inline-block; padding:0 10px; height: 30px; line-height: 30px; border-radius: 20px; border: 1px solid #666; color: #666;background:#fff;text-align: center;}
+.btn:hover{color: #FFF;background:#DDD;border-color: #DDD; transition: all .1s;text-decoration: none;}
+.btn-large{padding: 5px 20px; font-size: 1.2em; border-radius: 5px;}
+.btn-block{display: block;}
+.btn-black{background: #999; color: #fff;}
+.btn-small{padding: 0 12px; height: 22px;line-height: 22px;}
+.btn-middle{padding: 0 22px; height: 30px;line-height: 30px;}
+
+/* breadcrumbs */
+.breadcrumbs{height: 30px; line-height: 30px; margin: 10px 0 0;}
+.breadcrumbs span, .breadcrumbs a{display: inline-block; padding: 0;}
+.breadcrumbs span{padding:0 3px;}
+.breadcrumbs a.active{color: #000;cursor: default;text-decoration: none;}
+
+/* dropdown */
+.dropdown{position: relative;}
+.dropdown .submenu{position: absolute;left: 0; top: 20px; display: none; background: #fff; border: 1px solid #ccc; width: 60px;}
+.dropdown:hover .submenu{display: block;}
+
+/* pageNav */
+.page_nav {margin-top: 12px;}
+.page_nav a{ padding: 3px 7px; margin-right: 5px;}
+.page_nav a.on{border-width:1px;border-style: solid;border-radius: 20px;}
+.page_nav a:hover{text-decoration: none; background: #6ED5A7; color: #fff; border-radius: 20px;border-color: transparent;}
+
+/* pagin */
+.pagin > a{display: inline-block; width: 20px; height: 20px; line-height: 20px; margin: 0 5px; border-radius: 10px; padding: 0;}
+
+/* progress-bar */
+.progress-bar{height: 5px; border-radius: 4px; border:1px solid #000;margin: 5px 0;}
+.progress-bar .progress-inner{height: 100%; background: #ccc;border-radius: 4px;}
+
+.top_bar{height:30px; background: #ccc;}
+.top_bar .nav a{height: 30px; line-height: 30px; color: #000; display: block; padding: 0 10px;}
+.top_bar .nav a:hover{background: #eee;}
+.top_bar .msg_tip{background: #e85558; border-radius: 20px;color: #fff;padding: 1px 5px;}
+
+.nav_bar{background: #eee; height: 54px;}
+.nav_bar h1{height: 54px;line-height: 54px;}
+.nav_bar .nav{height: 30px; line-height: 30px; margin-top: 10px;}
+.nav_bar .nav a{background: transparent; color: #000;font-size: 1.1em;padding: 0 10px; height: 30px;display: block;}
+.nav_bar .nav a:hover{background: #ccc;}
+
+.profile_bar{padding-top: 23px; background:#ccc;}
+.profile_bar img{width: 91px;}
+.profile_bar .info_wrapper{margin-left: 120px;}
+.profile_bar .info_wrapper form{position: relative;}
+.profile_bar .info_wrapper form input{padding:0 10px; height: 26px; line-height: 26px; border-radius: 20px; border: 1px solid #ccc;}
+.profile_bar .info_wrapper form .btn{position: absolute; right: 0; top: 0; border: 0; height: 26px; line-height: 26px;}
+.profile_bar .info_wrapper p{width: 60%}
+.profile_bar .info_wrapper hr{width: 10%; margin: 6px 0;}
+.profile_bar .btns_wrapper{padding: 10px 0;}
+
+.footer{padding: 15px 0 20px; border-top: 1px solid #000;}
+
+.feed img{width: 38px; height: 38px;}
+.feed .one{margin-bottom: 10px;border-bottom: 1px solid #000; padding-bottom: 5px}
+.feed .one .one_body{overflow: hidden; margin-left: 45px}
+.feed .one .one_body h4,
+.feed .one .one_body p{display: inline;}
+.feed .sub_feed{padding-left: 50px;}
+
+.editor .tool_bar{color: #000;}
+.editor .edit_area{min-height: 100px; outline: none; line-height: 18px;}
+.editor .tool_bar span{height: 20px; line-height: 20px; display: inline-block;}
+.editor .tool_bar span.trig{width: 16px; height: 16px;}
+.editor .tool_bar .split{margin: 0 5px;}

@@ -1,0 +1,77 @@
+<!--{template common/header}-->
+<form method="post" autocomplete="off" id="commentform_$post[pid]" action="forum.php?mod=post&action=reply&comment=yes&tid=$post[tid]&pid=$_GET[pid]&extra=$extra{if !empty($_GET[page])}&page=$_GET[page]{/if}&commentsubmit=yes&infloat=yes" onsubmit="ajaxpost('commentform_$post[pid]', 'return_$_GET['handlekey']', 'return_$_GET['handlekey']', 'onerror');return false;">
+	<div class="xld xlda">
+		<dl class="xldform cl">
+			<dd class="m"><!--{echo avatar($_G['uid'], 'small')}--></dd>
+			<dd class="arrow"></dd>
+			<dt>
+				<em id="return_$_GET['handlekey']"></em>
+				<div class="tedt">
+					<!--{if $commentitem}-->
+						<div class="bar cm">
+							<span id="itemdiv_$_GET[pid]"></span>
+						</div>
+					<!--{/if}-->
+					<div class="area">
+						<textarea rows="2" cols="50" name="message" id="commentmessage_$_GET[pid]" onKeyUp="strLenCalc(this, 'checklen_$_GET[pid]')" onKeyDown="seditor_ctlent(event, '$(\'commentsubmit_$_GET[pid]\').click();')" tabindex="2" class="pt" style="overflow: auto"></textarea>
+					</div>
+					<script type="text/javascript" reload="1">
+					<!--{if $commentitem}-->
+						var items = itemrow = itemcmm = '';
+						<!--{eval $items = range(0, 5);$itemlang = array('{lang comment_1}', '{lang comment_2}', '{lang comment_3}', '{lang comment_4}', '{lang comment_5}', '{lang comment_6}');$i = $cmm = 0;}-->
+						<!--{loop $commentitem $item}-->
+							<!--{eval $item = trim($item);}-->
+							<!--{if $item}-->
+								items += '<input type="hidden" id="itemc_$i" name="commentitem[$item]" value="" />';
+								itemrow = '<span id="itemt_$i" class="z xg1 cur1" title="{lang comment_give_ip}" onclick="itemdisable($i)">&nbsp;$item</span>';
+								itemstar = '';
+								<!--{loop $items $j}-->
+								itemstar += '<em onclick="itemclk($i, $j)" onmouseover="itemop($i, $j)" onmouseout="itemset($i)" title="$itemlang[$j]($j)"{if !$j} style="width: 10px;"{/if}>$itemlang[$j]</em>';
+								<!--{/loop}-->
+								itemrow += '<span id="item_$i" class="z cmstar">' + itemstar + '</span>';
+								<!--{eval $i++;}-->
+								<!--{if !$cmm}-->items += itemrow;<!--{else}-->itemcmm += '<div class="cl cmm" style="margin:5px">' + itemrow + '</div>';<!--{/if}-->
+							<!--{elseif !$cmm}-->
+								items += '<span class="z" id="itemmore$_GET[pid]" onmouseover="showMenu({\'ctrlid\':this.id,\'pos\':\'13\'})">&nbsp;&raquo; {lang more}</span>';
+								<!--{eval $cmm = 1;}-->
+							<!--{/if}-->
+						<!--{/loop}-->
+						$('itemdiv_$_GET[pid]').innerHTML = items;
+						if(itemcmm) {
+							cmmdiv = document.createElement('div');
+							cmmdiv.id = 'itemmore$_GET[pid]_menu';
+							cmmdiv.style.display = 'none';
+							cmmdiv.className = 'p_pop';
+							cmmdiv.innerHTML = itemcmm;
+							$('append_parent').appendChild(cmmdiv);
+						}
+					<!--{/if}-->
+					$('commentmessage_$_GET[pid]').focus();
+					if($('comment_$_GET[pid]').getElementsByTagName('dl').length > 1) {
+						$('cmtform_$_GET[pid]').className = 'cmtform';
+					} else {
+						$('cmtform_$_GET[pid]').className = 'cmtform hasborder';
+						$('cmtsbtn_$_GET[pid]').className = 'a';
+						$('plc_$post[pid]').className = 'plc disp';
+						_attachEvent($('cmtsbtn_$_GET[pid]'), 'click', function () {
+							this.className = this.className == 'a' ? '' : 'a';
+							$('plc_$post[pid]').className = $('plc_$post[pid]').className.indexOf(' disp') == -1 ? 'plc disp' : 'plc';
+						});
+					}
+					</script>
+				</div>
+				<!--{if checkperm('seccode') && ($secqaacheck || $seccodecheck)}-->
+					<!--{block sectpl}--><sec>: <span id="sec<hash>" onclick="showMenu({'ctrlid':this.id,'win':'{$_GET[handlekey]}'})"><sec></span><div id="sec<hash>_menu" class="p_pop p_opt" style="display:none"><sec></div><!--{/block}-->
+					<div class="mtm"><!--{subtemplate common/seccheck}--></div>
+				<!--{/if}-->
+			</dt>
+			<dd class="cl">
+				<button type="submit" id="commentsubmit_$_GET[pid]" class="pn pnc z" value="true" name="commentsubmit" tabindex="3"><span>{lang comments}</span></button>
+				<span class="y">{lang comment_message1} <strong id="checklen_$_GET[pid]">200</strong> {lang comment_message2}</span>
+			</dd>
+		</dl>
+		<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+		<input type="hidden" name="handlekey" value="$_GET['handlekey']" />
+	</div>
+</form>
+<!--{template common/footer}-->

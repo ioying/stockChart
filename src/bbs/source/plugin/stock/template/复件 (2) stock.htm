@@ -1,0 +1,630 @@
+{subtemplate common/header}
+<script type="text/javascript" src="source/plugin/stock/stock.func.js"></script>
+<!--代码高亮-->
+<script src="/CodeMirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="/CodeMirror/lib/codemirror.css">
+<script src="/CodeMirror/mode/javascript/javascript.js"></script>
+<!--加载代码高亮主题  -->
+<link rel="stylesheet" href="/CodeMirror/lib/codemirror.css">
+<link rel="stylesheet" href="/CodeMirror/doc/docs.css">
+<link rel="stylesheet" href="/CodeMirror/theme/ambiance.css">
+<!--自定义页面函数-->
+<script src="source/plugin/stock/main.js"></script>
+<!--代码高亮结束-->
+
+	<!--编辑部分 CSS 调试后移动到 extend_common.css 中-->
+	<style type="text/css">
+		div#container{width:100%}
+		div#header {background-color:#99bbbb;height:300px;width:750px;float:left;}
+		div#prompt {height:300px;width:300px;float:left;}
+		div#menu1 {height:500px;width:750px;float:left;}
+		div#content {background-color:#EEEEEE;height:500px;width:300px;float:left;}
+		div#right {background-color:#EE0EEE;height:500px;width:350px;float:left;}
+		div#footer {background-color:#99bbbb;clear:both;text-align:center;}
+		h1 {margin-bottom:0;}
+		h2 {margin-bottom:0;font-size:18px;}
+		ul {margin:0;}
+		li {list-style:none;}
+		.remarks {font-size:6px;}
+	</style>
+
+
+<div id="ct" class="wp cl">
+  <div class="mn">
+    <div class="bm">
+
+<!--{if empty($_GET[mod])}-->
+
+
+
+<table width=100%  cellspacing="0" cellpadding="0" border="0"  style=" " >
+	<tr>
+		<td width=80%'>
+		<iframe width=100% height=460 frameborder=0 src="source/plugin/stock/candle.inc.php?fdataid=./data/try/try_1.json&mainmap=1"></iframe>
+		</td>
+		<td>
+			<div>aaa</div>
+			<div>bb</div>
+			<div>ddd</div>
+			<div>dddd</div>
+			
+		</td>
+	</tr>
+
+</table>
+
+
+<div class="content" > 
+	<div id="content_stock">
+<!--{loop $stocklist $stock}-->
+
+
+<div id="cc{$stock[id]}" >
+
+ 
+<iframe width=100% height=460 frameborder=1 src="source/plugin/stock/candle.inc.php?fdataid={$userfile_name}&mainmap=1"></iframe>
+
+</div>
+
+		<table width=100% height="5" cellspacing="1" cellpadding="1" border="1"  style=" " >
+				{$test}{$test1}{$userfile_name}
+    <tr >  <!--style="height:170px;"    -->
+			<td></td>
+    </tr>
+   
+ 
+		</table>
+  </div>
+  <!--{/loop}-->   
+</div>
+
+
+</div>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'drawjs'}-->
+	<form action="plugin.php?id=stock&mod=drawjs" method="post">
+      <ul class="tb cl"> 
+
+ <!--       <li><input name="stock_code" type="text" id="stock_code" style="width:50px;" value="600320" /></li>
+ <option value="000001.ss" <!--{if $_GET['stock_code'] == '000001.ss'}  -- >selected="selected"<!--{/if}-- >>上证指数(000001.ss)</option>
+ -->
+ 
+		<li>
+			<select name="stock_code" id="stock_code" title = '暂时只能提供部分演示数据，请谅解！' onchange="document.getElementById('stock_name').value=this.options[this.selectedIndex].text" >
+				
+				<option value="510050.ss" <!--{if $_GET['stock_code'] == '510050.ss'}-->selected="selected"<!--{/if}-->>50ETF(510050)</option>
+				<option value="601288.ss" <!--{if $_GET['stock_code'] == '601288.ss'}-->selected="selected"<!--{/if}-->>农业银行(601288)</option>
+				<option value="600320.ss" <!--{if $_GET['stock_code'] == '600320.ss'}-->selected="selected"<!--{/if}-->>振华重工(600320)</option>
+				<option value="^hsi" <!--{if $_GET['stock_code'] == '^hsi'}-->selected="selected"<!--{/if}-->>恒生指数(HSI)</option>
+				<option value="smn" <!--{if $_GET['stock_code'] == 'smn'}-->selected="selected"<!--{/if}-->>基础材料ETF-Pr(SMN)</option>
+				<option value="aapl" <!--{if $_GET['stock_code'] == 'aapl'}-->selected="selected"<!--{/if}-->>苹果(AAPL)</option>
+				<option value="tsla" <!--{if $_GET['stock_code'] == 'tsla'}-->selected="selected"<!--{/if}-->>特斯拉(TSLA)</option>
+				<option value="^GSPC" <!--{if $_GET['stock_code'] == '^GSPC'}-->selected="selected"<!--{/if}-->>标普500(S&P 500) </option>
+
+			</select>
+		</li>
+<input type="hidden" name="stock_name" id="stock_name" value="<!--{if !empty($_GET['stock_name'])}-->{$_GET['stock_name']}<!--{else}--> {$_GET['stock_code']} <!--{/if}-->" />
+ <script>
+ document.getElementById('stock_name').value=document.getElementById('stock_code').options[this.selectedIndex].text;
+  document.getElementById("stock_code").fireEvent("onchange");		
+</script>   
+
+<!-- 暂时无数据
+			<option value="min1"<!--{if $_GET['cycle'] == 'min1'}-- >selected="selected"<!--{/if}-- >>1分钟</option>
+			<option value="min5"<!--{if $_GET['cycle'] == 'min5'}-- >selected="selected"<!--{/if}-- >>5分钟</option>
+			<option value="min30"<!--{if $_GET['cycle'] == 'min30'}-- >selected="selected"<!--{/if}-- >>30分钟</option>
+			<option value="min60"<!--{if $_GET['cycle'] == 'min60'}-- >selected="selected"<!--{/if}-- >>60分钟</option>
+-->
+<li>
+		<div>
+			<select name="cycle" id="cycle"  title = '暂时只能提供日线、周线、月线数据，请谅解！' >
+			<option value="d" <!--{if $_GET['cycle'] == 'd'}-->selected="selected"<!--{/if}-->>日</option>
+			<option value="w"<!--{if $_GET['cycle'] == 'w'}-->selected="selected"<!--{/if}-->>周</option>
+			<option value="m"<!--{if $_GET['cycle'] == 'm'}-->selected="selected"<!--{/if}-->>月</option>
+			</select>
+        </div>
+</li>
+<li>
+
+		<div>
+			<select name="chart_numbers" id="cycle" disabled='disabled' title = '此功能调试中，请谅解！'>
+			<option value="1">1图组合</option>
+			<option value="2" selected="selected">2图组合</option>
+			<option value="3" >3图组合</option>
+			<option value="4">4图组合</option>
+			<option value="5">5图组合</option>
+			<option value="6">6图组合</option>
+			<option value="7">7图组合</option>
+			</select>
+		</div>			
+</li>
+<li>
+		<button type="submit" id="Submit_demo"  value="true" name="Submit_demo" tabindex="1"><span>确定</span></button>
+<!--		<button id="bak2">备用按钮2</button>
+		<button id="bak3">备用按钮3</button>
+		<button id="bak4">备用按钮4</button>
+-->		
+</li>
+        <li style="float:right;"<!--{if $_GET[mod] == 'add_Formula'}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock&mod=add_Formula">{lang stock:stock_addFormula}</a></li>
+		</ul>
+</form>
+
+<table width=100%  cellspacing="0" cellpadding="0" border="0"  style=" " >
+	<tr>	
+		<td width=80%'>
+		{$make_chart}
+<!-- 
+		<iframe width=100% height=460 frameborder=0 src="source/plugin/stock/drawjs.inc.php?fdataid={$short_name}&mainmap=1"></iframe>
+-->	
+		</td>
+		<td>
+			<div>{$short_name}</div>
+			<div>$_GET['stock_name']</div>
+			<div>ddd</div>
+			<div>dddd</div>
+			
+		</td>
+	</tr>
+
+</table>
+{$test}  {$test1}
+<!--{elseif $_GET[mod] == 'add_Formula'}-->
+
+
+
+
+<h1 class="mt"><strong>&nbsp;{lang stock:stock_addFormula}</strong></h1>
+<div class="content">
+<div class="datalist">
+<form action="plugin.php?id=stock&mod=add_Formula" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left"><input name="formulaname" type="text" class="px" id="formulaname" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>
+		<td><font size="4">{lang stock:stock_formulaname}</font>
+		</td>
+		<td><font size="2">请输入公式名称，尽量使用英文，命名规则详见：xxx。</font>
+		</td>
+	</tr>
+
+	<tr>
+		<td align="left"><input name="description" type="text" class="px" id="description" onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>
+		<td><font size="4">{lang stock:stock_description}</font>
+		</td>
+		<td><font size="2">请输入公式简要描述，限100个字. 命名规则详见：xxx。</font>
+		</td>
+	</tr>
+<!--  checkbox 值为数组   先用 radio --> 	
+		<tr>
+		   <td><font size="4">是否在主图显示&nbsp&nbsp&nbsp</font><input type="radio" name="mainmap" id="mainmap" value="1" /><font size="4">是&nbsp&nbsp&nbsp</font>
+		   
+		   <input type="radio" name="mainmap" id="mainmap" value="2" checked="checked"/>
+		   <font size="4">否</font></td>
+	<!--	
+		<td align="center"><input name="mainmap" type="checkbox" class="px" id="mainmap" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>-->
+			<td><font size="4">{lang stock:stock_mainmap}</font>
+			</td>
+			<td><font size="2">该指标是否在主图上显示。详见：xxx。</font>
+			</td>
+		</tr>
+	
+	
+		<tr class="colplural"> 
+				 <td colspan="3" align="left"><font size="4">{lang stock:stock_comment}&nbsp</font><font size="2"> 请尽可能详细的介绍公式各参数的详细说明及使用方法</size>
+				 </td>
+	 
+		</tr>
+		<tr class="colplural"> 
+			  <td colspan="2" align="left">
+			  <textarea name="comment" rows="10" cols="30" id="comment"   style="width:570px; height:240px;font-size:22px;"  ></textarea>
+			  <td></td>
+		</tr>
+
+ <tr class="colplural"> 
+ <td colspan="3" align="left"><font size="4">公式代码</font>
+ </td>
+ 
+ </tr>
+ <tr class="colplural"> 
+  <td colspan="3" align="left">
+
+ <textarea name="formula" rows="10" cols="30" id="formula"  style="width:370px; height:240px;font-size:22px;"  ></textarea>  
+  
+  <script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("formula"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true
+ 
+  });
+  //使用主题
+     editor.setOption("theme", "ambiance");	
+	 editor.setOption("font-size", "20px");	
+/*
+  var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].innerHTML;
+    editor.setOption("theme", theme);
+  }
+  var choice = document.location.search &&
+               decodeURIComponent(document.location.search.slice(1));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+  */
+</script>
+  
+  
+  
+  
+ </td>
+ 
+  </tr>
+<tr>
+ 		<td>
+
+		{lang stock:stock_htm_14}<span id="chLeft"></span>{lang stock:stock_htm_15}
+						<td>
+		</td>
+						<td>
+		</td>
+</tr>
+</table>
+<table> 
+
+    <td align="center"><button type="submit" id="Submit_member" class="pn pnc" value="true" name="Submit_member" tabindex="1"><span>{lang stock:stock_htm_16}</span></button></td>
+  </tr>
+</table>
+</form>
+
+</div></div></div></div></div>
+
+<!--{elseif $_GET[mod] == 'user_formula'}-->
+<div class="content datalist">
+<form action="plugin.php?id=stock&mod=user_formula" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="12%">{lang stock:stock_formulaname}</td>
+	<td width="55%">{lang stock:stock_description}</td>
+	<td width="7%">{lang stock:stock_hots}</td>
+    <td width="10%">{lang stock:stock_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+<!--{if $stocklist_user}-->
+  <!--{loop $stocklist_user $stock_user}-->
+  <tr align="left">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$stock_user['id']}" /></td>
+    <td width="5%">$stock_user[id]</td>
+    <td width="12%">$stock_user[formulaname]</td>
+	<td width="55%">$stock_user[description]</td>
+	<td width="7%" align="right">$stock_user[hots]</td>
+    <td width="10%">$stock_user[dateline]</td> 
+    <td width="5%"><a href="plugin.php?id=stock&mod=edit_formula&stockid=$stock_user[id]">{lang stock:stock_htm_23}</a></td>
+  </tr>
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+	<!--this.form-->
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(delete[])" />&nbsp;{lang stock:stock_htm_24}&nbsp;
+    <button type="submit" id="del_formula" class="pn" value="true" name="del_formula" tabindex="1"><span>{lang stock:stock_htm_25}</span></button>
+	<button type="submit" id="test " class="pn" value="true" name="testsubmit" tabindex="1"><span>test</span></button>
+
+	<button type="button" id="add_Formula " class="pn" value="true" name="add_Formula"><a href="plugin.php?id=stock&mod=add_Formula">{lang stock:stock_addFormula}</a></button>
+	
+	</td>
+	<td></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang stock:stock_htm_26}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+
+
+
+
+
+<!--{elseif $_GET[mod] == 'edit_formula'}-->
+<div class="content datalist">
+<form id="form1" method="post" action="plugin.php?id=stock&mod=edit_formula">
+		<!--{if $stocklist_edit}-->
+		<!--{loop $stocklist_edit $stock_edit}-->
+	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+		<div id="container">
+		
+
+			<div id="header">
+						<div class="STYLE2" id="chart"></div> 		
+						<div class="STYLE2" id="txtHint"></div> 	
+			</div>
+			<div id="prompt"><h1>  &nbsp</h1> &nbsp
+				<input name="formulaname" type="text" class="px" id="formulaname" value="$stock_edit[formulaname]" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="8" style="width:120px; height:20px;font-size:12px;"/>{lang stock:stock_formulaname}
+				<div class='remarks'>&nbsp 不超过15个字符，公式命名规则详见：xxx。</div>&nbsp
+				<input name="description" type="text" class="px" id="description" value="$stock_edit[description]" onchange="checkLength(this,20);" onkeyup="checkLength(this,20);" size="8" style="width:120px; height:20px;font-size:12px;"/>{lang stock:stock_description}
+				<div class='remarks'>&nbsp 公式中文名称或简要描述，限20个字. 命名规则详见：xxx。</div>&nbsp
+				<br>&nbsp
+				<input type="radio" name="mainmap" id="mainmap" value="1" <!--{if $stock_edit[mainmap] == 1}-->checked="checked"<!--{/if}-->/>在主图上叠加&nbsp&nbsp&nbsp
+				<input type="radio" name="mainmap" id="mainmap" value="2" <!--{if $stock_edit[mainmap] == 2}-->checked="checked"<!--{/if}-->/>副图显示&nbsp&nbsp&nbsp<br>&nbsp
+				<input type="radio" name="Permission" id="Permission" value="1" <!--{if $stock_edit[Permission] == 1}-->checked="checked"<!--{/if}-->/>允许源码公开&nbsp&nbsp&nbsp
+		   	<input type="radio" name="Permission" id="Permission" value="2" <!--{if $stock_edit[Permission] == 2}-->checked="checked"<!--{/if}-->/>源码保密&nbsp&nbsp&nbsp<br>
+			&nbsp{lang stock:stock_comment}&nbsp
+				 <textarea name="comment" rows="10" cols="30" id="comment"   style="width:98%; height:118px;font-size:12px;"  >$stock_edit[comment]</textarea>
+		   </div>
+			<div id="menu1">
+				
+				<textarea name="formula"  id="formula"   >$stock_edit[formula]</textarea>
+			</div>
+
+			<div id="content">
+				<div >&nbsp&nbsp常用函数  &nbsp&nbsp&nbsp 更多函数 此处另作treeview</div>
+				<select name="func" size="10" onclick="addfunc(this.value)">
+					<option value="ma(c,5)" selected="selected">ma(,n)   </option>
+					<option value="REF(c,1)">ref(x,n) </option>
+					<option value="abs(c)">abs(x)     </option>
+					<option value="">abcdefghigklmnopqrstuvwxyz     </option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+				</select>
+			</div>
+	<!-- 		<div id="right">Content right here</div> -->
+			<div id="footer">Copyright W3School.com.cn</div>
+
+		</div>
+
+
+	<table width="100%" cellpadding="0" cellspacing="0">
+
+<!--**********************************************************************************-->
+	<input type="hidden" name="stockid" value="$stock_edit[id]">
+	<div class="STYLE2" id="chart">图表</div>
+	<div class="STYLE2" id="txtHint">计算结果</div>
+
+	<tr>
+		<td  align="left"><input name="formulaname" type="text" class="px" id="formulaname" value="$stock_edit[formulaname]" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="10" style="width:100px; height:20px;font-size:12px;"/><font size="2">{lang stock:stock_formulaname}</font>
+		</td>
+		<td><font size="2">公式命名规则详见：xxx。</font>
+		</td>
+		<td>
+		</td>
+		
+	</tr> 
+
+	
+		<tr>
+		<td align="left"><input name="description" type="text" class="px" id="description" value="$stock_edit[description]" onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="20" style="width:100px; height:20px;font-size:12px;"/><font size="2">{lang stock:stock_description}</font>  
+		</td>
+		<td><font size="2">请输入公式中文名称或简要描述，限20个字. 命名规则详见：xxx。</font>
+		</td>
+		<td>
+		</td>
+	</tr>
+	
+			<tr>
+		   <td><font size="2">呈现方式&nbsp&nbsp&nbsp</font>
+		   <input type="radio" name="mainmap" id="mainmap" value="1" <!--{if $stock_edit[mainmap] == 1}-->checked="checked"<!--{/if}-->/><font size="2">在主图上显示&nbsp&nbsp&nbsp</font>
+		   	<input type="radio" name="mainmap" id="mainmap" value="2" <!--{if $stock_edit[mainmap] == 2}-->checked="checked"<!--{/if}-->/><font size="2">副图显示&nbsp&nbsp&nbsp</font>
+		   <input type="radio" name="mainmap" id="mainmap" value="3" <!--{if $stock_edit[mainmap] == 3}-->checked="checked"<!--{/if}-->/>
+		   <font size="2">作为副图与主图同时显示</font></td>
+
+		<td><font size="2">该指标是否在主图上显示。详见：xxx。</font>
+		</td>
+		<td>
+		</td>
+	</tr>
+				<tr>
+		   <td><font size="2">权限设置&nbsp&nbsp&nbsp</font>
+		   <input type="radio" name="Permission" id="Permission" value="1" <!--{if $stock_edit[Permission] == 1}-->checked="checked"<!--{/if}-->/><font size="2">允许引用并开放公式源码&nbsp&nbsp&nbsp</font>
+		   	<input type="radio" name="Permission" id="Permission" value="2" <!--{if $stock_edit[Permission] == 2}-->checked="checked"<!--{/if}-->/><font size="2">允许引用，不开放源码&nbsp&nbsp&nbsp</font>
+		   <input type="radio" name="Permission" id="Permission" value="3" <!--{if $stock_edit[Permission] == 3}-->checked="checked"<!--{/if}-->/>
+		   <font size="2">不允许引用，不开放源码</font></td>
+
+		<td><font size="2">（未启用）设置其他用户对该公式指标的使用权限。详见：xxx。</font>
+		</td>
+		<td>
+		</td>
+	</tr>
+		<tr class="colplural"> 
+ <td colspan="3" align="left"><font size="2">{lang stock:stock_comment}&nbsp</font><font size="2"> 请尽可能详细的介绍公式各参数的详细说明及使用方法</size>
+ </td>
+ 
+ </tr>
+	<tr class="colplural"> 
+  <td colspan="1" align="left">
+  <textarea name="comment" rows="10" cols="30" id="comment"   style="width:570px; height:140px;font-size:12px;"  >$stock_edit[comment]</textarea>
+  <td><select name="func" size="7" onclick="addfunc(this.value)">
+        <option value="ma(,)" selected="selected">ma(x,y) </option>
+        <option value="REF(,)">ref(x,y) </option>
+        <option value="abs()">abs(x) </option>
+            </select></td>
+  </tr>
+
+ <tr class="colplural"> 
+ <td colspan="3" align="left"><font size="2">公式代码</font>
+ </td>
+ 
+ </tr>
+ <tr class="colplural"> 
+  <td colspan="1" align="left">
+
+ <textarea name="formula1" rows="10" cols="40" id="formula1"  style="width:170px; height:440px;font-size:12px;"  >$stock_edit[formula]</textarea>  
+  
+  <script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("formula"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    //         mode: "text/html",
+            tabMode: "indent",
+            width: '100%',
+            height: '1500px',
+            autoMatchParens: true,
+            textWrapping: true,
+            lineNumbers: true,
+			lineWrapping:true
+  });
+  //使用主题
+     editor.setOption("theme", "ambiance");	
+	 editor.setOption("font-size", "20px");	
+/*
+  var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].innerHTML;
+    editor.setOption("theme", theme);
+  }
+  var choice = document.location.search &&
+               decodeURIComponent(document.location.search.slice(1));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+  */
+</script>
+  
+  
+  
+  
+ </td>
+ 
+  </tr>
+<tr>
+ 		<td>
+
+		{lang stock:stock_htm_14}<span id="chLeft"></span>{lang stock:stock_htm_15}
+						<td>
+		</td>
+						<td>
+		</td>
+</tr>
+<tr>
+	<td>
+	<textarea name="after_parser" rows="10" cols="30" id="after_parser"   style="width:570px; height:40px;font-size:12px;"  ></textarea>
+	</td>
+	<!--此处向js传递用户id, 为了生成JSON文件名 -->
+	<td><input type="text" name="uid"  id="uid" style="width:50px;" value=$_G['uid'] />
+	</td>
+</tr>
+
+<input type="button" onclick="submitcontent();" name="test_it" value="    测试     " />
+<input type="button" onclick="submitcontent_old();" value="    old测试     " />
+<input type="button" onclick="submitparser();" name="parser_it" value="    测试解析     " />
+<input type="button" onclick="submitdraw();" name="draw_it" value="    DRAW    " />
+  <tr>
+    <td colspan="3" align="center"><button type="submit" id="Submit_edit" class="pn" value="true" name="Submit_edit" tabindex="1"><span>{lang stock:stock_htm_36}</span></button></td>
+  </tr>
+
+ <!--************************************** 
+  <!--************************************************************************-->
+  <!--{/loop}-->
+<!--{/if}-->
+</table>
+</form>
+<script type="text/javascript">checkLength(document.getElementById('message'));</script>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'members_formula'}-->
+<div class="content datalist">
+<table width="100%" cellpadding="0" cellspacing="0">
+
+  <tr class="colplural" align="center">
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="12%">{lang stock:stock_formulaname}</td>
+	<td width="53%">{lang stock:stock_description}</td>
+	<td width="5%">{lang stock:stock_hots}</td>
+    <td width="9%">{lang stock:stock_htm_22}</td>
+	<td width="13%">{lang stock:stock_htm_40}</td>
+   </tr>
+
+
+<!--{if $stocklist_members}-->
+  <!--{loop $stocklist_members $stock_members}-->
+ 
+   <tr align="left">
+    <td width="5%">$stock_members[id]</td>
+    <td width="12%" title ="$stock_members[comment]">$stock_members[formulaname]</td>
+	<td width="53%" title ="$stock_members[comment]">$stock_members[description]</td>
+	<td width="5%" align="right">$stock_members[hots]</td>
+    <td width="9%">$stock_members[dateline]</td> 
+	<td width="13%" align="left">&nbsp;<img src="{$_G[setting][ucenterurl]}/avatar.php?uid=$stock_members[uid]&size=small" border="0" height="24" width="24"> <a href="{$_G[siteurl]}?$stock_members[uid]" target="_blank">$stock_members[username]</a></td></a></td>
+  </tr>
+ 
+ 
+
+  </tr>
+  <!--{/loop}-->
+  <!--{if !empty($multipage)}-->
+  <tr><td colspan="5"><div class="pages_btns">$multipage</div></td></tr><!--{/if}-->
+<!--{else}-->
+  <tr>
+    <td colspan="5" align="center">{lang stock:stock_htm_44}</td>
+  </tr>
+<!--{/if}-->
+
+</table>
+<!--{if $_G[adminid] == '1'}-->
+        <li<!--{if $_GET[mod] == 'admin_check'}--> class="current"<!--{/if}-->><a href="plugin.php?id=stock&mod=admin_check">{lang stock:stock_htm_46}</a></li>
+        <!--{/if}-->
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'admin_check'}-->
+<h1 class="mt"><strong>&nbsp;{lang stock:stock_htm_47}</strong></h1>
+<div class="content datalist">
+<form action="plugin.php?id=stock&mod=admin_check" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="5%">{lang stock:stock_htm_19}ID</td>
+    <td width="15%">{lang stock:stock_formulaname}</td>
+	<td width="55%">{lang stock:stock_description}</td>
+	<td width="7%">{lang stock:stock_hots}</td>
+    <td width="10%">{lang stock:stock_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+
+<!--{if $stocklist_admin}-->
+  <!--{loop $stocklist_admin $stock_admin}-->
+
+ <tr align="left">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$stock_user['id']}" /></td>
+    <td width="5%">$stock_admin[id]</td>
+    <td width="15%">$stock_admin[formulaname]</td>
+	<td width="55%">$stock_admin[description]</td>
+	<td width="7%" align="right">$stock_admin[hots]</td>
+    <td width="10%">$stock_admin[dateline]</td> 
+    <td width="5%"><a href="plugin.php?id=stock&mod=edit_formula&stockid=$stock_admin[id]">{lang stock:stock_htm_23}</a></td>
+  </tr>
+
+
+
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" />&nbsp;{lang stock:stock_htm_24}&nbsp;
+    <button type="submit" id="admin_edit" class="pn" value="true" name="admin_del" tabindex="1"><span>{lang stock:stock_htm_25}</span></button></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang stock:stock_htm_55}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+<!--{/if}-->
+{subtemplate common/footer}

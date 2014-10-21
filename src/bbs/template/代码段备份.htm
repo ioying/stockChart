@@ -1,0 +1,9 @@
+			<!-- 顶部导航代码 设为首页 收藏本站等  后台导航设置-->
+				<div class="z">
+					<!--{loop $_G['setting']['topnavs'][0] $nav}-->
+						<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}-->$nav[code]<!--{/if}-->
+					<!--{/loop}-->
+
+				</div>
+<!--顶部钩子-->					
+					<!--{hook/global_cpnav_extra1}-->				

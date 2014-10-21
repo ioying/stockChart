@@ -1,0 +1,367 @@
+{subtemplate common/header}
+<script type="text/javascript" src="source/plugin/lianwei/jquery.min.js"></script>
+<script type="text/javascript" src="source/plugin/lianwei/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="source/plugin/lianwei/lianwei.func.js"></script>
+
+<div id="pt" class="bm cl">
+<div class="z"><a href="./" class="nvhm">$_G[setting][bbname]</a><em>&rsaquo;</em><a href="plugin.php?id=lianwei">{lang lianwei:lianwei_htm_1}</a><!--{if $_GET[mod] == 'admin_check'}--><em>&rsaquo;</em>{lang lianwei:lianwei_htm_46}<!--{elseif $_GET[mod] == 'add_mood'}--><em>&rsaquo;</em>{lang lianwei:lianwei_htm_8}<!--{/if}--></div>
+</div>
+
+<div id="ct" class="wp cl">
+  <div class="mn">
+    <div class="bm">
+      <ul class="tb cl">
+        <li<!--{if empty($_GET[mod])}--> class="current"<!--{/if}-->><a href="plugin.php?id=lianwei">{lang lianwei:lianwei_htm_1}</a></li>
+        <li<!--{if $_GET[mod] == 'user_mood'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lianwei&mod=user_mood">{lang lianwei:lianwei_htm_18}</a></li>
+        <li<!--{if $_GET[mod] == 'members_mood'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lianwei&mod=members_mood">{lang lianwei:lianwei_htm_38}</a></li>
+        <!--{if $_G[adminid] == '1'}-->
+        <li<!--{if $_GET[mod] == 'admin_check'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lianwei&mod=admin_check">{lang lianwei:lianwei_htm_46}</a></li>
+        <!--{/if}-->
+        <li><a onclick="showDialog('{lang lianwei:lianwei_side_htm_3}', 'notice', '{lang lianwei:lianwei_side_htm_2}?', null, 0)" href="javascript:;">{lang lianwei:lianwei_side_htm_2}?</a></li>
+        <li><a onclick="showDialog('<strong>Mood Wall {lang lianwei:lianwei_htm_1} V{$_G[setting][plugins][version][lianwei]}</strong><br />{lang lianwei:lianwei_side_htm_5}smjy<br />{lang lianwei:lianwei_side_htm_6}<a href=\'http://www.smjy.org\' title=\'smjy{lang lianwei:lianwei_side_htm_7}\' target=\'_blank\'>ioying</a>', 'notice', '{lang lianwei:lianwei_side_htm_4}', null, 0)" href="javascript:;">{lang lianwei:lianwei_side_htm_4}</a></li>
+        <li style="float:right;"<!--{if $_GET[mod] == 'add_mood'}--> class="current"<!--{/if}-->><a href="plugin.php?id=lianwei&mod=add_mood">{lang lianwei:lianwei_htm_8}</a></li>
+      </ul>
+
+<!--{if empty($_GET[mod])}-->
+<div class="content" style="background:url(source/plugin/lianwei/template/images/wall.gif);">
+<div id="contentarea">
+  <!--{loop $moodlist $mood}-->
+  <div id="cc{$mood[id]}" class="drag scrip{$mood[bgpic]}">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+      <td>
+      <div class="shead">&nbsp;<span title="{lang lianwei:lianwei_htm_5}" onclick="remove('cc{$mood[id]}')" style="cursor:pointer;">{lang lianwei:lianwei_htm_6}</span> {lang lianwei:lianwei_htm_2}$mood[id]{lang lianwei:lianwei_htm_3}&nbsp;$mood[dateline]</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <div class="sbody">$mood[message]</div>
+      <div class="sbot"><img class="left" src="source/plugin/lianwei/template/images/mood/{$mood[mood]}.gif" border="0"><h2 style="*margin-top:-15px;"><img src="{$_G[setting][ucenterurl]}/avatar.php?uid={$mood[uid]}&size=small" border="0" height="24" width="24"><a style="font-size:14px;" href="{$_G[siteurl]}?{$mood[uid]}" target="_blank">$mood[username]</a></h2></div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <!--{/loop}-->   
+</div>
+<script type="text/javascript">
+<!--
+var elements = document.getElementById('contentarea').childNodes;
+var zIndex = elements.length;
+for(var i=0; i<elements.length; i++){
+   if(elements[i].tagName && elements[i].tagName == 'DIV'){
+      elements[i].style.top = Math.ceil(480 * Math.random()) + "px";
+      elements[i].style.left = Math.ceil(700 * Math.random()) + "px";
+      elements[i].style.zIndex = zIndex;
+      zIndex = zIndex - 1;
+   }
+}
+//-->
+</script>
+</div></div></div></div>
+
+<!--{elseif $_GET[mod] == 'add_mood'}-->
+<h1 class="mt"><strong>&nbsp;{lang lianwei:lianwei_htm_8}</strong></h1>
+<div class="content">
+<div class="datalist">
+<form action="plugin.php?id=lianwei&mod=add_mood" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<!--<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural">
+    <td colspan="8">1. {lang lianwei:lianwei_htm_10}</td>
+  </tr>
+  <tr>
+    <td><input type="radio" name="bgpic" id="bgpic" value="1" /><img src="source/plugin/lianwei/template/images/bg1.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="2" /><img src="source/plugin/lianwei/template/images/bg2.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="3" /><img src="source/plugin/lianwei/template/images/bg3.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="4" /><img src="source/plugin/lianwei/template/images/bg4.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="5" /><img src="source/plugin/lianwei/template/images/bg5.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="6" /><img src="source/plugin/lianwei/template/images/bg6.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="7" /><img src="source/plugin/lianwei/template/images/bg7.gif" /></td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="8" /><img src="source/plugin/lianwei/template/images/bg8.gif" /></td>  
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural">
+    <td colspan="5">2. {lang lianwei:lianwei_htm_11}</td>
+  </tr>
+  <tr>
+    <td><input type="radio" name="mood" value="1" /><img src="source/plugin/lianwei/template/images/mood/1.gif" /></td>
+    <td><input type="radio" name="mood" value="2" /><img src="source/plugin/lianwei/template/images/mood/2.gif" /></td>
+    <td><input type="radio" name="mood" value="3" /><img src="source/plugin/lianwei/template/images/mood/3.gif" /></td>
+    <td><input type="radio" name="mood" value="4" /><img src="source/plugin/lianwei/template/images/mood/4.gif" /></td>
+    <td><input type="radio" name="mood" value="5" /><img src="source/plugin/lianwei/template/images/mood/5.gif" /></td>
+  </tr>
+</table>-->
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr >
+		<td width="200" align="center"><input name="holyname" type="text" class="px" id="holyname" onchange="checkLength(this,2);" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>
+		<td width="150"><font size="4">{lang lianwei:lianwei_holyname}</font></td>
+		<td>
+		<font size="2">婴灵法名要求为两个汉字，如果希望系统生成法名，请留空</font>
+		</td>
+		
+	</tr>
+	<tr>
+		<td align="center"><input name="fathername" type="text" class="px" id="fathername" onchange="checkLength(this,16);" onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>  
+		</td>
+		<td><font size="4">{lang lianwei:lianwei_fathername}</font>
+		</td>
+		<td><font size="2">请输入父亲姓名，如顾忌隐私，可使用化名。</font>
+		</td>
+	</tr>
+	<tr>
+	    <td align="center"><input name="mothername" type="text" class="px" id="mothername" onchange="checkLength(this,16);"  onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>    
+		</td>
+		<td><font size="4">
+		{lang lianwei:lianwei_mothername}</font>
+		</td>
+		<td><font size="2">请输入母亲姓名，如顾忌隐私，可使用化名。</font>
+		</td>
+	</tr>
+    <tr>
+		<td align="center"><input name="gonedate" type="text" class="px" id="gonedate" onchange="checkLength(this,16);"  onkeyup="checkLength(this,16);" size="20" style="width:200px; height:40px;font-size:22px;"/>   
+		</td>
+		<td><font size="4">{lang lianwei:lianwei_gonedate}</font>
+		</td>
+		<td><font size="2">请输入宝宝往生时间，如：1993年4月5日，也可输入大概范围，如1960年～1964年。</font>
+		</td>
+	</tr>
+ <tr class="colplural"> 
+ <td colspan="3" align="left"><font size="4">给宝宝留言</font>
+ </td>
+ <td>
+ </td>
+ <td>
+ </td>
+ </tr>
+ <tr class="colplural"> 
+  <td colspan="2" align="left">
+  <textarea name="message" rows="10" cols="30" id="message" onchange="checkLength(this,500);" onkeyup="checkLength(this,500);"  style="width:370px; height:240px;font-size:22px;"  ></textarea>
+ </td>
+    <td> 
+		</td>
+				<td>
+		</td>
+  </tr>
+<tr>
+ 		<td>
+		<!--<input name="message1" type="textarea"  rows="10" cols="30" id="message1"  onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="100%"  style="width:600px; height:40px;font-size:22px;" /><br />
+		-->
+		{lang lianwei:lianwei_htm_14}<span id="chLeft"></span>{lang lianwei:lianwei_htm_15}
+						<td>
+		</td>
+						<td>
+		</td>
+</tr>
+</table>
+<table> 
+  <!--<tr class="colplural"> 
+  <td align="center"><input name="message12" type="text" class="px" id="message12"  onchange="checkLength(this,100);" onkeyup="checkLength(this,100);" size="100%" /><br />{lang lianwei:lianwei_htm_14}<span id="chLeft">100</span>{lang lianwei:lianwei_htm_15}</td>
+  </tr>
+    <td>3. {lang lianwei:lianwei_htm_12}({lang lianwei:lianwei_htm_13})</td>
+  </tr>
+ 
+  <tr>
+               <item id="lianwei_fathername"><![CDATA[父亲姓名]]></item>				
+				<item id="lianwei_mothername"><![CDATA[母亲姓名]]></item>				
+				<item id="lianwei_gonedate"><![CDATA[宝宝往生时间]]></item>				
+				<item id="lianwei_holyname">
+  
+
+  
+  <tr>-->
+    <td align="center"><button type="submit" id="Submit_member" class="pn pnc" value="true" name="Submit_member" tabindex="1"><span>{lang lianwei:lianwei_htm_16}</span></button></td>
+  </tr>
+</table>
+</form>
+
+</div></div></div></div></div>
+
+<!--{elseif $_GET[mod] == 'user_mood'}-->
+<div class="content datalist">
+<form action="plugin.php?id=lianwei&mod=user_mood" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="5%">{lang lianwei:lianwei_htm_19}ID</td>
+    <td width="5%">{lang lianwei:lianwei_holyname}</td>
+	<td width="5%">{lang lianwei:lianwei_fathername}</td>
+	<td width="5%">{lang lianwei:lianwei_mothername}</td>
+	<td width="5%">{lang lianwei:lianwei_gonedate}</td>
+    <td width="45%">{lang lianwei:lianwei_htm_21}</td>
+    <td width="18%">{lang lianwei:lianwei_htm_22}</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+<!--{if $moodlist_user}-->
+  <!--{loop $moodlist_user $mood_user}-->
+  <tr align="center">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_user['id']}" /></td>
+    <td width="5%">$mood_user[id]</td>
+   <td width="5%">$mood_user[holyname]</td>
+   <td width="5%">$mood_user[fathername]</td>
+   <td width="5%">$mood_user[mothername]</td>   
+    <td width="5%">$mood_user[gonedate]</td>
+    <td width="45%">$mood_user[message]</td>
+    <td width="18%">$mood_user[dateline]</td>
+    <td width="5%"><a href="plugin.php?id=lianwei&mod=edit_mood&moodid=$mood_user[id]">{lang lianwei:lianwei_htm_23}</a></td>
+  </tr>
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" />&nbsp;{lang lianwei:lianwei_htm_24}&nbsp;
+    <button type="submit" id="del_mood" class="pn" value="true" name="del_mood" tabindex="1"><span>{lang lianwei:lianwei_htm_25}</span></button></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang lianwei:lianwei_htm_26}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'edit_mood'}-->
+<div class="content datalist">
+<form method="post" action="plugin.php?id=lianwei&mod=edit_mood">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+<!--{if $moodlist_edit}-->
+  <!--{loop $moodlist_edit $mood_edit}-->
+  <input type="hidden" name="moodid" value="$mood_edit[id]">
+  <tr class="colplural">
+    <td colspan="2" align="center"><h1 class="mt">{lang lianwei:lianwei_htm_28} - {lang lianwei:lianwei_htm_19}ID&#65306;$mood_edit[id]</h1></td>
+  </tr>
+  <tr>
+    <td width="13%">{lang lianwei:lianwei_htm_31}:</td>
+    <td><input type="radio" name="bgpic" id="bgpic" value="1" <!--{if $mood_edit[bgpic] == 1}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg1.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="2" <!--{if $mood_edit[bgpic] == 2}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg2.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="3" <!--{if $mood_edit[bgpic] == 3}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg3.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="4" <!--{if $mood_edit[bgpic] == 4}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg4.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="5" <!--{if $mood_edit[bgpic] == 5}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg5.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="6" <!--{if $mood_edit[bgpic] == 6}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg6.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="7" <!--{if $mood_edit[bgpic] == 7}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg7.gif" />
+    <input type="radio" name="bgpic" id="bgpic" value="8" <!--{if $mood_edit[bgpic] == 8}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/bg8.gif" /></td>
+  </tr>
+  <tr>
+    <td>{lang lianwei:lianwei_htm_19}:</td>
+    <td><input type="radio" name="mood" value="1" <!--{if $mood_edit[mood] == 1}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/1.gif" />
+    <input type="radio" name="mood" value="2" <!--{if $mood_edit[mood] == 2}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/2.gif" />
+    <input type="radio" name="mood" value="3" <!--{if $mood_edit[mood] == 3}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/3.gif" />
+    <input type="radio" name="mood" value="4" <!--{if $mood_edit[mood] == 4}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/4.gif" />
+    <input type="radio" name="mood" value="5" <!--{if $mood_edit[mood] == 5}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/5.gif" />
+    <input type="radio" name="mood" value="6" <!--{if $mood_edit[mood] == 6}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/6.gif" />
+    <input type="radio" name="mood" value="7" <!--{if $mood_edit[mood] == 7}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/7.gif" />
+    <input type="radio" name="mood" value="8" <!--{if $mood_edit[mood] == 8}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/8.gif" />
+    <input type="radio" name="mood" value="9" <!--{if $mood_edit[mood] == 9}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/9.gif" />
+    <input type="radio" name="mood" value="10" <!--{if $mood_edit[mood] == 10}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/10.gif" /><br />
+    <input type="radio" name="mood" value="11" <!--{if $mood_edit[mood] == 11}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/11.gif" />
+    <input type="radio" name="mood" value="12" <!--{if $mood_edit[mood] == 12}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/12.gif" />
+    <input type="radio" name="mood" value="13" <!--{if $mood_edit[mood] == 13}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/13.gif" />
+    <input type="radio" name="mood" value="14" <!--{if $mood_edit[mood] == 14}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/14.gif" />
+    <input type="radio" name="mood" value="15" <!--{if $mood_edit[mood] == 15}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/15.gif" />
+    <input type="radio" name="mood" value="16" <!--{if $mood_edit[mood] == 16}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/16.gif" />
+    <input type="radio" name="mood" value="17" <!--{if $mood_edit[mood] == 17}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/17.gif" />
+    <input type="radio" name="mood" value="18" <!--{if $mood_edit[mood] == 18}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/18.gif" />
+    <input type="radio" name="mood" value="19" <!--{if $mood_edit[mood] == 19}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/19.gif" />
+    <input type="radio" name="mood" value="20" <!--{if $mood_edit[mood] == 20}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/20.gif" /><br />
+    <input type="radio" name="mood" value="21" <!--{if $mood_edit[mood] == 21}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/21.gif" />
+    <input type="radio" name="mood" value="22" <!--{if $mood_edit[mood] == 22}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/22.gif" />
+    <input type="radio" name="mood" value="23" <!--{if $mood_edit[mood] == 23}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/23.gif" />
+    <input type="radio" name="mood" value="24" <!--{if $mood_edit[mood] == 24}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/24.gif" />
+    <input type="radio" name="mood" value="25" <!--{if $mood_edit[mood] == 25}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/25.gif" />
+    <input type="radio" name="mood" value="26" <!--{if $mood_edit[mood] == 26}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/26.gif" />
+    <input type="radio" name="mood" value="27" <!--{if $mood_edit[mood] == 27}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/27.gif" />
+    <input type="radio" name="mood" value="28" <!--{if $mood_edit[mood] == 28}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/28.gif" />
+    <input type="radio" name="mood" value="29" <!--{if $mood_edit[mood] == 29}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/29.gif" />
+    <input type="radio" name="mood" value="30" <!--{if $mood_edit[mood] == 30}-->checked="checked"<!--{/if}-->/><img src="source/plugin/lianwei/template/images/mood/30.gif" />
+  </tr>
+  <tr>
+    <td>{lang lianwei:lianwei_htm_21}:</td>
+    <td><input name="message" type="text" class="px" id="message" onkeyup="checkLength(this);" value="$mood_edit[message]" size="100%" /><br />{lang lianwei:lianwei_htm_14}<span id="chLeft">100</span>{lang lianwei:lianwei_htm_15}</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><button type="submit" id="Submit_edit" class="pn" value="true" name="Submit_edit" tabindex="1"><span>{lang lianwei:lianwei_htm_36}</span></button></td>
+  </tr>
+  <!--{/loop}-->
+<!--{/if}-->
+</table>
+</form>
+<script type="text/javascript">checkLength(document.getElementById('message'));</script>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'members_mood'}-->
+<div class="content datalist">
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="15%">{lang lianwei:lianwei_htm_40}</td>
+    <td width="5%">{lang lianwei:lianwei_htm_19}ID</td>
+    <td width="5%">{lang lianwei:lianwei_htm_19}</td>
+    <td width="60%">{lang lianwei:lianwei_htm_21}</td>
+    <td width="15%">{lang lianwei:lianwei_htm_22}</td>
+  </tr>
+<!--{if $moodlist_members}-->
+  <!--{loop $moodlist_members $mood_members}-->
+  <tr align="center">
+      <td width="15%" align="left">&nbsp;<img src="{$_G[setting][ucenterurl]}/avatar.php?uid=$mood_members[uid]&size=small" border="0" height="24" width="24"> <a href="{$_G[siteurl]}?$mood_members[uid]" target="_blank">$mood_members[username]</a></td>
+      <td width="5%">$mood_members[id]</td>
+      <td width="5%"><img src="source/plugin/lianwei/template/images/mood/$mood_members[mood].gif" /></td>
+      <td width="60%">$mood_members[message]</td>
+      <td width="15%">$mood_members[dateline]</td>
+  </tr>
+  <!--{/loop}-->
+  <!--{if !empty($multipage)}-->
+  <tr><td colspan="5"><div class="pages_btns">$multipage</div></td></tr><!--{/if}-->
+<!--{else}-->
+  <tr>
+    <td colspan="5" align="center">{lang lianwei:lianwei_htm_44}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</div></div></div>
+
+<!--{elseif $_GET[mod] == 'admin_check'}-->
+<h1 class="mt"><strong>&nbsp;{lang lianwei:lianwei_htm_47}</strong></h1>
+<div class="content datalist">
+<form action="plugin.php?id=lianwei&mod=admin_check" method="post">
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr class="colplural" align="center">
+    <td width="3%">&nbsp;</td>
+    <td width="6%">{lang lianwei:lianwei_htm_19}ID</td>
+    <td width="15%">{lang lianwei:lianwei_htm_40}</td>
+    <td width="5%">{lang lianwei:lianwei_htm_19}</td>
+    <td width="50%">{lang lianwei:lianwei_htm_21}</td>
+    <td width="15%">{lang lianwei:lianwei_htm_22}</td>
+  </tr>
+<!--{if $moodlist_admin}-->
+  <!--{loop $moodlist_admin $mood_admin}-->
+  <tr align="center">
+    <td width="3%"><input type="checkbox" name="delete[]" value="{$mood_admin['id']}" /></td>
+    <td width="6%">$mood_admin[id]</td>
+    <td width="15%" align="left">&nbsp;<a href="{$_G[siteurl]}?$mood_admin[uid]" target="_blank">$mood_admin[username]</a></td>
+    <td width="5%"><img src="source/plugin/lianwei/template/images/mood/$mood_admin[mood].gif" /></td>
+    <td width="50%">$mood_admin[message]</td>
+    <td width="15%">$mood_admin[dateline]</td>
+  </tr>
+  <!--{/loop}-->
+  <tr>
+    <td colspan="6">
+    <!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+    <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" />&nbsp;{lang lianwei:lianwei_htm_24}&nbsp;
+    <button type="submit" id="admin_edit" class="pn" value="true" name="admin_del" tabindex="1"><span>{lang lianwei:lianwei_htm_25}</span></button></td>
+  </tr>
+<!--{else}-->
+  <tr>
+    <td colspan="6" align="center">{lang lianwei:lianwei_htm_55}</td>
+  </tr>
+<!--{/if}-->
+</table>
+</form>
+</div></div></div>
+<!--{/if}-->
+{subtemplate common/footer}

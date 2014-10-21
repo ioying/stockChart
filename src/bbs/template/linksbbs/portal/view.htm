@@ -1,0 +1,171 @@
+{template common/header_iread}
+<!--[name]{lang portalcategory_viewtplname}[/name]-->
+
+<script type="text/javascript"
+	src="{$_G['setting']['jspath']}forum_viewthread.js?{VERHASH}"></script>
+<script type="text/javascript">zoomstatus = parseInt($_G['setting']['zoomstatus']), imagemaxwidth = '{$_G['setting']['imagemaxwidth']}', aimgcount = new Array();</script>
+
+<!--{hook/view_article_top}-->
+<!--{ad/text/wp a_t}-->
+<style id="diy_style" type="text/css"></style>
+<div class="main wrap article-page">
+	<div class="article-main">
+		<h2>
+			$article[title]
+			<!--{if $article['status'] == 1}-->
+			({lang moderate_need})
+			<!--{elseif $article['status'] == 2}-->
+			({lang ignored})
+			<!--{/if}-->
+		</h2>
+		<p class="xg1">
+			$article[dateline]<span class="pipe">|</span> {lang view_publisher}:
+			<a href="home.php?mod=space&uid=$article[uid]">$article[username]</a><span
+				class="pipe">|</span> {lang view_views}: <em id="_viewnum"> <!--{if $article[viewnum] > 0}-->$article[viewnum]<!--{else}-->0<!--{/if}-->
+			</em><span class="pipe">|</span> {lang view_comments}:
+			<!--{if $article[commentnum] > 0}-->
+			<a href="$common_url" title="{lang view_all_comments}"><em
+				id="_commentnum">$article[commentnum]</em> </a>
+			<!--{else}-->
+			0
+			<!--{/if}-->
+			<!--{if $article[author]}-->
+			<span class="pipe">|</span>{lang view_author_original}:
+			$article[author]
+			<!--{/if}-->
+			<!--{if $article[from]}-->
+			<span class="pipe">|</span>{lang from}:
+			<!--{if $article[fromurl]}-->
+			<a href="$article[fromurl]" target="_blank">$article[from]</a>
+			<!--{else}-->
+			$article[from]
+			<!--{/if}-->
+			<!--{/if}-->
+
+			<!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $article['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $article['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+			<span class="pipe">|</span><a
+				href="portal.php?mod=portalcp&ac=article&op=edit&aid=$article[aid]">{lang
+				edit}</a>
+			<!--{if $article[status]>0 && ($_G['group']['allowmanagearticle'] || $categoryperm[$value['catid']]['allowmanage'])}-->
+			<span class="pipe">|</span><a
+				href="portal.php?mod=portalcp&ac=article&op=verify&aid=$article[aid]"
+				id="article_verify_$article[aid]"
+				onclick="showWindow(this.id, this.href, 'get', 0);">{lang
+				moderate}</a>
+			<!--{else}-->
+			<span class="pipe">|</span><a
+				href="portal.php?mod=portalcp&ac=article&op=delete&aid=$article[aid]"
+				id="article_delete_$article[aid]"
+				onclick="showWindow(this.id, this.href, 'get', 0);">{lang
+				delete}</a>
+			<!--{/if}-->
+			<!--{/if}-->
+			<!--{hook/view_article_subtitle}-->
+		</p>
+
+		<div class="article-content">
+			$content[content]
+			<!--{if $multi}-->
+			<div class="ptw pbw cl">$multi</div>
+			<!--{/if}-->
+
+		</div>
+		<div class="source">
+			<a href="/"></a>
+		</div>
+		<div class="share-bar">
+			<a href="/" class="btn">收藏 · 321</a> <a href="/" class="btn">赞 · 321</a>
+		</div>
+		<div class="about-author">
+			<h3>关于作者</h3>
+			<div class="clearfix">
+				<img src="http://avatar.links123.cn/avatar.jpg" alt="" width="85">
+				<div class="text">
+					<h4>$article[username]</h4>
+					<p></p>
+					<div class="post-time">
+						<em class="bor"></em>发布于 $article[dateline]
+					</div>
+				</div>
+			</div>
+			<div class="author-btn mt10">
+				<a href="/" class="btn">关注作者</a> <a href="/" class="btn">加为好友</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 评论部分开始 -->
+	<div class="comment" id="comment">
+             <div class="comment-post" id="comment_ul">
+                <h3>发表你的看法</h3>
+                <img src="<!--{if $_G[avatar]}-->$_G[avatar]<!--{else}-->http://avatar.links123.cn/avatar.jpg<!--{/if}-->" alt="" width="30" class="avatar">
+                <b class="name"><!--{if $_G['uid']}-->$_G['username']<!--{else}-->游客<!--{/if}--></b>
+				<form id="cform" name="cform" action="$form_url" method="post" autocomplete="off" class="comment-post-form">
+					<textarea name="message" id="message" placeholder="你怎么看？" class="comment-post-form-ipt" onkeydown="ctrlEnter(event, 'commentsubmit_btn');"></textarea>
+						<input type="hidden" name="portal_referer" value="$viewurl#comment">
+						<input type="hidden" name="referer" value="$viewurl#comment" />
+						<input type="hidden" name="id" value="$data[id]" />
+						<input type="hidden" name="idtype" value="$data[idtype]" />
+						<input type="hidden" name="aid" value="$aid">
+						<input type="hidden" name="formhash" value="{FORMHASH}">
+						<input type="hidden" name="replysubmit" value="true">
+						<input type="hidden" name="commentsubmit" value="true" />
+					<div class="clearfix"><button type="submit" name="commentsubmit_btn" id="commentsubmit_btn" value="true" class="rf btn"><strong>{lang comment}</strong></button></div>
+				</form>
+            </div>
+            <div class="comment-post-list">
+            <h3>Linkers说</h3>
+            <!--{if $data[commentnum]}--><p class="ptm pbm"><a href="$common_url" class="xi2">{lang view_all_comments}(<em id="_commentnum">$data[commentnum]</em>)</a></p><!--{/if}-->
+                <ul class="msg-list">
+                 <!--{loop $commentlist $comment}-->
+				<a name="comment_anchor_$comment[cid]"></a>
+				<li id="comment_{$comment[cid]}_li" class="ptm pbm bbda cl">
+					<img src="<!--{if $_G[avatar]}-->$_G[avatar]<!--{else}-->http://avatar.links123.cn/avatar.jpg<!--{/if}-->"" alt="" width="30" class="avatar">
+					<div class="comment-wrapper">
+                            <div class="post-meta">
+                                <div class="lf name">
+                                <!--{if !empty($comment['uid'])}-->
+									$comment[username]
+								<!--{else}-->
+									{lang guest}
+								<!--{/if}-->
+								</div>
+                                <div class="time-ago rf"><!--{date($comment[dateline])}--></div>
+                            </div>
+                            <div class="comment-main">
+                                <p><!--{if $_G[adminid] == 1 || $comment[uid] == $_G[uid] || $comment[status] != 1}-->$comment[message]<!--{else}--> {lang moderate_not_validate}<!--{/if}--></p>
+                            </div>
+                        </div>
+                        <div class="opts">
+                        <span class="y xw0 xi2">
+							<!--{if !isset($_G[makehtml])}--><a href="javascript:;" onclick="portal_comment_requote($comment[cid], '$article[aid]');">回复</a> <!--{/if}-->
+							<!--{if ($_G['group']['allowmanagearticle'] || $_G['uid'] == $comment['uid']) && $_G['groupid'] != 7 && !$article['idtype']}-->
+							<a href="portal.php?mod=portalcp&ac=comment&op=edit&cid=$comment[cid]" id="c_$comment[cid]_edit" onclick="showWindow(this.id, this.href, 'get', 0);">{lang edit}</a>
+							<a href="portal.php?mod=portalcp&ac=comment&op=delete&cid=$comment[cid]" id="c_$comment[cid]_delete" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a>
+							<!--{/if}-->
+						</span>
+                        </div>
+						<!--{if !empty($aimgs[$comment[cid]])}-->
+							<script type="text/javascript" reload="1">aimgcount[{$comment[cid]}] = [<!--{echo implode(',', $aimgs[$comment[cid]]);}-->];attachimgshow($comment[cid]);</script>
+						<!--{/if}-->
+				</li>
+				<!--{/loop}-->
+                </ul>
+            </div>
+        </div>
+	<!-- 评论部分结束 -->
+
+	<!--{if !empty($aimgs[$content[pid]])}-->
+	<script type="text/javascript" reload="1">aimgcount[{$content[pid]}] = [<!--{echo implode(',', $aimgs[$content[pid]]);}-->];attachimgshow($content[pid]);</script>
+	<!--{/if}-->
+
+	<!--{if !empty($_G['setting']['pluginhooks']['view_share_method'])}-->
+	<div class="tshare cl">
+		<strong>{lang viewthread_share_to}:</strong>
+		<!--{hook/view_share_method}-->
+	</div>
+	<!--{/if}-->
+</div>
+<input type="hidden" id="portalview" value="1">
+
+<!--{template common/footer_iread}

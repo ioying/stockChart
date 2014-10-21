@@ -1,0 +1,15 @@
+<!--{template tsound_wenda:header}-->
+<div style="width:500px;height:537px;background:url(source/plugin/tsound_wenda/course/images/desk1comingsoon.gif) no-repeat;padding-top:20px; margin-top:10px;">
+	<!--{loop $course $scourse}-->  <!-- 自动排列图标 未处理-->
+		<div style="padding-left:89px;padding-top:122px">
+			<a href="$baseurl&action=selectlesson&cid=$scourse['cid']"><img src="$scourse['clogo']" /></a>
+		</div>	
+	<!--{/loop}-->
+</div>
+
+
+
+	<div class="aside" id="caside">
+		<!--x{xtemplate tsound_wenda:side}x-->
+	</div>
+	<!--{template tsound_wenda:footer}-->

@@ -1,0 +1,135 @@
+<!--{template tsound_wenda:header}-->
+<script type="text/javascript"
+	src="source/plugin/tsound_wenda/template/jquery15.min.js"></script>
+<script type="text/javascript">
+var jQGo = jQuery.noConflict(true);
+
+jQGo(document).ready(
+  function(){
+
+	   jQGo("#modCateList .item").hover(function(){
+		   jQGo(this).addClass("hover");
+
+		  var index =  jQGo("#modCateList .item").index(jQGo(this)); 
+		  jQGo("#modCatePanel"+index).show();
+		   
+		},function(){
+			jQGo(this).removeClass("hover");
+			jQGo("div[id^='modCatePanel']").hide();
+		}
+		);
+
+		jQGo("div[id^='modCatePanel']").hover(function(){
+			  var index =  jQGo("div[id^='modCatePanel']").index(jQGo(this)); 
+			  jQGo("#modCatePanel"+index).show();
+			   jQGo("#modCateListSub"+index).addClass("hover");
+					
+		},function(){
+			  var index =  jQGo("div[id^='modCatePanel']").index(jQGo(this)); 
+			  jQGo("#modCateListSub"+index).removeClass("hover");
+			  jQGo("div[id^='modCatePanel']").hide();
+				
+		  }
+		);	
+	   
+ 
+  }
+ )
+ </script>
+ 
+
+<div id="bd" class="grid-1 clearfix">
+  <div class="article" id="bdarticle">
+    <div id="mod-slides" class="mod-slides widget-slide" data-jss="animType:'fade',autoPlay:true,autoPlayTime:5000,animDur:300,supportMouseenter:true">
+      <ul class="pic slide-content">
+        <li class="pic-item selected" style="opacity: 1; "><a href="{$Ad['url']}" class="img" target="_blank"><img alt="{$Ad['subject']}" title="{$Ad['subject']}" src="{$Ad['pic']}"></a>
+          <div class="info">
+            <h4><a href="{$Ad['url']}" target="_blank">{$Ad['subject']}</a><sup></sup></h4>
+            <ul>
+            <!--{loop $list1 $rs}-->
+              <li><a {if $rs['readpay']&&$rs['readpay']>0&&$_G['uid']!=$rs['uid']}{else}target="_blank"{/if} href="{if $rs['readpay']&&$rs['readpay']>0&&$_G['uid']!=$rs['uid']}javascript:showWindow('tsound_wenda', 'plugin.php?id=tsound_wenda:xm&qid=$rs[qid]');{else}$baseurl&action=question&qid=$rs['qid']{/if}">$rs['title']</a></li>
+            <!--{/loop}-->
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="mod-qa-list" id="mod-unresolved">
+      <div class="hd">
+        <h3 class="t1">{lang tsound_wenda:question1}</h3>
+        <p class="more"><a text="mod-unresolved-more" href="$baseurl&action=category&type=wait">{lang tsound_wenda:more}&gt;&gt;</a></p>
+      </div>
+      <div class="bd">
+        <div class="cls-qa-list-1">
+          <ul>
+            <!--{loop $list2 $rs}-->
+            <li><span class="s0"><a title="$rs['title']" {if $rs['readpay']&&$rs['readpay']>0&&$_G['uid']!=$rs['uid']}{else}target="_blank"{/if} href="{if $rs['readpay']&&$rs['readpay']>0&&$_G['uid']!=$rs['uid']}javascript:showWindow('tsound_wenda', 'plugin.php?id=tsound_wenda:xm&qid=$rs[qid]');{else}$baseurl&action=question&qid=$rs['qid']{/if}">$rs['title']</a></span><!--{if $rs[readpay]>0}--><span class="s0" style="color: red;right:50px;"><img src="source/plugin/tsound_wenda/template/images/t0184b8666a05c54450.png" />&nbsp;$rs['readpay']</span><!--{/if}--><span class="s1">{$rs['answer']}{lang tsound_wenda:answer}</span></li>
+            <!--{/loop}-->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mod-qa-list" id="mod-highAsk">
+      <div class="hd">
+        <h3 class="t2">{lang tsound_wenda:question2}</h3>
+        <p class="more"><a text="mod-highAsk-more" href="$baseurl&action=category&type=high">{lang tsound_wenda:more}&gt;&gt;</a></p>
+      </div>
+      <div class="bd">
+        <div class="cls-qa-list-1">
+          <ul>
+            <!--{loop $list3 $rs}-->
+            <li><span class="s0"><a title="$rs['title']" {if $rs['readpay']&&$rs['readpay']>0&&$_G['uid']!=$rs['uid']}{else}target="_blank"{/if} href="{if $rs['readpay']&&$rs['readpay']>0&&$_G['uid']!=$rs['uid']}javascript:showWindow('tsound_wenda', 'plugin.php?id=tsound_wenda:xm&qid=$rs[qid]');{else}$baseurl&action=question&qid=$rs['qid']{/if}">$rs['title']</a></span><!--{if $rs[readpay]>0}--><span class="s0" style="color: red;right:50px;"><img src="source/plugin/tsound_wenda/template/images/t0184b8666a05c54450.png" />&nbsp;$rs['readpay']</span><!--{/if}--><span class="s1">{$rs['answer']}{lang tsound_wenda:answer}</span></li>
+            <!--{/loop}-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="aside">
+    <div class="mod-cate">
+      <div class="hd">
+        <h3>{lang tsound_wenda:category}</h3>
+      </div>
+      <div class="bd">
+        <ul id="modCateList" class="list">
+          {eval $kk=0;}
+          <!--{loop $categorys $cat}-->
+          <li data-index="{$kk}" id="modCateListSub{$kk}" class="item">
+            <h4><a href="$baseurl&action=category&cid=$cat[1]">$cat[0]</a></h4>
+            <ul>
+              <!--{loop $cat[2] $c}-->
+              <li><a href="$baseurl&action=category&cid=$c[1]">$c[0]</a></li>
+              <!--{/loop}-->
+            </ul>
+          </li>
+          {eval $kk++;}
+         <!--{/loop}-->
+        </ul>
+        {eval $kk=0;}
+        <!--{loop $categorys $cat1}-->
+          {eval $mm=(int)$kk*57;}
+          <!--{if !empty($cat1[3])}-->
+          <div id="modCatePanel{$kk}" class="panel-cate" style="top: {$mm}px; display: none; ">
+          <ul class="clearfix">
+          <!--{loop $cat1[3] $c1}-->
+          <li><a href="$baseurl&action=category&cid=$c1[1]">$c1[0]</a></li>
+          <!--{/loop}-->
+           </ul>
+           </div>
+           <!--{/if}-->
+           {eval $kk++;}
+           
+        <!--{/loop}-->
+        
+         </div>
+        
+        
+      <div class="ft"></div>
+    </div>
+  </div>
+  <div class="extra">
+  <!--{template tsound_wenda:side}-->
+  </div>
+</div>
+
+<!--{template tsound_wenda:footer}-->

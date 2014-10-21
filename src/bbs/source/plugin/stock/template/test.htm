@@ -1,0 +1,48 @@
+{subtemplate common/header}
+
+
+<table width=100%  cellspacing="0" cellpadding="0" border="0"  style=" " >
+	<tr>
+		<td width=80%>
+		<iframe width=100% height=460 frameborder=0 src="source/plugin/stock/candle.inc.php?fdataid=./data/try/try_1.json&mainmap=1"></iframe>
+		</td>
+		<td>
+			<div>aaa</div>
+			<div>bbb</div>
+			<div>ddd</div>
+			<div>dddd</div>
+			
+		</td>
+	</tr>
+
+</table>
+
+
+<div class="content" > 
+	<div id="content_stock">
+<!--{loop $stocklist $stock}-->
+
+
+<div id="cc{$stock[id]}" >
+
+ 
+<iframe width=100% height=460 frameborder=1 src="source/plugin/stock/candle.inc.php?fdataid={$userfile_name}&mainmap=1"></iframe>
+
+</div>
+
+		<table width=100% height="5" cellspacing="1" cellpadding="1" border="1"  style=" " >
+				{$test}{$test1}{$userfile_name}
+    <tr >  <!--style="height:170px;"    -->
+			<td></td>
+    </tr>
+   
+ 
+		</table>
+  </div>
+  <!--{/loop}-->   
+</div>
+
+
+</div>
+</div></div></div>
+{subtemplate common/footer}

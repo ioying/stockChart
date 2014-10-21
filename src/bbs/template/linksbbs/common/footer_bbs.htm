@@ -1,0 +1,15 @@
+<!--{if $_G['member']['newprompt'] && (empty($_G['cookie']['promptstate_'.$_G[uid]]) || $_G['cookie']['promptstate_'.$_G[uid]] != $_G['member']['newprompt']) && $_GET['do'] != 'notice'}-->
+	<script type="text/javascript">noticeTitle();</script>
+<!--{/if}-->
+
+<script type="text/javascript" src="{$_G[setting][jspath]}/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	var jQuery = jQuery.noConflict();
+</script>
+<script type="text/javascript" src="{$_G[setting][jspath]}iread.js?{VERHASH}"></script>
+
+<!-- 最新公共头组件 -->
+<!-- <script src="http://a.links123.cn/g/src/gh/gh.js"></script> -->
+
+</body>
+</html>

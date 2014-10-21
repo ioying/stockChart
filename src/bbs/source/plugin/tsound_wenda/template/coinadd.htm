@@ -1,0 +1,52 @@
+{template common/header_ajax}
+<h3 class="flb mn sr"><em>{$ti}</em><a href="javascript:;" id="lastsound" onclick="insertLast()" style="display:none"><em style="color:red;padding-left:20px;text-decoration:underline">{lang tsound_wenda:lastsound}</em></a> <span> 
+
+<a href="javascript:;" class="flbc" onclick="hideWindow('tsound_wenda_other', 0, 1);" title="{lang close}">{lang close}</a> 
+
+</span> </h3>
+    <div class="mod-answer-form js-form" style="border:0">
+      <div class="bd">
+        <form id="editform" method="post" type="0" action="{$baseurl}&action={$action}&qid={$qid}&aid={$aid}" onsubmit="return checkform2()">
+          <div id="js-answer-error" class="erro js-form-error"></div>
+              <div class="add-pay" tip="addpay">
+                <label for="coin">{lang tsound_wenda:coin}</label>
+                <select name="coin" id="coin" class="select" coin="0">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+                  <option value="80">80</option>
+                  <option value="100">100</option>
+                </select>
+                {$credit_unit}</div>
+              <div style="float:right;padding-right:15px;line-height:33px;">{lang tsound_wenda:my}{$credit_title}£º<span style="color:#FF6701;">$money</span></div>
+          </div>
+          
+          <button type="submit" id="submit" class="pn pnc" text="answer-submit"><strong>{lang tsound_wenda:submit}</strong></button>
+          
+          <br />
+          <br />
+        </form>
+      </div>
+    </div>
+<script type="text/javascript" reload="1">
+function OnezUploadCall2(s){
+  if(s.substr(0,2)=='ok'){
+    $('content2').value+=s.substr(2);
+    return;
+  }
+}
+function checkform2(){
+  var content=$('content2').value;
+  var rid=$('rid2').value;
+  if(content.length<1){
+    alert('{lang tsound_wenda:content_none}');
+    $('content2').focus();
+    return false;
+  }
+  return true;
+}
+</script> 
+{template common/footer_ajax}

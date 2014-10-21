@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="From"><![CDATA[潮流少年工作室 Teen Studio (http://teen-s.coms.hk)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[心情牆]]></item>
+			<item id="identifier"><![CDATA[stock]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[stock]]></item>
+			<item id="directory"><![CDATA[stock/]]></item>
+			<item id="copyright"><![CDATA[xiechunye & 潮流少年工作室]]></item>
+			<item id="version"><![CDATA[1.2.2]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[stock]]></item>
+					<item id="menu"><![CDATA[心情牆]]></item>
+					<item id="url"><![CDATA[plugin.php?id=stock]]></item>
+					<item id="type"><![CDATA[1]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[快來抒發您的心情吧！]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5,X1.5.1,X2,X2.5]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="stock_inc_php_1"><![CDATA[如要獲得最佳的瀏覽效果，請使用]]></item>
+				<item id="stock_inc_php_2"><![CDATA[錯誤，無效的操作]]></item>
+				<item id="stock_inc_php_3"><![CDATA[切勿使用非法途徑編輯心情]]></item>
+				<item id="stock_inc_php_4"><![CDATA[請輸入您的心情，請返回。]]></item>
+				<item id="stock_inc_php_5"><![CDATA[恭喜，您已成功編輯心情記錄！]]></item>
+				<item id="stock_inc_php_6"><![CDATA[刪除成功！]]></item>
+				<item id="stock_inc_php_7"><![CDATA[切勿使用非法途徑發表心情]]></item>
+				<item id="stock_inc_php_8"><![CDATA[請選擇您的背景顏色，請返回。]]></item>
+				<item id="stock_inc_php_9"><![CDATA[請選擇您的心情圖標，請返回。]]></item>
+				<item id="stock_inc_php_10"><![CDATA[恭喜，您已成功發表心情記錄！]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="stock_htm_1"><![CDATA[心情牆]]></item>
+				<item id="stock_htm_2"><![CDATA[第]]></item>
+				<item id="stock_htm_3"><![CDATA[條]]></item>
+				<item id="stock_htm_4"><![CDATA[]]></item>
+				<item id="stock_htm_5"><![CDATA[關閉紙條]]></item>
+				<item id="stock_htm_6"><![CDATA[×]]></item>
+				<item id="stock_htm_8"><![CDATA[我要抒發心情]]></item>
+				<item id="stock_htm_10"><![CDATA[請選擇一個最能形容您現在心情的背景：]]></item>
+				<item id="stock_htm_11"><![CDATA[請選擇您現在的心情：]]></item>
+				<item id="stock_htm_12"><![CDATA[請輸入您這刻想說的話：]]></item>
+				<item id="stock_htm_13"><![CDATA[最多可以輸入100個字]]></item>
+				<item id="stock_htm_14"><![CDATA[您最多可以輸入：100字，還剩：]]></item>
+				<item id="stock_htm_15"><![CDATA[字]]></item>
+				<item id="stock_htm_16"><![CDATA[發表心情記錄]]></item>
+				<item id="stock_htm_18"><![CDATA[我的所有心情]]></item>
+				<item id="stock_htm_19"><![CDATA[心情]]></item>
+				<item id="stock_htm_21"><![CDATA[真情內容告白]]></item>
+				<item id="stock_htm_22"><![CDATA[發表時間]]></item>
+				<item id="stock_htm_23"><![CDATA[編輯]]></item>
+				<item id="stock_htm_24"><![CDATA[全選]]></item>
+				<item id="stock_htm_25"><![CDATA[刪除已選的心情記錄]]></item>
+				<item id="stock_htm_26"><![CDATA[您並沒有在心情牆上留言啊！]]></item>
+				<item id="stock_htm_28"><![CDATA[編輯我的心情]]></item>
+				<item id="stock_htm_31"><![CDATA[背景]]></item>
+				<item id="stock_htm_36"><![CDATA[編輯心情記錄]]></item>
+				<item id="stock_htm_38"><![CDATA[壇友所有心情]]></item>
+				<item id="stock_htm_40"><![CDATA[心情發佈者]]></item>
+				<item id="stock_htm_44"><![CDATA[沒有壇友在心情牆上留言啊！]]></item>
+				<item id="stock_htm_46"><![CDATA[心情牆管理中心]]></item>
+				<item id="stock_htm_47"><![CDATA[心情記錄管理]]></item>
+				<item id="stock_htm_55"><![CDATA[心情牆上並沒有留言！]]></item>
+				<item id="stock_side_htm_1"><![CDATA[→]]></item>
+				<item id="stock_side_htm_2"><![CDATA[什麼是心情牆]]></item>
+				<item id="stock_side_htm_3"><![CDATA[心情牆是給會員抒發心情的地方，用戶可以發表自己的心情，並選擇心情圖標和背景，能夠讓用戶更加互動起來！]]></item>
+				<item id="stock_side_htm_4"><![CDATA[插件信息]]></item>
+				<item id="stock_side_htm_5"><![CDATA[原作者：]]></item>
+				<item id="stock_side_htm_6"><![CDATA[二次開發：]]></item>
+				<item id="stock_side_htm_7"><![CDATA[潮流少年工作室]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+		<item id="license"><![CDATA[[list]感謝您選擇使用本插件。安裝本插件之前，請仔細閱讀以下所有內容
+
+[b]安裝注意事項[/b]
+[1]本插件為Discuz!新內核插件，綠色安裝及綠色使用，適用於Discuz! X1.5-X2.5站點
+[2]是否更改Discuz!原有數據庫：否
+[3]是否新增數據庫：是
+[4]是否需要手動修改Discuz!文件：否
+
+[b]授權協議[/b]
+[1]本插件為xiechunye設計開發，Marco129@潮流少年工作室(Teen Studio)二次開發，並依法擁有版權。
+[2]本插件為免費公開發佈，嚴禁修改任何版權說明、進行任何二次開發、轉載不保留原版權、進行出租/出售/抵押或發放許可證。
+[3]免費版插件提供論壇技術支持和升級版本下載，商業版插件更提供去除版權支持及產品本身安全預警等服務。
+[4]本插件不得用於商業使用，如需進行商業行為請與作者聯繫獲得商業許可。
+[5]安裝和使用插件有風險，如因安裝、使用此插件所造成的任何不良影響，作者不負責任何直接或間接的責任。
+[6]作者只是業餘寫插件的，不能經常維護本插件，對於插件本身的問題作者會給予修正，但不對任何第三方修改版本進行技術支持和升級。
+[7]您一旦開始安裝本插件，即被視為完全理解並接受本授權協議的各項條款。
+[8]插件作者擁有對本授權協議的最終解釋權。[/list]]]></item>
+                <item id="intro"><![CDATA[[b][color=green]【Teen Studio】心情牆[/color][/b]
+心情牆是給會員抒發心情的地方，用戶可以發表自己的心情，並選擇心情圖標和背景，能夠讓用戶更加互動起來！
+本插件是根據xiechunye《心情牆》的基礎上進行二次開發。
+使用問題/BUG反饋可到[url=http://teen-s.coms.hk]潮流少年工作室官方站點[/url]提出]]></item>
+	</item>
+</root>

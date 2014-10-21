@@ -1,0 +1,123 @@
+<!--{template milu_seotool:header}-->
+
+
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post">
+<table class="tb tb2 " id="tips">
+<tbody><tr><th class="partition">{lang milu_seotool:search_args}</th></tr>
+<tr><td class="tipsblock" s="1"><div style="float:left">{$info['search_show']} <input type="submit" class="btn" id="submit_search" name="search_submit" value="{lang milu_seotool:search}"></div><ul class="search_tips"><h1>{lang milu_seotool:fast_search}:</h1>{$info['fast_search']}</ul></td></tr></tbody></table>
+
+</form>
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post"> 
+ <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<table class="tb tb2 nobdt fixpadding">
+<tbody><tr>
+  <th colspan="30" class="partition">{$info['show_title']}</th></tr>
+<tr class="header">
+  <th width="30">&nbsp;</th>
+  <th width="250"> {lang milu_seotool:title}</th>
+  <th width="85">{lang milu_seotool:category}</th>
+  <th width="100">{lang milu_seotool:public_dateline}</th>
+  {if $info['show_include']['baidu']}
+  <th width="100">{lang milu_seotool:baidu_count}</th>
+  {/if}
+  {if $info['show_ping']['baidu']}
+  <th width="100">{lang milu_seotool:baidu_ping}</th>
+  {/if}
+  {if $info['show_spider']['baidu']}
+  <th width="100">{lang milu_seotool:baidu_spider_count}</th>
+  <th width="100">{lang milu_seotool:baidu_last_spider}</th>
+  {/if}
+  {if $info['show_include']['google']}
+  <th width="100">{lang milu_seotool:google_count}</th>
+   {/if}
+    {if $info['show_ping']['google']}
+  <th width="100">{lang milu_seotool:google_ping}</th>
+  {/if}
+  {if $info['show_spider']['google']}
+  <th width="100">{lang milu_seotool:google_spider_count}</th>
+  <th width="100">{lang milu_seotool:google_last_spider}</th>
+  {/if}
+  {if $info['show_include']['baidu']}
+  <th width="100">{lang milu_seotool:baidu_check_update}</th>
+   {/if}
+    {if $info['show_include']['google']}
+  <th width="100">{lang milu_seotool:google_check_update}</th>
+   {/if}
+  </tr>
+<!--{if $info['list']}-->
+<!--{loop $info['list'] $key $rs}-->
+<tr class="hover">
+  <td width="30" ><input type="checkbox" name="ids[]" value="{$rs['aid']}"  class="checkbox"></td>
+  <td width="250" ><a href="{$rs['view_url']}" target="_blank">{$rs['subject']}</a></td>
+  <td width="85"><a href="{$rs['cat_url']}" target="_blank">{$rs['cat_name']}</a></td>
+  <td width="100" valign="middle">{$rs['dateline']}</td>
+   {if $info['show_include']['baidu']}
+  <td width="100"><a target="_blank" href="http://www.baidu.com/s?wd={eval echo urlencode($rs['view_url'])}">{$info['included_data'][$rs['aid']]['baidu_included']}</a></td>
+   {/if}
+  {if $info['show_ping']['baidu']}
+  <td width="100">{$info['included_data'][$rs['aid']]['baidu_ping']}</td>
+   {/if}
+  {if $info['show_spider']['baidu']}
+  <td width="100">{$info['included_data'][$rs['aid']]['baidu_spider_count']}</td>
+  
+  <td width="100">{$info['included_data'][$rs['aid']]['baidu_spider_last']}</td>
+   {/if}
+  {if $info['show_include']['google']}
+  <td width="100"><a target="_blank" href="http://www.google.com.hk/search?q={eval echo urlencode($rs['view_url'])}">{$info['included_data'][$rs['aid']]['google_included']}</a></td>
+   {/if}
+    {if $info['show_ping']['google']}
+  <td width="100">{$info['included_data'][$rs['aid']]['google_ping']}</td>
+   {/if}
+  {if $info['show_spider']['google']}
+  <td width="100">{$info['included_data'][$rs['aid']]['google_spider_count']}</td>
+  <td width="100">{$info['included_data'][$rs['aid']]['google_spider_last']}</td>
+  {/if}
+  {if $info['show_include']['baidu']}
+  <td width="100" valign="middle">{$info['included_data'][$rs['aid']]['baidu_modify_dateline']}</td>
+  {/if}
+    {if $info['show_include']['google']}
+  <td width="100" valign="middle">{$info['included_data'][$rs['aid']]['google_modify_dateline']}</td>
+  {/if}
+  </tr>
+<!--{/loop}-->
+<!--{else}-->
+<tr>
+  <td colspan="30" align="center">{lang milu_seotool:online_no_data}</td>
+</tr>
+ <!--{/if}-->
+ <tr>
+   <td colspan="30"><div class="fixsel" style="height:30px; line-height:30px;"><input type="checkbox" name="chkall" id="checkbox123" onclick="checkAll('prefix', this.form, 'ids')" class="checkbox">
+  <label for="checkbox123">{lang milu_pick:select_all}</label> &nbsp;<div class="cuspages right">{$info['multipage']}</div></td>
+ </tr>
+</table> 
+<table class="tb tb2 nobdt">
+<tbody><tr><th colspan="15" class="partition">{lang milu_seotool:op}</th></tr>
+<tr class="header"><th></th><th>{lang milu_seotool:op}</th><th>{lang milu_seotool:_select_types}</th></tr>
+
+<tr class="hover">
+  <td class="td25">&nbsp;</td>
+  <td class="td24">{lang milu_seotool:op_select_range}</td>
+  <td class="rowform" style="width:auto;">{$info['op_select_range']}</td>
+</tr>
+
+
+<tr class="hover">
+  <td class="td25">&nbsp;</td>
+  <td class="td24">{lang milu_seotool:op_select_type}</td>
+  <td class="rowform" style="width:auto;">{$info['op_select']}</td>
+</tr>
+<tr class="hover">
+  <td class="td25">&nbsp;</td>
+  <td class="td24"></td>
+  <td class="rowform" style="width:auto;">{$info['op_select_type']}  {lang milu_seotool:run_types_notice}</td>
+</tr>
+
+<tr class="hover"><td class="td25">&nbsp;</td>
+  <td class="td24">{lang milu_seotool:per_run_num}</td>
+  <td class="rowform" style="width:auto;"><span class="rowform" style="width:auto;">
+    <input name="article_batch_num" type="text" id="article_batch_num" value="15" size="5">
+{lang milu_seotool:per_run_num_notice}</span></td>
+</tr>
+<input name="search_args" type="hidden" value="{$info['search_args']}">
+  <tr><td colspan="15"><div class="fixsel"> <input type="submit" class="btn" id="submit_modsubmit" name="submit" title="" value="{lang milu_seotool:submit}"></div></td></tr></tbody></table>
+</form>

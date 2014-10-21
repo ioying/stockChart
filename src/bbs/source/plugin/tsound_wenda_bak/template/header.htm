@@ -1,0 +1,47 @@
+{subtemplate common/header}
+<div id="wp" class="wp">
+<link href="./source/plugin/tsound_wenda/template/images/style.css" rel="stylesheet" type="text/css">
+<link href="./source/plugin/tsound_wenda/template/images/wenda.css" rel="stylesheet" type="text/css">
+<script src="./source/plugin/tsound_wenda/template/jquery15.min.js" ></script>
+<script type="text/javascript">
+var jqwenda = jQuery.noConflict(true);
+jqwenda(function(){
+	if(jqwenda(".wp").width()>960){
+		  jqwenda("#bdarticle").css("width",jqwenda(".wp").width()-410);
+		  jqwenda(".extra").css("width", 200);
+		  jqwenda("#qaside").css("width", 200);
+		  jqwenda("#caside").css("width", 200);
+	}else{
+		  jqwenda("#bdarticle").css("width",jqwenda(".wp").width()-440);
+		  jqwenda(".extra").css("width", 220);
+		  jqwenda("#qaside").css("width", 220);
+		  jqwenda("#caside").css("width", 220);
+
+	}
+	  jqwenda("#qarticle").css("width",jqwenda(".wp").width()-220);
+		
+	  jqwenda("#carticle").css("width",jqwenda(".wp").width()-220);
+})
+function resizeWe(){
+	if(jqwenda(".wp").width()>960){
+		  jqwenda("#bdarticle").css("width",jqwenda(".wp").width()-410);
+		  jqwenda(".extra").css("width", 200);
+		  jqwenda("#qaside").css("width", 200);
+		  jqwenda("#caside").css("width", 200);
+
+	}else{
+		  jqwenda(".extra").css("width", 220);
+		  jqwenda("#bdarticle").css("width",jqwenda(".wp").width()-440);
+		  jqwenda("#qaside").css("width", 220);
+		  jqwenda("#caside").css("width", 220);
+
+	}
+	jqwenda("#qarticle").css("width",jqwenda(".wp").width()-220);
+	
+	jqwenda("#carticle").css("width",jqwenda(".wp").width()-220);
+	setTimeout("resizeWe()",1000);
+}
+
+setTimeout("resizeWe()",1000);
+ 
+</script>

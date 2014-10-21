@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="From"><![CDATA[³±Á÷ÉÙÄê¹¤×÷ÊÒ Teen Studio (http://teen-s.coms.hk)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[ÐÄÇéÇ½]]></item>
+			<item id="identifier"><![CDATA[lianwei]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[lianwei]]></item>
+			<item id="directory"><![CDATA[lianwei/]]></item>
+			<item id="copyright"><![CDATA[xiechunye & ³±Á÷ÉÙÄê¹¤×÷ÊÒ]]></item>
+			<item id="version"><![CDATA[1.2.2]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[lianwei]]></item>
+					<item id="menu"><![CDATA[ÐÄÇéÇ½]]></item>
+					<item id="url"><![CDATA[plugin.php?id=lianwei]]></item>
+					<item id="type"><![CDATA[1]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[¿ìÀ´Êã·¢ÄúµÄÐÄÇé°É£¡]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5,X1.5.1,X2,X2.5]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="lianwei_inc_php_1"><![CDATA[ÈçÒª»ñµÃ×î¼ÑµÄä¯ÀÀÐ§¹û£¬ÇëÊ¹ÓÃ]]></item>
+				<item id="lianwei_inc_php_2"><![CDATA[´íÎó£¬ÎÞÐ§µÄ²Ù×÷]]></item>
+				<item id="lianwei_inc_php_3"><![CDATA[ÇÐÎðÊ¹ÓÃ·Ç·¨Í¾¾¶±à¼­ÐÄÇé]]></item>
+				<item id="lianwei_inc_php_4"><![CDATA[ÇëÊäÈëÄãµÄÐÄÇé£¬Çë·µ»Ø¡£]]></item>
+				<item id="lianwei_inc_php_5"><![CDATA[¹§Ï²£¬ÄãÒÑ³É¹¦±à¼­ÐÄÇé¼ÇÂ¼£¡]]></item>
+				<item id="lianwei_inc_php_6"><![CDATA[É¾³ý³É¹¦£¡]]></item>
+				<item id="lianwei_inc_php_7"><![CDATA[ÇÐÎðÊ¹ÓÃ·Ç·¨Í¾¾¶·¢±íÐÄÇé]]></item>
+				<item id="lianwei_inc_php_8"><![CDATA[ÇëÑ¡ÔñÄãµÄ±³¾°ÑÕÉ«£¬Çë·µ»Ø¡£]]></item>
+				<item id="lianwei_inc_php_9"><![CDATA[ÇëÑ¡ÔñÄãµÄÐÄÇéÍ¼±ê£¬Çë·µ»Ø¡£]]></item>
+				<item id="lianwei_inc_php_10"><![CDATA[¹§Ï²£¬ÄãÒÑ³É¹¦·¢±íÐÄÇé¼ÇÂ¼£¡]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="lianwei_htm_1"><![CDATA[ÐÄÇéÇ½]]></item>
+				<item id="lianwei_htm_2"><![CDATA[µÚ]]></item>
+				<item id="lianwei_htm_3"><![CDATA[Ìõ]]></item>
+				<item id="lianwei_htm_4"><![CDATA[]]></item>
+				<item id="lianwei_htm_5"><![CDATA[¹Ø±ÕÖ½Ìõ]]></item>
+				<item id="lianwei_htm_6"><![CDATA[¡Á]]></item>
+				<item id="lianwei_htm_8"><![CDATA[ÎÒÒªÊã·¢ÐÄÇé]]></item>
+				<item id="lianwei_htm_10"><![CDATA[ÇëÑ¡ÔñÒ»¸ö×îÄÜÐÎÈÝÄãÏÖÔÚÐÄÇéµÄ±³¾°£º]]></item>
+				<item id="lianwei_htm_11"><![CDATA[ÇëÑ¡ÔñÄãÏÖÔÚµÄÐÄÇé£º]]></item>
+				<item id="lianwei_htm_12"><![CDATA[ÇëÊäÈëÄãÕâ¿ÌÏëËµµÄ»°£º]]></item>
+				<item id="lianwei_htm_13"><![CDATA[×î¶à¿ÉÒÔÊäÈë100¸ö×Ö]]></item>
+				<item id="lianwei_htm_14"><![CDATA[Äã×î¶à¿ÉÒÔÊäÈë£º100×Ö£¬»¹Ê££º]]></item>
+				<item id="lianwei_htm_15"><![CDATA[×Ö]]></item>
+				<item id="lianwei_htm_16"><![CDATA[·¢±íÐÄÇé¼ÇÂ¼]]></item>
+				<item id="lianwei_htm_18"><![CDATA[ÎÒµÄËùÓÐÐÄÇé]]></item>
+				<item id="lianwei_htm_19"><![CDATA[ÐÄÇé]]></item>
+				<item id="lianwei_htm_21"><![CDATA[ÕæÇéÄÚÈÝ¸æ°×]]></item>
+				<item id="lianwei_htm_22"><![CDATA[·¢±íÊ±¼ä]]></item>
+				<item id="lianwei_htm_23"><![CDATA[±à¼­]]></item>
+				<item id="lianwei_htm_24"><![CDATA[È«Ñ¡]]></item>
+				<item id="lianwei_htm_25"><![CDATA[É¾³ýÒÑÑ¡µÄÐÄÇé¼ÇÂ¼]]></item>
+				<item id="lianwei_htm_26"><![CDATA[Äã²¢Ã»ÓÐÔÚÐÄÇéÇ½ÉÏÁôÑÔ°¡£¡]]></item>
+				<item id="lianwei_htm_28"><![CDATA[±à¼­ÎÒµÄÐÄÇé]]></item>
+				<item id="lianwei_htm_31"><![CDATA[±³¾°]]></item>
+				<item id="lianwei_htm_36"><![CDATA[±à¼­ÐÄÇé¼ÇÂ¼]]></item>
+				<item id="lianwei_htm_38"><![CDATA[Ì³ÓÑËùÓÐÐÄÇé]]></item>
+				<item id="lianwei_htm_40"><![CDATA[ÐÄÇé·¢²¼Õß]]></item>
+				<item id="lianwei_htm_44"><![CDATA[Ã»ÓÐÌ³ÓÑÔÚÐÄÇéÇ½ÉÏÁôÑÔ°¡£¡]]></item>
+				<item id="lianwei_htm_46"><![CDATA[ÐÄÇéÇ½¹ÜÀíÖÐÐÄ]]></item>
+				<item id="lianwei_htm_47"><![CDATA[ÐÄÇé¼ÇÂ¼¹ÜÀí]]></item>
+				<item id="lianwei_htm_55"><![CDATA[ÐÄÇéÇ½ÉÏ²¢Ã»ÓÐÁôÑÔ£¡]]></item>
+				<item id="lianwei_side_htm_1"><![CDATA[¡ú]]></item>
+				<item id="lianwei_side_htm_2"><![CDATA[Ê²Ã´ÊÇÐÄÇéÇ½]]></item>
+				<item id="lianwei_side_htm_3"><![CDATA[ÐÄÇéÇ½ÊÇ¸ø»áÔ±Êã·¢ÐÄÇéµÄµØ·½£¬ÓÃ»§¿ÉÒÔ·¢±í×Ô¼ºµÄÐÄÇé£¬²¢Ñ¡ÔñÐÄÇéÍ¼±êºÍ±³¾°£¬ÄÜ¹»ÈÃÓÃ»§¸ü¼Ó»¥¶¯ÆðÀ´£¡]]></item>
+				<item id="lianwei_side_htm_4"><![CDATA[²å¼þÐÅÏ¢]]></item>
+				<item id="lianwei_side_htm_5"><![CDATA[Ô­×÷Õß£º]]></item>
+				<item id="lianwei_side_htm_6"><![CDATA[¶þ´Î¿ª·¢£º]]></item>
+				<item id="lianwei_side_htm_7"><![CDATA[³±Á÷ÉÙÄê¹¤×÷ÊÒ]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+		<item id="license"><![CDATA[[list]¸ÐÐ»ÄúÑ¡ÔñÊ¹ÓÃ±¾²å¼þ¡£°²×°±¾²å¼þÖ®Ç°£¬Çë×ÐÏ¸ÔÄ¶ÁÒÔÏÂËùÓÐÄÚÈÝ
+
+[b]°²×°×¢ÒâÊÂÏî[/b]
+[1]±¾²å¼þÎªDiscuz!ÐÂÄÚºË²å¼þ£¬ÂÌÉ«°²×°¼°ÂÌÉ«Ê¹ÓÃ£¬ÊÊÓÃÓÚDiscuz! X1.5-X2.5Õ¾µã
+[2]ÊÇ·ñ¸ü¸ÄDiscuz!Ô­ÓÐÊý¾Ý¿â£º·ñ
+[3]ÊÇ·ñÐÂÔöÊý¾Ý¿â£ºÊÇ
+[4]ÊÇ·ñÐèÒªÊÖ¶¯ÐÞ¸ÄDiscuz!ÎÄ¼þ£º·ñ
+
+[b]ÊÚÈ¨Ð­Òé[/b]
+[1]±¾²å¼þÎªxiechunyeÉè¼Æ¿ª·¢£¬Marco129@³±Á÷ÉÙÄê¹¤×÷ÊÒ(Teen Studio)¶þ´Î¿ª·¢£¬²¢ÒÀ·¨ÓµÓÐ°æÈ¨¡£
+[2]±¾²å¼þÎªÃâ·Ñ¹«¿ª·¢²¼£¬ÑÏ½ûÐÞ¸ÄÈÎºÎ°æÈ¨ËµÃ÷¡¢½øÐÐÈÎºÎ¶þ´Î¿ª·¢¡¢×ªÔØ²»±£ÁôÔ­°æÈ¨¡¢½øÐÐ³ö×â/³öÊÛ/µÖÑº»ò·¢·ÅÐí¿ÉÖ¤¡£
+[3]Ãâ·Ñ°æ²å¼þÌá¹©ÂÛÌ³¼¼ÊõÖ§³ÖºÍÉý¼¶°æ±¾ÏÂÔØ£¬ÉÌÒµ°æ²å¼þ¸üÌá¹©È¥³ý°æÈ¨Ö§³Ö¼°²úÆ·±¾Éí°²È«Ô¤¾¯µÈ·þÎñ¡£
+[4]±¾²å¼þ²»µÃÓÃÓÚÉÌÒµÊ¹ÓÃ£¬ÈçÐè½øÐÐÉÌÒµÐÐÎªÇëÓë×÷ÕßÁªÏµ»ñµÃÉÌÒµÐí¿É¡£
+[5]°²×°ºÍÊ¹ÓÃ²å¼þÓÐ·çÏÕ£¬ÈçÒò°²×°¡¢Ê¹ÓÃ´Ë²å¼þËùÔì³ÉµÄÈÎºÎ²»Á¼Ó°Ïì£¬×÷Õß²»¸ºÔðÈÎºÎÖ±½Ó»ò¼ä½ÓµÄÔðÈÎ¡£
+[6]×÷ÕßÖ»ÊÇÒµÓàÐ´²å¼þµÄ£¬²»ÄÜ¾­³£Î¬»¤±¾²å¼þ£¬¶ÔÓÚ²å¼þ±¾ÉíµÄÎÊÌâ×÷Õß»á¸øÓèÐÞÕý£¬µ«²»¶ÔÈÎºÎµÚÈý·½ÐÞ¸Ä°æ±¾½øÐÐ¼¼ÊõÖ§³ÖºÍÉý¼¶¡£
+[7]ÄãÒ»µ©¿ªÊ¼°²×°±¾²å¼þ£¬¼´±»ÊÓÎªÍêÈ«Àí½â²¢½ÓÊÜ±¾ÊÚÈ¨Ð­ÒéµÄ¸÷ÏîÌõ¿î¡£
+[8]²å¼þ×÷ÕßÓµÓÐ¶Ô±¾ÊÚÈ¨Ð­ÒéµÄ×îÖÕ½âÊÍÈ¨¡£[/list]]]></item>
+                <item id="intro"><![CDATA[[b][color=green]¡¾Teen Studio¡¿ÐÄÇéÇ½[/color][/b]
+ÐÄÇéÇ½ÊÇ¸ø»áÔ±Êã·¢ÐÄÇéµÄµØ·½£¬ÓÃ»§¿ÉÒÔ·¢±í×Ô¼ºµÄÐÄÇé£¬²¢Ñ¡ÔñÐÄÇéÍ¼±êºÍ±³¾°£¬ÄÜ¹»ÈÃÓÃ»§¸ü¼Ó»¥¶¯ÆðÀ´£¡
+±¾²å¼þÊÇ¸ù¾Ýxiechunye¡¶ÐÄÇéÇ½¡·µÄ»ù´¡ÉÏ½øÐÐ¶þ´Î¿ª·¢¡£
+Ê¹ÓÃÎÊÌâ/BUG·´À¡¿Éµ½[url=http://teen-s.coms.hk]³±Á÷ÉÙÄê¹¤×÷ÊÒ¹Ù·½Õ¾µã[/url]Ìá³ö]]></item>
+	</item>
+</root>

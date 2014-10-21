@@ -1,0 +1,35 @@
+<!--{subtemplate common/header}-->
+<h3 class="flb">
+<em id="return_pay">
+{lang tsound_wenda:gvar1}</em>
+<span>
+<a href="javascript:;" class="flbc" onclick="hideWindow('tsound_wenda')" title="{lang tsound_wenda:gvar2}">{lang tsound_wenda:gvar2}</a>
+</span>
+</h3>
+<!--{if $credit>=$cvar['p_credits']}-->
+<form method="post" autocomplete="off" id="payform" name="payform" action="plugin.php?id=tsound_wenda:xm&amp;qid={$qid}&amp;submit=yes" onsubmit="ajaxpost(this.id, 'floatlayout_tsound_wenda');return false;">
+<div id="floatlayout_tsound_wenda">
+<div class="c">
+<div class="p_c">
+<input type="hidden" name="handlekey" value="$_GET[handlekey]" />
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<input type="hidden" name="referer" value="<?php echo dreferer();?>" />
+</div>
+{lang tsound_wenda:gvar3}
+</div>
+<div class="o pns" id="moreconf">
+<button type="submit" id="ztxmsubmit" class="pn pnc" value="true" name="ztxmsubmit"><span>{lang tsound_wenda:gvar4}</span></button>
+</div>
+</div>
+</form>
+<script>
+function succeedhandle_$_GET['handlekey'](locationhref, message, param) {
+	location.href = locationhref;
+}
+</script>
+<!--{else}-->
+<div id="floatlayout_pay">
+	{lang tsound_wenda:gvar5}
+</div>
+<!--{/if}-->
+<!--{subtemplate common/footer}-->

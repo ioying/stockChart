@@ -1,0 +1,31 @@
+<!--{template milu_seotool:header}-->
+<script language='javascript' src='{PLUGIN_URL}lib/MyFCPHPClassCharts/FusionCharts/FusionCharts.js'></script>
+
+
+<div class="tb tb2 ">
+<span class="partition">{$info['show_title']}</span>
+</div>
+
+<form method="post" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}">
+<table cellspacing="0" cellpadding="0" class="dt bm mbw" style="width:870px;">
+
+<tbody><tr class="tbmu">
+<th>{lang milu_seotool:spider_type}:</th>
+<td>{$info['view_show']['data_type']}</td>
+</tr>
+<tr class="tbmu">
+  <th>{lang milu_seotool:count_dateline}:</th>
+  <td>
+  <script src="static/js/calendar.js?3R4" type="text/javascript"></script>
+  <input type="text" name="start_dateline" class="px" value="{$info['start_dateline']}" onclick="showcalendar(event, this, false)"> - <input type="text" name="end_dateline" class="px" value="{$info['end_dateline']}" onclick="showcalendar(event, this, false)">
+  
+  <button type="submit" class="pn pnc"><strong>{lang milu_seotool:view}</strong></button>
+  </td>
+</tr>
+</tbody></table>
+<table cellspacing="0" cellpadding="0" style="width:95%;">
+<tbody>
+<tr><td>
+{$info['chart_flash']}</td></tr>
+</tbody></table>
+</form>

@@ -1,0 +1,42 @@
+.tsound_box{
+  width:200px;
+  position: relative;
+  left:8px;
+}
+.tsound_box div{
+}
+.tsound_top{
+  background:url(box_top.png) no-repeat 0 0;
+  height:8px;
+  overflow:hidden;
+}
+.tsound_main{
+  background:url(box_bg.png) repeat-y 0 0;
+  position: relative;
+}
+.tsound_main ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.tsound_main ul li{
+  list-style:none;
+  line-height:20px;
+  padding:0;
+  padding-left:12px;
+  margin:0;
+}
+.tsound_bar{
+  background:url(box_bar.png) no-repeat 0 0;
+  position: absolute;
+  width:9px;
+  height:10px;
+  left:-6px;
+  top:6px;
+  overflow:hidden;
+}
+.tsound_bottom{
+  background:url(box_bottom.png) no-repeat 0 0;
+  height:9px;
+  overflow:hidden;
+}

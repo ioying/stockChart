@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2,X2.5,X3,X3.1]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="name"><![CDATA[ssound]]></item>
+			<item id="identifier"><![CDATA[ssound]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="version"><![CDATA[1.2]]></item>
+		</item>
+		<item id="version"><![CDATA[X2,X2.5,X3,X3.1]]></item>
+	</item>
+</root>

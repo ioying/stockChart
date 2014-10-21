@@ -1,0 +1,83 @@
+/*
+	[smjy] Yingling Lianwei
+	Copyright (c) 2009-2013 smjy(http://www.smjy.org)
+	$Id: extend_common.css 2013-12-21 smjy $
+*/
+
+.datalist { zoom: 1; }
+.datalist table { margin-bottom: 30px; width: 100%; border: 1px solid {COMMONBORDER}; }
+.datalist th, .datalist td { padding: 4px 5px; border: 1px solid {COMMONBORDER}; font-weight: 400; }
+.datalist th img { vertical-align: top; }
+.datalist table .stat_subject { border-right: none; }
+.datalist table .stat_num { padding-right: 15px; text-align: right; border-left: none; }
+
+.datalist .datatable { margin-bottom: 10px; }
+.datalist .datatable, .datalist .datatable th, .datalist .datatable td { border-width: 1px 0; }
+.datalist .fixtable { table-layout: fixed; }
+
+.colplural, .colplural th, .colplural td, th.highlight, td.highlight { background-color: {COMMONBG}; }
+
+#content_lianwei { position: relative; height: 483px; }
+#content_lianwei div { width: 24px; }
+#content_lianwei .drag { cursor: move; }
+#content_lianwei .scrip1 { color: #4b4b4b; position: absolute; }
+#content_lianwei .scrip1 .shead { padding-left: 1px; padding-top: 5px; height: 18px; }
+#content_lianwei .scrip1 .sbody { width:11px;height:170px;overflow:hidden }
+#content_lianwei .scrip1 .sbot { width:50px;height:170px;overflow:hidden;font-size:50px;font-weight:bold }
+#content_lianwei .scrip1 .sadd {padding-top:1px; font-size:20px;}
+
+
+
+#contentlianwei .scrip_lianwei.shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a9.gif); padding-top:40px; height: 108px; }  
+
+#contentarea { position: relative; height: 683px; }
+#contentarea div { width: 195px; }
+#contentarea .scrip_lianwei.shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a9.gif); padding-top:40px; height: 108px; }  
+
+#contentarea .drag { cursor: move; }
+#contentarea .scrip1 { color: #4b4b4b; position: absolute; }
+#contentarea .scrip1 a { color: #4b4b4b; text-decoration: none; }
+#contentarea .scrip1 .shead { padding-left: 18px; padding-top: 50px; background: url(../../source/plugin/lianwei/template/images/a1_1.gif); height: 18px; }
+#contentarea .scrip1 .sbody { background: url(../../source/plugin/lianwei/template/images/a1_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip1 .sbot { background: url(../../source/plugin/lianwei/template/images/a1_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip2 { color: #1e7119; position: absolute; }
+#contentarea .scrip2 a { color: #1e7119; text-decoration: none; }
+#contentarea .scrip2 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a2_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip2 .sbody { background: url(../../source/plugin/lianwei/template/images/a2_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip2 .sbot { background: url(../../source/plugin/lianwei/template/images/a2_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip3 { color: #cb2f3c; position: absolute; }
+#contentarea .scrip3 a { color: #cb2f3c; text-decoration: none; }
+#contentarea .scrip3 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a3_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip3 .sbody { background: url(../../source/plugin/lianwei/template/images/a3_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip3 .sbot { background: url(../../source/plugin/lianwei/template/images/a3_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip4 { color: #8c4d00; position: absolute; }
+#contentarea .scrip4 a { color: #8c4d00; text-decoration: none; }
+#contentarea .scrip4 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a4_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip4 .sbody { background: url(../../source/plugin/lianwei/template/images/a4_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip4 .sbot { background: url(../../source/plugin/lianwei/template/images/a4_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip5 { color: #007845; position: absolute; }
+#contentarea .scrip5 a { color: #007845; text-decoration: none; }
+#contentarea .scrip5 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a5_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip5 .sbody { background: url(../../source/plugin/lianwei/template/images/a5_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip5 .sbot { background: url(../../source/plugin/lianwei/template/images/a5_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip6 { color: #417000; position: absolute; }
+#contentarea .scrip6 a { color: #417000; text-decoration: none; }
+#contentarea .scrip6 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a6_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip6 .sbody { background: url(../../source/plugin/lianwei/template/images/a6_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip6 .sbot { background: url(../../source/plugin/lianwei/template/images/a6_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip7 { color: #aa348c; position: absolute; }
+#contentarea .scrip7 a { color: #aa348c; text-decoration: none; }
+#contentarea .scrip7 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a7_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip7 .sbody { background: url(../../source/plugin/lianwei/template/images/a7_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip7 .sbot { background: url(../../source/plugin/lianwei/template/images/a7_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip8 { color: #006586; position: absolute; }
+#contentarea .scrip8 a { color: #006586; text-decoration: none; }
+#contentarea .scrip8 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a8_1.gif); padding-top: 50px; height: 18px; }
+#contentarea .scrip8 .sbody { background: url(../../source/plugin/lianwei/template/images/a8_2.gif); width: 145px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip8 .sbot { background: url(../../source/plugin/lianwei/template/images/a8_3.gif); width: 145px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip9 { color: #006586; position: absolute; }
+#contentarea .scrip9 a { color: #006586; text-decoration: none; }
+#contentarea .scrip9 .shead { padding-left: 18px; background: url(../../source/plugin/lianwei/template/images/a9_1.gif); padding-top: 50px; height: 118px; }
+#contentarea .scrip9 .sbody { background: url(../../source/plugin/lianwei/template/images/a9_2.gif); width: 94px; line-height: 18px; text-align: left; padding: 20px 25px 20px 30px; }
+#contentarea .scrip9 .sbot { background: url(../../source/plugin/lianwei/template/images/a9_3.gif); width: 96px; height: 47px; padding: 20px 20px 5px 30px; }
+#contentarea .scrip1 .sbot h2,#contentarea .scrip2 .sbot h2,#contentarea .scrip3 .sbot h2,#contentarea .scrip4 .sbot h2,#contentarea .scrip5 .sbot h2,#contentarea .scrip6 .sbot h2,#contentarea .scrip7 .sbot h2,#contentarea .scrip8 .sbot h2.scrip9 .sbot h2 { margin-top: 7px; float: right; }

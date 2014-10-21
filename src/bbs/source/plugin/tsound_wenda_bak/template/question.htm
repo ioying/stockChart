@@ -1,0 +1,185 @@
+<!--{template tsound_wenda:header}-->
+<link href="./source/plugin/tsound_wenda/template/images/detail.combo.css" rel="stylesheet" type="text/css">
+<style>
+.wd_other {
+  margin-top:10px;
+}
+.wd_other li {
+  margin-left: 25px;
+  border-bottom: 1px dashed #BBB;
+  padding: 5px 0;
+}
+.wd_other li .wd_l{
+  display: inline;
+  float: left;
+  line-height: 24px;
+}
+.wd_other li .c_f{
+  color: #5EBB0B;
+}
+.wd_other li .c_a{
+  color: #999;
+}
+.wd_other li .c_b{
+  color: blue;
+}
+.wd_other li .wd_r{
+  margin-left: 20px;
+  display: inline;
+  float: left;
+  line-height: 24px;
+}
+.wd_other li .wd_cl{
+  clear:both;
+}
+</style>
+<div id="bd" class="grid-3 clearfix"  >
+  <div id="qarticle" class="article" id="js-detail">
+    <div class="mod-question js-form">
+      <div class="hd"><span class="ico $resloved"></span>
+        <h3 class="title">$Q['title']</h3>
+        <input type="hidden" value="$Q['title']" id="js-ask-title">
+        <!--{if $Q['coin']>=$tsound_wenda['high']}-->
+        <span class="ico-emergency"></span>
+        <!--{/if}-->
+        <span class="wealth">$Q['coin']</span>
+        <div class="label"><a target="_blank" href="home.php?mod=space&uid=$Q['uid']" class="author" id="ask-author">$Q['username']</a>&nbsp;|&nbsp;<span class="pubtime">$time</span>&nbsp;|&nbsp;<span>{lang tsound_wenda:fl}<a href="$baseurl&action=category">{lang tsound_wenda:allquestion}</a> $where</span></div>
+      </div>
+      <div class="bd">
+        <div class="mod-added-q js-added-area">
+        {$Q['content'][0]}
+        </div>
+      </div>
+      <div class="ft">
+        {$Q['content'][1]}
+      </div>
+    </div>
+    
+    <!--{if $_G['uid'] && !$A}-->
+    <div class="mod-answer-form js-form" style="background-color: #FFF;">
+      <div class="hd">
+        <h4>{lang tsound_wenda:myanswer}</h4>
+      </div>
+      <div class="bd"  >
+        <form id="editform" method="post" type="0" onsubmit="return checkform()">
+          <textarea name="content" id="content"  class="textarea js-editor " style="width: 638px;border:1px solid #3db40c"></textarea>
+          <div id="js-answer-error" class="erro js-form-error"></div>
+          <input name="qid" type="hidden" value="$Q['qid']">
+          <input name="cid" type="hidden" value="$Q['cid']">
+          <input name="rid" id="rid" type="hidden" value="">
+          <div class="soundbtn" style="float:left;padding-top:0px">
+<style>
+.addsound{
+  position: relative;
+  top: -5px;
+  color:#666666;
+  text-decoration:none;
+}
+.addsound:hover{
+  color:#666666;
+  text-decoration:underline;
+}
+</style>
+          <span class="addimg">
+            {$flash}
+            <a href="$baseurl&action=insert" onclick="showWindow('tsound_wenda', this.href)" class="addsound"><img src="./source/plugin/tsound_wenda/template/images/tsound_small.png" align="absmiddle" />{lang tsound_wenda:addsound}</a>
+          </span>
+          <span id="playerbox"></span>
+          </div>
+          <span class="btn btn-2">
+          <button type="submit" id="submit" class="js-added-submit" text="answer-submit">{lang tsound_wenda:addanswer}</button>
+          </span>
+        </form>
+      </div>
+    </div>
+    <!--{/if}-->
+    <!--{if $A}-->
+    <div class="mod-answer-form" style="border-bottom:none;height:0px;"></div>
+<div class="mod-answer-one mod-answer-best">
+  <div class="hd" style="background-color: #FFF;">
+    <h4>{lang tsound_wenda:best}</h4>
+    <p class="pubtime">$A['time']</p>
+    <div class="ico-best"></div>
+  </div>
+  <div class="bd" id="js-static-bestanswer" style="background-color: #FFF;">
+    <div class="content">{$A['content'][0]}</div>
+    <div class="mod-add-answer-box">
+      <div class="mod-add-qa-list js-added-area" style="display:none;"></div>
+    </div>
+  </div>
+  <div class="ft" style="position: relative;">
+    <div class="vcard-user"><a target="_blank" href="home.php?mod=space&uid=$Q['uid']" class="pic">{echo avatar($A['uid'],small);}</a>
+      <div class="text">
+        <p class="name"><a target="_blank" href="home.php?mod=space&uid=$Q['uid']">$A['username']</a></p>
+        <span class="wealth">{$A['money']}</span>
+      </div>
+    </div>
+    <a style="display:none;" data-agree="0" class="btn btn-1 btn-zan "><span>0</span></a><span class="tips js-ilike-tips">+1</span></div>
+</div>
+
+    <!--{/if}-->
+    <div class="mod-answer-list" id="answerList">
+      <div class="hd"  >
+        <h4><b>({$answer_count})</b>&nbsp;</h4>
+        <span class="ico "></span></div>
+      <div class="bd"   >
+        <p class="ask-q-time"><span></span></p>
+        <div class="mod-all-answer-list">
+          <ul class="list">
+            <!--{loop $answers $answer}-->
+            <li class="item js-form {$answer['odd']}">
+              <div class="date"><span>$answer['day']</span></div>
+              <div class="dot" title="$answer['time']"></div>
+              <div class="answer-detail  clearfix js-answer-region">
+                <div class="vcard"><a target="_blank" href="home.php?mod=space&uid=$answer['uid']">{echo avatar($answer['uid'],small);}$answer['username']</a></div>
+                <div class="content-box">
+                  <div class="mod-qa-content">
+                    <div class="g-point g-point-left"><ins class="border"></ins><ins class="bg"></ins></div>
+                    <div class="content">{$answer['content'][0]}</div>
+                  </div>
+                  {$answer['content'][1]}
+                </div>
+              </div>
+              <div class="js-added-area" style="display:"></div>
+            </li>
+            <!--{/loop}-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="aside"  id="qaside"  >
+    <!--{template tsound_wenda:side}-->
+  </div>
+</div>
+
+<script type="text/javascript" reload="1">
+function OnezUploadCall(s){
+  if(s.substr(0,2)=='ok'){
+    try{
+      $('content2').value+=s.substr(2);
+    }catch(e){
+      $('content').value+=s.substr(2);
+    }
+    return;
+  }
+}
+function checkform(){
+  var content=$('content').value;
+  var rid=$('rid').value;
+  if(content.length<1){
+    alert('{lang tsound_wenda:content_none}');
+    $('content').focus();
+    return false;
+  }
+<!--{if $tsound_wenda['force2']}-->
+  if(rid.length<1){
+    alert('{lang tsound_wenda:sound_none}');
+    return false;
+  }
+<!--{/if}-->
+  return true;
+}
+</script> 
+
+<!--{template tsound_wenda:footer}-->

@@ -1,0 +1,153 @@
+{eval
+	$_G[home_tpl_spacemenus][] = "<a href=\"home.php?mod=space&uid=$space[uid]&do=blog&view=me\">{lang they_blog}</a>";
+	$friendsname = array(1 => '{lang friendname_1}',2 => '{lang friendname_2}',3 => '{lang friendname_3}',4 => '{lang friendname_4}');
+}
+
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em>
+		<!--{if $diymode}--><a href="home.php?mod=space&uid=$space[uid]">{$space[username]}</a> <em>&rsaquo;</em><!--{/if}-->
+		<a href="home.php?mod=space&do=blog">{lang blog}</a>
+	</div>
+</div>
+<style id="diy_style" type="text/css"></style>
+<div class="wp">
+	<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+<div id="ct" class="ct2 ct2_sp wp cl">
+	<!--{if $diymode}-->
+		<!--{template home/space_menu}-->
+		<div class="bm">
+			<div class="bm_c cl">
+	<!--{/if}-->
+	<div class="sd">
+		<!--[diy=diy2]--><div id="diy2" class="area"></div><!--[/diy]-->
+	</div>
+	<div class="mn">
+		<!--[diy=diycontenttop]--><div id="diycontenttop" class="area"></div><!--[/diy]-->
+		<!--{if $_G[uid] && empty($diymode)}-->
+			<ul class="tb tb_w cl">
+				<li$actives[we]><a href="home.php?mod=space&do=blog&view=we">{lang friend_blog}</a></li>
+				<li$actives[me]><a href="home.php?mod=space&do=blog&view=me">{lang my_blog}</a></li>
+				<li$actives[all]><a href="home.php?mod=space&do=blog&view=all">{lang view_all}</a></li>
+				<!--{if helper_access::check_module('blog')}-->
+				<li class="o"><a href="home.php?mod=spacecp&ac=blog">{lang post_new_blog}</a></li>
+				<!--{/if}-->
+			</ul>
+		<!--{/if}-->
+		<div class="{if empty($diymode)}bm {/if}bml">
+			<div class="bm_c">
+
+				<div class="tbmu bw0 cl">
+					<!--{if helper_access::check_module('blog') && $space[self] && $diymode}-->
+						<a href="home.php?mod=spacecp&ac=blog" class="y pn pnc"><strong>{lang post_new_blog}</strong></a>
+					<!--{/if}-->
+
+					<!--{if $_GET[view] == 'all'}-->
+						<a href="home.php?mod=space&do=blog&view=all" {if !$_GET[catid]}$orderactives[dateline]{/if}>{lang newest_blog}</a><span class="pipe">|</span>
+						<a href="home.php?mod=space&do=blog&view=all&order=hot" $orderactives[hot]>{lang recommend_blog}</a>
+						<!--{if $category}-->
+							<!--{loop $category $value}-->
+								<span class="pipe">|</span>
+								<a href="home.php?mod=space&do=blog&catid=$value[catid]&view=all&order=$_GET[order]"{if $_GET[catid]==$value[catid]} class="a"{/if}>$value[catname]</a>
+							<!--{/loop}-->
+						<!--{/if}-->
+					<!--{/if}-->
+
+					<!--{if $userlist}-->
+						{lang filter_by_friend}
+						<select name="fuidsel" onchange="fuidgoto(this.value);" class="ps">
+							<option value="">{lang all_friends}</option>
+							<!--{loop $userlist $value}-->
+							<option value="$value[fuid]"{$fuid_actives[$value[fuid]]}>$value[fusername]</option>
+							<!--{/loop}-->
+						</select>
+					<!--{/if}-->
+
+					<!--{if $_GET[view] == 'me' && $classarr}-->
+						<!--{loop $classarr $classid $classname}-->
+							<a href="home.php?mod=space&uid=$space[uid]&do=blog&classid=$classid&view=me" id="classid$classid" onmouseover="showMenu(this.id);"{if $_GET[classid]==$classid} class="a"{/if}>$classname</a><span class="pipe">|</span>
+							<!--{if $space[self]}-->
+							<div id="classid{$classid}_menu" class="p_pop" style="display: none; zoom: 1;">
+								<a href="home.php?mod=spacecp&ac=class&op=edit&classid=$classid" id="c_edit_$classid" onclick="showWindow(this.id, this.href, 'get', 0);">{lang edit}</a>
+								<a href="home.php?mod=spacecp&ac=class&op=delete&classid=$classid" id="c_delete_$classid" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a>
+							</div>
+							<!--{/if}-->
+						<!--{/loop}-->
+					<!--{/if}-->
+				</div>
+
+				<!--{if $searchkey}-->
+					<p class="tbmu">{lang follow_search_blog} <span style="color: red; font-weight: 700;">$searchkey</span> {lang doing_record_list}</p>
+				<!--{/if}-->
+
+				<!--{if $count}-->
+					<div class="xld xlda mld">
+					<!--{loop $list $k $value}-->
+						<dl class="cl">
+							<dd class="m">
+								<div class="avt"><a href="home.php?mod=space&uid=$value[uid]" c="1"><!--{avatar($value[uid],small)}--></a></div>
+							</dd>
+
+							<dt class="xs2 xw0">
+								<a href="home.php?mod=space&uid=$value[uid]" class="xi2">$value[username]</a>: 
+								<!--{eval $stickflag = isset($value['stickflag']) ? 0 : 1;}-->
+								<!--{if !$stickflag}--><span class="xi1">{lang stick}</span> &middot; <!--{/if}-->
+								<a href="home.php?mod=space&uid=$value[uid]&do=blog&id=$value[blogid]" class="xi2"{if $value[magiccolor]} style="color: {$_G[colorarray][$value[magiccolor]]}"{/if} target="_blank">$value[subject]</a>
+								<!--{if $value[status] == 1}--> <span class="xi1">({lang pending})</span><!--{/if}-->
+							</dt>
+							<dd class="xs2 c" id="blog_article_$value[blogid]">
+								<!--{if $value[pic]}--><div class="atc"><a href="home.php?mod=space&uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank"><img src="$value[pic]" alt="$value[subject]" class="tn" /></a></div><!--{/if}-->
+								$value[message]
+							</dd>
+							<dd>
+								<!--{if $value['friend']}-->
+								<span class="y xg1"><a href="$theurl&friend=$value[friend]" class="xg1">{$friendsname[$value[friend]]}</a></span>
+								<!--{/if}-->
+								<span class="xg1">$value[dateline]</span> &nbsp; 
+								<!--{if $value[viewnum]}--><a href="home.php?mod=space&uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank">{echo '阅读'}($value[viewnum])</a> &nbsp; <!--{/if}-->
+								<a href="home.php?mod=space&uid=$value[uid]&do=blog&id=$value[blogid]#comment" target="_blank">{echo '评论'}<!--{if $value[replynum]}-->(<span id="replynum_$value[blogid]">$value[replynum]</span>)<!--{/if}--></a>
+								<!--{if $value['hot']}--> &nbsp; <span class="hot">{lang hot} <em>$value[hot]</em> </span><!--{/if}-->
+								<!--{hook/space_blog_list_status $k}-->
+								<!--{if $_GET['view']=='me' && $space['self']}-->
+									<span class="pipe">|</span><a href="home.php?mod=spacecp&ac=blog&blogid=$value[blogid]&op=edit">{lang edit}</a> &nbsp; 
+									<a href="home.php?mod=spacecp&ac=blog&blogid=$value[blogid]&op=delete&handlekey=delbloghk_{$value[blogid]}" id="blog_delete_$value[blogid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a>
+									<!--{if empty($value['status'])}-->
+										 &nbsp; <a href="home.php?mod=spacecp&ac=blog&blogid=$value[blogid]&op=stick&stickflag=$stickflag&handlekey=stickbloghk_{$value[blogid]}" id="blog_stick_$value[blogid]" onclick="showWindow(this.id, this.href, 'get', 0);"><!--{if $stickflag}-->{lang stick}<!--{else}-->{lang cancel_stick}<!--{/if}--></a>
+									<!--{/if}-->
+								<!--{/if}-->
+							</dd>
+						</dl>
+					<!--{/loop}-->
+					<!--{if $pricount}-->
+						<p class="mtm">{lang hide_blog}</p>
+					<!--{/if}-->
+					</div>
+					<!--{if $multi}--><div class="pgs cl mtm">$multi</div><!--{/if}-->
+				<!--{else}-->
+					<div class="emp">{lang no_related_blog}</div>
+				<!--{/if}-->
+				<!--[diy=diycontentbottom]--><div id="diycontentbottom" class="area"></div><!--[/diy]-->
+
+			</div>
+		</div>
+	</div>
+	<!--{if $diymode}-->
+			</div>
+		</div>
+	<!--{/if}-->
+</div>
+
+<div class="wp mtn">
+	<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+</div>
+
+<script type="text/javascript">
+	function fuidgoto(fuid) {
+		var parameter = fuid != '' ? '&fuid='+fuid : '';
+		window.location.href = 'home.php?mod=space&do=blog&view=we'+parameter;
+	}
+</script>
+
+<!--{template common/footer}-->

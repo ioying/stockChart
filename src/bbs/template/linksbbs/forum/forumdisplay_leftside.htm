@@ -1,0 +1,67 @@
+<script>
+function showHide(){     
+
+document.cookie="CookieMenuViews=1" ;
+//alert('a');
+} 
+
+ 
+</script>
+
+<!--{loop $leftside['forums'] $upfid $gdata}-->
+	<dl class="{if $fgroupid == $upfid || $_G['setting']['leftsideopen']}a{/if}" id="lf_$upfid">
+		<dt><a href="javascript:;" hidefocus="true" onclick="leftside('lf_$upfid')" title="$gdata['name']">$gdata['name']</a></dt>
+	<!--{loop $gdata['sub'] $subfid $name}-->
+		<dd{if $_G['fid'] == $subfid || $_G['forum']['fup'] == $subfid} class="bdl_a"{/if}>
+		
+			<!--{if !empty($_G['cache']['forums'][$subfid]['domain']) && !empty($_G['setting']['domain']['root']['forum'])}-->
+				<a href="http://{$_G['cache']['forums'][$subfid]['domain']}.{$_G['setting']['domain']['root']['forum']}" title="$name"><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+			<!--{else}--> 
+			
+			     <!--{if $_COOKIE["CookieMenuViews"] == '1'}--> 
+				<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick='document.cookie="CookieMenuViews=0"' title="$name" ><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+				<!--{else}--> 
+				<a href="forum.php?mod=forumdisplay&fid=$subfid" onclick='document.cookie="CookieMenuViews=1"' title="$name" ><img class="vm" src="$_G['style']['styleimgdir']noteup.gif" alt="" />&nbsp$name</a>
+				<!--{/if}-->
+			<!--{/if}-->
+		
+		</dd>
+		<!-- onclick="showHide(this,'items0'); showHide onclick="display('thread_types')"-->
+		<!-- subfid:$subfid fid:$_G['fid'] ,forum:$_G['forum']['threadtypes'] -->
+		<!-- 分类列表 移动到左侧菜单 仿印象效果  forumdisplay_leftside.htm  by TT 20140309    ttp bm cl-->
+				<!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || count($_G['forum']['threadsorts']['types']) > 0}-->
+					
+					<ul id="thread_types" class="" style=''>
+						<!--{hook/forumdisplay_threadtype_inner}-->
+						<!-- <li id="ttp_all" {if !$_GET['typeid'] && !$_GET['sortid']}class="xw1 a"{/if}><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_G['forum']['threadsorts']['defaultshow']}&filter=sortall&sortall=1{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">{lang forum_viewall}</a></li> -->
+						<!--{if $_G['forum']['threadtypes'] && $_G['fid'] == $subfid  &&  $_COOKIE["CookieMenuViews"] ==1 }-->
+							<!--{loop $_G['forum']['threadtypes']['types'] $id $name}-->
+								<!--{if $_GET['typeid'] == $id}-->
+								<li class=""><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['sortid']}&filter=sortid&sortid=$_GET['sortid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->&nbsp$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+								<!--{else}-->
+								<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=typeid&typeid=$id$forumdisplayadd[typeid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->&nbsp&nbsp<img class="vm" src="$_G['style']['styleimgdir']note.gif" alt="" /> &nbsp$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+								<!--{/if}-->
+								
+								
+								
+							<!--{/loop}-->
+						<!--{/if}-->
+
+						<!--{if $_G['forum']['threadsorts']}-->
+							<!--{if $_G['forum']['threadtypes']}--><li><span class="pipe">|</span></li><!--{/if}-->
+							<!--{loop $_G['forum']['threadsorts']['types'] $id $name}-->
+								<!--{if $_GET['sortid'] == $id}-->
+								<li class="xw1 a"><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['typeid']}&filter=typeid&typeid=$_GET['typeid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+								<!--{else}-->
+								<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=sortid&sortid=$id$forumdisplayadd[sortid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+								<!--{/if}-->
+							<!--{/loop}-->
+						<!--{/if}-->
+						<!--{hook/forumdisplay_filter_extra}-->
+					</ul>
+					
+					<script type="text/javascript">showTypes('thread_types1');</script>
+				<!--{/if}-->
+	<!--{/loop}-->
+	</dl>
+<!--{/loop}-->

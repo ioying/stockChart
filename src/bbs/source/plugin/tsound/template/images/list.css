@@ -1,0 +1,20 @@
+.showbody{
+  width:500px;
+  padding:0 10px 10px 10px;
+}
+.showbody th,.showbody td{
+  line-height:30px;
+}
+.showbody td{
+  border-top:1px dashed #eee;
+}
+.myinput{
+  width:200px;
+}
+.xw0 span,.xw span{
+  width:80px;
+  display:inline-block;
+}
+.readme{
+  height:60px;
+}

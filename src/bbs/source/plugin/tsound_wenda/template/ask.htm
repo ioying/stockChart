@@ -1,0 +1,121 @@
+<!--{template tsound_wenda:header}-->
+<link href="./source/plugin/tsound_wenda/template/images/base.combo.css" rel="stylesheet" type="text/css">
+<link href="./source/plugin/tsound_wenda/template/images/ask.combo.css" rel="stylesheet" type="text/css">
+
+<div id="bd1" class="grid-4 clearfix">
+  <div style="position: relative;" class="article">
+    <div id="js-tooltips" class="tooltips" style="left: 550px; width: 200px; top: 58px; ">
+      <div class="content">{lang tsound_wenda:askcotip}</div>
+      <div class="cur-1"></div>
+    </div>
+    <div class="mod-ask-form" style="margin: 0 65px;">
+      <div class="hd">
+        <h3>{lang tsound_wenda:askti}</h3>
+      </div>
+      <div class="bd">
+        <div class="form clearfix">
+          <form id="editform" method="post" onsubmit="return checkform()">
+          <input type="hidden" name="rid" id="rid" value="{$rid}" />
+          <input type="hidden" name="content" id="content" value="" />
+            <div class="q-main">
+              <textarea name="ask_title" id="ask_title" cols="30" rows="10" tip="ask" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial; "></textarea>
+            </div>
+            <div class="q-toolbar">
+              <div class="add-img" tip="addimg" style="">
+                <p>
+                  
+        <select name="cid" style="position: relative;top: -2px;">
+        <!--{loop $categorys $cat}-->
+          <optgroup label="$cat[0]">
+              <!--{loop $cat[2] $c}-->
+              <option value="$c[1]">$c[0]</option>
+              <!--{/loop}-->
+          </optgroup>
+         <!--{/loop}-->
+        </select>
+                </p>
+              </div>
+              <div class="add-pay" tip="addpay">
+                <label for="coin">{lang tsound_wenda:coin}</label>
+                <select name="coin" id="coin" class="select" coin="0">
+                  <option value="0">0</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+                  <option value="80">80</option>
+                  <option value="100">100</option>
+                </select>
+                {$credit_unit}</div>
+                
+<!--{template tsound_wenda:readpay}-->
+                
+              <div style="float:right;padding-right:15px;line-height:33px;">{lang tsound_wenda:my}{$credit_title}:<span style="color:#FF6701;">$money</span></div>
+            </div>
+            <div style="margin-top:5px">{$flash} {$flash3} <span id="picbox"></span></div>
+            <div class="clear"></div>
+            <div>
+              <div class="soundbtn" style="float:left;padding-top:10px">
+              <span id="playerbox"></span>
+              </div>
+              <div class="q-btn">
+                <button type="submit" id="submit" class="bt-dft">{lang tsound_wenda:addquestion}</button>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+<script type="text/javascript" reload="1">
+function OnezUploadCall(s){
+  if(s.substr(0,2)=='ok'){
+    $('content').value+=s.substr(2);
+    $('picbox').innerHTML='<img src="./source/plugin/tsound_wenda/data/'+s.substr(5,s.length-6)+'.jpg" width="20" height="20" />';
+    return;
+  }
+}
+var flashcode=$flash2;
+function OnezCall(type,s){
+  if(type=='upload'){
+    if(s.substr(0,2)!='ok'){
+      alert(s);
+      return;
+    }
+    s=s.substr(2);
+    insertSound(s);
+  }else if(type=='status'){
+  }
+}
+function insertLast(){
+  insertSound(lsound);
+}
+function insertSound(s){
+  var o=s.split('|');
+  $('rid').value=o[0];
+  $('playerbox').innerHTML=flashcode.replace('*',o[1]);
+}
+function checkform(){
+  var title=$('ask_title').value;
+  var rid=$('rid').value;
+  if(title.length<1){
+    alert('{lang tsound_wenda:title_none}');
+    $('ask_title').focus();
+    return false;
+  }
+<!--{if $tsound_wenda['force1']}-->
+  if(rid.length<1){
+    alert('{lang tsound_wenda:sound_none}');
+    return false;
+  }
+<!--{/if}-->
+  return true;
+}
+</script> 
+
+<!--{template tsound_wenda:footer}-->

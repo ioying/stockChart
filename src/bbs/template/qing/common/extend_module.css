@@ -1,0 +1,233 @@
+/** forum::index **/
+#chart { margin: 10px 0 0; }
+/** end **/
+
+/** forum::index,forum::forumdisplay,home::space,forum::guide **/
+/* 版块列表 by Pony 1203081623 */
+.fl_row td { border-top: none; }
+.fl_icn_g { width: 64px; }
+.fl_g dl { margin-left: 64px; }
+	.fl_g dt { margin-bottom: 5px; }
+	.fl_g dd { margin-top: 3px; }
+		.fl_g dd em { display: inline-block; margin-right: 10px; width: 70px; }
+			.fl_g dd em span.t { display: inline-block; width: 35px; }
+			.fl_g dd em.l { width: 140px; }
+
+/* 帖子列表 by Pony 1204051535 */
+.tl { border-radius: 0 0 5px 5px; }
+	.tl .bm_c { padding: 0; }
+	.tl th, .tl td { border-bottom-color: #E6E6E6; }
+	.tl tr:hover th, .tl tr:hover td { background: #F7F7F7; }
+	.bw0_all tr:hover th, .bw0_all tr:hover td { background: none; }
+	.tl .th { padding: 4px 15px; background: #EBF1FC; }
+	.tl tbody:last-child th, .tl tbody:last-child td { border-bottom: none; }
+#threadlist.addradius { border-radius: 5px; }
+	.addradius .th { border-radius: 5px 5px 0 0; }
+
+	.tl .tf a { float: left; margin-right: 5px; padding: 4px 12px 3px; height: 18px; background-color: #D9E4F9; border-radius: 5px; }
+		.tl .tf a.a { background-color: #367DD3; color: #FFF; }
+		.tl .tf a.a:hover { text-decoration: none; }
+		.tl .tf .showmenu { padding-right: 20px; background-image: url({STYLEIMGDIR}/arrwd.png); }
+		.forumrefresh { background-position: 50% 50%; }
+
+	.tl .xst, .newthread .new em, .newthread .new em a { font-family: {THREADTITLEFONT}; font-size: {THREADTITLEFONTSIZE} !important; }
+	.tl th img { margin-bottom: 5px; }
+	.tl .o { width: 30px; }
+	.tl .avt { vertical-align: top; padding: 10px 0; width: 80px; }
+		.tl .avt img { margin-left: 15px; }
+	.tl .by { padding-right: 15px; text-align: right; }
+
+	.emptb th, .emptb td { padding: 0 !important; }
+
+	.tl .tbmu { padding: 10px 15px; }
+	.tl .pgbtn { margin: 5px 15px 15px; }
+		.ie6 .tl .pgbtn, .ie7 .tl .pgbtn, .ie8 .tl .pgbtn { margin-top: 15px; }
+	.tl .waterfall { margin-left: 15px; }
+/** end **/
+
+
+/** forum::forumdisplay **/
+#atarget { margin: 7px 0 0 7px; }
+.imagemode, .txtmode { overflow: hidden; float: right; margin: 7px 0 0 7px; width: 16px; height: 16px; text-indent: -9999px; background: url({STYLEIMGDIR}/chk.png) no-repeat 0 -16px; outline: none; }
+.imagemode { background-position: -16px -16px; }
+	.ichked { background-position: -16px 0; }
+	.tchked { background-position: 0 0; }
+/** end **/
+
+
+/** forum::forumdisplay,forum::viewthread,group::viewthread,forum::guide **/
+/* 主题分类等 by Pony 1203311330 */
+.ttp { margin-bottom: 0; padding: 7px 15px 0; background: {COMMONBG}; border-radius: 5px 5px 0 0; }
+	.cttp .unfold, .cttp .fold { margin-right: -5px; }
+	.ttp a, .ttp strong { border: none; background-color: transparent; border-radius: 5px; }
+		.ttp a:hover { text-decoration: underline; }
+	.ttp .a a, .ttp .a a:hover { background-color: #E0E0E0; color: {TABLETEXT}; }
+		.ttp .a a:hover { text-decoration: none; }
+	.ttp .pipe { width: 1px; background-color: {COMMONBORDER}; }
+/** end **/
+
+
+/** forum::viewthread,group::viewthread,forum::trade,forum::misc **/
+/* 帖子楼层相关的样式 by Pony 1203191047 */
+.pl { margin-top: 8px; }
+.pl .quote { background-color: #FCFCFC; }
+.pl table {}
+	.pls, .ad .pls, .ad .plc { border-right: none; background-color: transparent; }
+		.pls { width: 130px; background: url({STYLEIMGDIR}/bg_arrow_left.png) no-repeat 100% 13px; }
+			.pls p, .pls .pil, .pls .o { margin: 5px 0; }
+			.pls .avatar, #f_pst .avatar { margin: 0 13px 0 17px; }
+				.pls .avatar img { padding: 0; width: 90px; background: none; }
+				.pls .avatar img, .bui, .bui .m img { border-radius: 5px; }
+			.pls .pi { margin: 5px 0; padding: 0; height: auto; text-align: center; border-bottom: none; font-size: 14px; }
+				.pls .pi a { color: {HIGHLIGHTLINK}; }
+			.pls .o li { display: inline; margin-left: 17px; width: 90px; height: 21px; line-height: 21px; text-indent: 0; border: 1px solid #DEE6EE; background: #EFF3F7 url({STYLEIMGDIR}/bg_btn.png) repeat-x 0 100% !important; border-radius: 5px; box-shadow: 0 0 1px #E6EDF2; }
+				.pls .o .addflw a { display: block; padding-left: 30px; background: url({IMGDIR}/flw_ico.png) no-repeat 10px 50%; }
+				.pls .o .pm2 a { display: block; padding-left: 30px; background: url({IMGDIR}/pmto.gif) no-repeat 10px 50%; }
+		.tath { margin: 0 13px 0 17px; padding-left: 40px; }
+			.tath img { position: absolute; margin-left: -40px; width: 36px; height: 36px; border-radius: 5px; }
+		.cp_pls { text-align: center; }
+			.cp_pls a { float: none; margin-right: 0; }
+	.plc { background-color: #F5F5F5; border-radius: 5px; }
+		.ad .plc { padding: 5px 0; }
+		.plc .pgbtn { margin: -5px 0 0; }
+		.ts { font-size: 18px; }
+		.plc .pi { border-bottom: none; }
+			.plc .pi strong a, .plc .pi sup { margin: 0 0 0 5px; padding: 0; border: none; vertical-align: bottom; font-size: 16px; font-weight: 400; }
+				.plc .pi strong a em { line-height: 1; font-size: 26px; }
+			.pdbt { margin-top: 0; }
+		.authicn { cursor: default; }
+		.t_fsz, .pcbs { min-height: 60px; }
+		.replycredit { padding-left: 30px; background: #FFF url({IMGDIR}/thread_prize_s.png) no-repeat 9px 9px; }
+		.rewardfloor { padding-left: 30px; background: #FFF url({IMGDIR}/rushreply_s.png) no-repeat 9px 9px; }
+		.po { visibility: hidden; height: 28px; border-top: none; }
+			.plc:hover .po, .disp .po, .ie6 .po { visibility: visible; }
+			.po p a, .po p label { display: inline-block; margin: 0 0 0 8px; padding-top: 8px; padding-bottom: 8px; }
+			.pob { line-height: 1.5; }
+			.po a.a { background: url({STYLEIMGDIR}/bg_arrow_top.png) no-repeat 50% 100%; font-weight: 700; color: {HIGHLIGHTLINK}; zoom: 1; }
+		/* 改为 ajax 非弹窗式的点评 by Pony 1203161056 */
+		.cmtl { border-top: 1px solid {COMMONBORDER}; }
+			.cmtl, .cmtform { margin: 5px -20px 0; padding: 10px 20px; background: #EDEDF1; border-radius: 0 0 5px 5px; }
+			.cmtl img, .cmtform img { border-radius: 5px; }
+			.cmtl dl { border-bottom: 1px dashed {COMMONBORDER}; }
+			.cmtl dl:last-child { border-bottom: none; }
+			.cmtl dt { font-weight: 400; }
+			.cmtform { margin-top: -5px; padding: 0 20px; }
+			.hasborder { margin-top: 5px; padding: 10px 20px; border-top: 1px solid {COMMONBORDER}; }
+			.cmtl .pg { float: none; }
+				.cmtl .pg a, .cmtl .pg strong, .cmtl .pgb a, .cmtl .pg label { margin: 0 4px 0 0; }
+
+		/* 楼主帖子的回复、分享、评分等操作按钮 by Pony 1203160940 */
+		#p_btn { margin: 3em 0 6em; text-align: center; }
+			#p_btn a { float: none; display: inline-block; margin: 0 5px; padding: 0; border: 1px solid #DEE6EE; background: url({STYLEIMGDIR}/bg_btn.png) repeat-x 0 0; border-radius: 5px; box-shadow: 0 1px 0 #F7F7F7; }
+				#p_btn a i { padding: 0 8px; border-bottom: 1px solid #EAF0F4; background: none; }
+			#p_btn img { margin-right: 5px; }
+
+		/* 帖内评分展示 by Pony 1203161543 */
+		.rate { padding-left: 15px; border-left: 1px solid {COMMONBORDER}; }
+			.ratl th, .ratl td, .ratc { padding: 2px; border-bottom: none; }
+
+		/* 类似回帖奖励的样式 by Pony 1203191321 */
+		.psth, .cm .psth { background: #EDEDF1 url({STYLEIMGDIR}/arw.gif) no-repeat 100% 50%; }
+
+		.locked { background-color: #FCFCFC; }
+
+/* 回帖推荐 by Pony 1203191414 */
+.rpost .pls { background-image: url({STYLEIMGDIR}/bg_arrow_left_r.png); }
+.rpost .plc { background-color: #FFFAE8; }
+
+/* 帖子详情页分类 by Pony 1203311335 */
+.ttp { padding: 5px 0 0; background: none; }
+	.ttp a { background-color: #F2F2F2; }
+	.ttp .a a, .ttp .a a:hover { background-color: #367DD3; color: #FFF; text-decoration: none; }
+
+/* 辩论贴 by Pony 1203191525 */
+.ds { background-image: url({STYLEIMGDIR}/bg_debate.png); }
+.dr { margin: 0; background: none; border-top: 1px dotted #DCDCDC; }
+
+/* 手机发帖相关样式 by Pony 1204111352 */
+.mobile-type { margin-left: 64px; background: none; }
+	.ie6 .mobile-type, .ie7 .mobile-type { margin-left: 47px; background: none !important; }
+/** end **/
+
+
+/** forum::forumdisplay,forum::viewthread,forum::guide **/
+/* 发帖按钮 by Pony 1204051611 */
+#pt { position: relative; }
+	#newspecial { position: absolute; top: 0; right: 0; overflow: hidden; text-indent: -9999px; width: 100px; height: 35px; background: url({STYLEIMGDIR}/pn_post.png) no-repeat 0 0; }
+	#newspecial:active { background-position: 0 -35px; }
+.pg_forumdisplay #newspecial { position: relative; float: right; margin-top: -10px; }
+/** end **/
+
+
+/** home::space,home::spacecp **/
+/* 记录回复区域 by Pony 1203311340 */
+.cmt { border-color: #EAEAEA; background-color: #F8F8F8; }
+	.cmt .tri { background-image: url({STYLEIMGDIR}/cmt_ico.png); }
+	.cmt form { margin-left: 3px; }
+		.cmt .pt { width: 97%; }
+
+/* 类似日志详情页的布局 by Pony 1203311419 */
+.vw .o { padding: 10px 0; }
+.xltda dl { padding-top: 8px; padding-bottom: 8px; }
+	.xltda dl:last-child { border-bottom: none; }
+.xltda .quote { padding: 10px; border: 1px solid #DFDFDF; background: #F8F8F8; }
+	.xltda .quote blockquote { padding: 0; background: none; }
+form.xltda dl { padding-right: 65px; }
+form.xltda .tedt { width: 100%; }
+
+/* 家园相册的瀑布流缩略图大小 by Pony 1203261328 */
+.waterfall li { width: 142px; }
+.waterfall .c, .waterfall img { width: 120px; height: 120px; }
+.mlp li { width: 173px; }
+
+/* 家园记录 by Pony 1203311341 */
+#moodfm { padding: 10px 0 20px; }
+	#moodfm textarea { padding: 5px; width: 540px; height: 46px; }
+
+/* 家园分享 by Pony 1203311342 */
+.sfm { margin-left: 0; }
+.sl .h { background-color: #F8F8F8; border-radius: 5px; }
+
+/* 动态 by Pony 1203311345 */
+.minfo { margin-bottom: 10px; padding: 15px; border: 1px solid #DFDFDF; background: #F8F8F8; border-radius: 5px; }
+	.mi .avatar img { padding: 5px; border: none; background: #FFF; border-radius: 5px; }
+	.mi #moodfm { padding-bottom: 0; }
+	.mi #mood_mystatus { width: 478px; }
+	.mi .moodfm_input, .mi .hover .moodfm_input { width: 415px; background-color: #DFDFDF; background-image: url({STYLEIMGDIR}/mood_input.png); }
+	.mi #moodfm textarea { width: 406px; }
+
+/* 个人资料 by Pony 1203281520 */
+.u_profile li { padding: 3px 30px 3px 90px; }
+	.u_profile li em { position: absolute; margin-left: -90px; width: 80px; color: #999; }
+/** end **/
+
+
+/** home::spacecp **/
+.tdats .tb li { margin-bottom: 0; }
+/** end **/
+
+
+/** home::follow **/
+/* 广播 by Pony 1203311418 */
+#flw_header { padding: 15px; border: 1px solid #DFDFDF; background: #F8F8F8; border-radius: 5px; }
+#flw_post_subject { width: 626px; }
+#flw_post_extra { width: 628px; }
+.ct2_sp .bm_c .mn #flw_post_extra { width: 588px; }
+.ct2_sp .bm_c .mn #flw_post_subject { width: 586px; }
+.ct2_sp .bm_c .mn #flw_header #subject { width: 538px; }
+#flw_header .pnpost { position: relative; z-index: 1; }
+#flw_header .pnc { margin-right: 0; }
+#fastpostsubmit { text-indent: 0; width: auto; height: auto; background: #06C url({IMGDIR}/pn.png) no-repeat 0 -48px; border: 1px solid #235994; }
+	#fastpostsubmit:active { background-position: 0 -71px; }
+.flw_avt { width: 58px; }
+	.flw_avt img { margin-left: 0; border-radius: 5px; }
+.flw_article { margin-left: 58px; padding: 0 0 10px; border-bottom: 1px dashed #DFDFDF; }
+	.flw_feed li:last-child .flw_article { border-bottom: none; }
+.flw_replybox { margin-top: -15px; margin-left: 58px; border: 1px solid #DFDFDF; background: #F8F8F8; border-radius: 5px; }
+	.ct2_sp .bm_c .mn .flw_replybox { margin-left: 0; }
+	.flw_replybox .cnr { margin-right: 5px; background-image: url({STYLEIMGDIR}/flw_cnr_t.png); }
+	.flw_replybox .pnc, .flw_replybox td table .pnc { border-radius: 0; }
+	.flw_autopt { width: 350px; }
+	.flw_replybox li { border-top: 1px dashed #DFDFDF; }
+.sd { background-color: transparent; }
+/** end **/

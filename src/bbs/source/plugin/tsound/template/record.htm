@@ -1,0 +1,59 @@
+<!--{if $_G['inajax']==1}-->
+{template common/header_ajax} 
+<!--{else}--> 
+{subtemplate common/header} 
+<!--{/if}-->
+
+<link href="source/plugin/tsound/template/images/list.css" rel="stylesheet" type="text/css" />
+<div class="listbody">
+  <h3 class="flb mn">{lang tsound:select} <span><!--{if !empty($_G['gp_infloat']) && !isset($_G['gp_frommessage'])}--><a href="javascript:;" class="flbc" onclick="hideWindow('tsound', 0, 1);" title="{lang close}">{lang close}</a><!--{/if}--></span> </h3>
+  <div class="tb cl mlist">
+    <ul>
+      <li{$list[audio]}><a href="{BASEURL}action=record&type=audio&isthread={$isthread}" onclick="showWindow('tsound', this.href)">{lang tsound:audio}</a></li>
+      <li{$list[video]}><a href="{BASEURL}action=record&type=video&isthread={$isthread}" onclick="showWindow('tsound', this.href)">{lang tsound:video}</a></li>
+      <li class="button"><a href="{BASEURL}action=record2&type={$type}&isthread={$isthread}" onclick="showWindow('tsound', this.href)">{$buttonname}</a></li>
+    </ul>
+  </div>
+  <div class="box mp10">
+    <div class="bd showbody"> 
+      <!--{if $record}-->
+      <table width="100%">
+      <tr>
+        <th>{lang tsound:ti_name}</th>
+        <th>{lang tsound:ti_sec}</th>
+        <th>{lang tsound:ti_time}</th>
+        <th>{lang tsound:ti_opt}</th>
+      </tr>
+        <!--{loop $record $rs}--> 
+        <tr>
+          <td><!--{$rs[name]}--></td>
+          <td><!--{$rs[sec]}--></td>
+          <td><!--{$rs[time]}--></td>
+          <td><a href="javascript:;" onclick="insertSound('{$rs[rid]}')">{lang tsound:selectthis}</a></td>
+        </tr> 
+        <!--{/loop}-->
+      <div class="pager">{$multi}</div>
+      <!--{else}-->
+      <div class="none">{lang tsound:none}</div>
+      <!--{/if}--> 
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" reload="1">
+function insertSound(s){
+  var txt = '[tsound]' + s + '[/tsound]';
+  try{
+    insertText(txt, strlen(txt), 0);
+  }catch(e){
+    seditor_insertunit('fastpost', txt)
+  }
+  hideWindow('tsound', 0, 1);
+  doane(event);
+}
+</script> 
+<!--{if $_G['inajax']==1}--> 
+{template common/footer_ajax} 
+<!--{else}--> 
+{subtemplate common/footer} 
+<!--{/if}-->

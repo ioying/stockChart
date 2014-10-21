@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>折叠菜单</title>
+<meta http-equiv="Content-Type" mrc="text/html; charset=utf-8" />
+<script type="text/javascript"> 
+<!-- 
+function getObject(objectId) { 
+ if(document.getElementById && document.getElementById(objectId)) { 
+ return document.getElementById(objectId); 
+ } 
+ else if (document.all && document.all(objectId)) { 
+ return document.all(objectId); 
+ } 
+ else if (document.layers && document.layers[objectId]) { 
+ return document.layers[objectId]; 
+ } 
+ else { 
+ return false; 
+ } 
+} 
+///
+function showHide(e,objname){     
+    var obj = getObject(objname); 
+    if(obj.style.display == "none"){ 
+        obj.style.display = "block"; 
+        e.className="xias"; 
+    }else{ 
+        obj.style.display = "none"; 
+        e.className="rights"; 
+    } 
+} 
+--> 
+</script> 
+<style type="text/css"> 
+body { font-size:12px; margin:20px; padding:0; text-align:left;} 
+dl,dt,dd,ul,ol,li,p,div,input,h1,h2,h3,h4,h5,h6 { margin:0; padding:0;} 
+li { list-style:none;} 
+.libiao_menu { margin-bottom:15px;} 
+.libiao_menu h3 a { margin-top:15px; margin-bottom:15px; display:block; width:130px; height:28px; font-size:14px; text-align:left; padding-left:65px; padding-top:13px; color:#0066cc;} 
+.libiao_menu dl { margin-left:30px; margin-top:5px;} 
+.libiao_menu dl dt { font-size:14px; line-height:24px;} 
+.libiao_menu dl dt a { padding-left:13px; color:#333;} 
+.libiao_menu dl dt a.rights { background:url(http://p1.mb5u.com/texiao/0/20100522230639214.gif) no-repeat 0 3px;} 
+.libiao_menu dl dt a.xias { background:url(http://p1.mb5u.com/texiao/0/20100522230639214.gif) no-repeat 0 -41px;} 
+.libiao_menu dl dd { padding-left:20px;} 
+.libiao_menu dl dd ul {} 
+.libiao_menu dl dd ul li { font-size:14px; line-height:24px;} 
+.libiao_menu dl dd ul li a { color:#06c;} 
+</style>
+</head>
+<body> 
+<div class="libiao_menu"> 
+        <dl> 
+            <dt><a href="javascript:;" class="xias" onclick="showHide(this,'items0');">我的网上订单</a></dt> 
+            <dd id="items0" style="display: block;"> 
+                <ul> 
+                    <li><a href="#">所有订单</a></li> 
+                    <li><a href="#">未付款订单</a></li> 
+                    <li><a href="#">处理中的订单</a></li> 
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="xias" onclick="showHide(this,'items1');">帐户治理</a></dt> 
+            <dd id="items1" style="display: block;"> 
+                <ul> 
+                    <li><a href="#">我的余额</a></li> 
+                    <li><a href="#">治理地址</a></li> 
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="xias" onclick="showHide(this,'items2');">我的个人助手</a></dt> 
+            <dd id="items2" style="display: block;"> 
+                <ul> 
+                    <li><a href="#">我的收躲夹</a></li> 
+                    <li><a href="#">我的购物记录</a></li> 
+                </ul> 
+            </dd> 
+        </dl> 
+        <dl> 
+            <dt><a href="#" class="xias" onclick="showHide(this,'items3');">个人信息治理</a></dt> 
+            <dd id="items3" style="display: block;"> 
+                <ul> 
+                    <li><a href="#">编辑资料</a></li> 
+                    <li><a href="#">修改密码</a></li> 
+                </ul> 
+            </dd> 
+        </dl> 
+    </div>
+</body>
+</html>

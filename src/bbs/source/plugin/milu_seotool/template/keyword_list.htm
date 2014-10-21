@@ -1,0 +1,111 @@
+<!--{template milu_seotool:header}-->
+<style>
+.keyword_show {  float:left; height:22px; line-height:22px; border-bottom:1px dashed #FCF}
+.keyword_show span{ width:120px; float:left; display:block; text-align:center;height:20px; line-height:20px;  }
+.keyword_show .keyword{ width:280px; text-align:left }
+.k_count,.k_density,.k_ranking,.k_trend{ 
+	  background: url("{$_G[siteurl]}static/image/common/loading.gif") no-repeat 55px 0;
+}
+
+.no_loading{ background:none}
+</style>
+<script type="text/javascript" language="javascript">
+function cat_keyword_count(catid){
+	jq.post(PLUGIN_URL+'keyword&myac=seotool_ajax_func&af=cat_keyword_count&catid='+catid+'&data_type={$info[data_type]}&inajax=1&tpl=no&xml=0',null,function (msg) {
+		  var obj = eval( "(" + msg + ")" );//转换后的JSON对象
+		  if(obj != null){
+			  for(var i=0;i<obj.length;i++) {
+				  jq('#count'+obj[i]['key']).css('background','none');
+				  jq('#density'+obj[i]['key']).css('background','none');
+				  jq('#count'+obj[i]['key']).html(obj[i]['count']);
+				  show_status = obj[i]['status'] == 1 ? '<font><img name="" src="{PLUGIN_URL}static/image/s1.gif"  alt="" /></font> ' : '';
+				  jq('#density'+obj[i]['key']).html(show_status+obj[i]['density']);
+				  if(obj[i]['zhishu'] < 0){}else{jq('#zhishu'+obj[i]['key']).html(obj[i]['zhishu']);}
+			  }
+		  }else{
+			 var time_out_str = '<font color="red">{lang milu_seotool:time_out}</font>';
+			 jq("span[id^=density"+catid+"]").css('background','none');
+		 	 jq("span[id^=density"+catid+"]").html(time_out_str);
+			 jq("span[id^=count"+catid+"]").css('background','none');
+		 	 jq("span[id^=count"+catid+"]").html(time_out_str);
+		  }
+		
+	});
+}
+function get_keyword_rank_info(keyword, catid){
+	jq.post(PLUGIN_URL+'keyword&myac=seotool_ajax_func&af=get_keyword_rank_info&keyword='+keyword+'&catid='+catid+'&inajax=1&tpl=no&xml=0',null,function (msg) {
+		var obj = eval( "(" + msg + ")" );//转换后的JSON对象
+			jq('#ranking'+obj.key).css('background','none');
+			jq('#trend'+obj.key).css('background','none');
+			if(!obj.rank) obj.rank = '-';
+			jq('#ranking'+obj.key).html('<a href="http://www.baidu.com/s?wd='+keyword+'" target="_brank">'+obj.rank+'</a>');
+			var img_type = 'noupdown';
+			var num = '';
+			if(obj.trend > 0 || obj.trend == '+'){
+				img_type = 'up';
+				if(obj.trend != '+') num = Math.abs(obj.trend);
+			}else if(obj.trend < 0 || obj.trend == '-'){
+				img_type = 'down';
+				if(obj.trend != '-') num = Math.abs(obj.trend);
+			}
+			var reg = new RegExp("'",'g');
+			keyword = keyword.replace(reg, "\\'");
+			trend = '<a onclick="get_keyword_rank_trend(\''+keyword+'\')" href="javascript:void(0)"><img style=" margin-top:5px;" name="" src="{PLUGIN_URL}static/image/'+img_type+'.gif"  alt="" />'+num+'</a> ';
+			jq('#trend'+obj.key).html(trend);
+		
+	});
+}
+
+function get_keyword_rank_trend(keyword){
+	showWindow('keyword_trend', PLUGIN_URL+'keyword&myac=trend_data_count&keyword='+keyword);
+}
+
+
+</script>          
+            
+ <table class="tb tb2 ">
+<tbody id="hidden_system_category_stat" class="sub">
+
+<tr>
+  <td colspan="2">
+<table class="tb tb2 ">
+  <tbody><tr class="header">
+    <!-- <th></th>--> 
+    <th width="550">{lang milu_seotool:cat_name}<font style="font-weight:normal"> {lang milu_seotool:if_modify_hits} <a href="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}&update=1">{lang milu_seotool:update_data}</a> </font></th>
+     <th><div class="keyword_show"><span class="keyword">{lang milu_seotool:keyword} <font style="font-weight:normal"> <a href="admin.php?frames=yes&action=setting&operation=seo" target="_blank">{lang milu_seotool:modify}</a> </font></span> <span>{lang milu_seotool:baidu_zhishu}</span> <span>{lang milu_seotool:view_pinlv}</span> <span>{lang milu_seotool:_midu}</span> <span>{lang milu_seotool:_rank}</span> <span>{lang milu_seotool:rank_change}</span></div></th>
+     </tr>
+  </tbody>
+  <!--{loop $info['cat_arr'] $key_c $rs_c}-->  
+  {if $rs_c['upid'] == 0}
+  <tr class="hover">
+   <!-- <td class="td25" onclick="toggle_group('{$key_c}')"><a href="javascript:;" id="a_group_{$key_c}"></a></td>--> 
+    <td width="550"><div class="parentboard"><a href="{$rs_c['caturl']}" target="_blank">{$rs_c['catname']}</a></div></td>
+      <td>{eval echo show_keyword($rs_c['keywords'], $key_c)}</td>
+      </tr>
+  <tbody class="group_show" id="group_1">
+  {if $rs_c['children']}
+  <!--{loop $rs_c['children'] $key_c2 $rs_c2}-->  
+   <tr class="hover">
+    <!-- <td class="td25">&nbsp;</td>--> 
+      <td width="550"><div class="board"><a href="{$info['cat_arr'][$rs_c2]['caturl']}" target="_blank">{$info['cat_arr'][$rs_c2][catname]}</a></div></td>
+       <td>{eval echo show_keyword($info['cat_arr'][$rs_c2]['keywords'], $rs_c2)}</td>
+       </tr>
+        {if $info['cat_arr'][$rs_c2]['children']}
+      <!--{loop $info['cat_arr'][$rs_c2]['children'] $key_c3 $rs_c3}-->  
+       <tr class="hover">
+         <!--<td class="td25">&nbsp;</td>--> 
+          <td width="550"><div class="lastchildboard"><a href="{$info['cat_arr'][$rs_c3]['caturl']}" target="_blank">{$info['cat_arr'][$rs_c3][catname]}</a> </div></td>
+           <td>{eval echo show_keyword($info['cat_arr'][$rs_c3]['keywords'], $rs_c3)}</td>
+        </tr>
+         <!--{/loop}-->
+         {/if}
+    
+     <!--{/loop}-->
+     {/if}
+	</tbody> 
+    {/if}
+     <!--{/loop}-->
+  
+  </table>
+</td></tr>
+</tbody></table>        

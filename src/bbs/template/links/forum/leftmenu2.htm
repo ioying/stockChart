@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>QQ菜单</title>
+<style>
+td { cursor: hand; font-family: Tahoma; background-color: #0066cc; color: #fff; font-size: 9pt; }
+li { color: #FF0000; font-family: Tahoma; background-color: skyblue; font-size: 9pt;}
+.up{ background-color: #3A6EA5; border: 1 solid #fff;
+ }
+</style>
+
+<script>
+function show(c_Str){
+	if(document.all(c_Str).style.display=='none'){
+	document.all(c_Str).style.display='block';
+	alert('show');
+	}else{
+	document.all(c_Str).style.display='none';
+	alert('noshow');
+	}
+}
+function high(){
+if (event.srcElement.className=="k"){
+event.srcElement.style.background="336699"
+event.srcElement.style.color="white"
+}
+}
+function low(){
+if (event.srcElement.className=="k"){
+event.srcElement.style.background="99CCFF"
+event.srcElement.style.color=""
+}
+}
+</script>
+</head>
+
+<body topmargin="0" leftmargin="5">
+<div align="left">
+  <table border="0" width="98" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><div  onclick=show("a0")>ASP代码</div><div  id=a0 style="display:none">
+<li><a href="http://mb5u.com/sort/list_1_1.shtml">菜单导航</a></li><li><a href="http://mb5u.com/sort/list_3_1.shtml">层和布局</a></li><li><a href="http://mb5u.com/sort/list_5_1.shtml">背景殊效</a></li><li><a href="http://mb5u.com/sort/list_10_1.shtml">图片殊效</a></li><li><a href="http://mb5u.com/sort/list_9_1.shtml">浏览器相关</a></li><li><a href="http://mb5u.com/sort/list_13_1.shtml">广告代码</a></li></div></td>
+    </tr>
+    <tr>
+      <td><div class=up onclick=show("a1")>PHP源码</div><div  id=a1 style="display:none">
+<li><a href="http://mb5u.com/sort/list_6_1.shtml">日期时间</a></li><li><a href="list_2_1.shtml">文本殊效</a></li><li><a href="http://mb5u.com/sort/list_8_1.shtml">表格相关</a></li><li><a href="http://mb5u.com/sort/list_11_1.shtml">表单及按钮</a></li><li><a href="http://mb5u.com/sort/list_4_1.shtml">计算转换</a></li><li><a href="http://mb5u.com/sort/list_7_1.shtml">游戏娱乐</a></li></div></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

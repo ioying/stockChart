@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[wmff_jianfan.plugin]]></item>
+	<item id="RevisionID"><![CDATA[10410]]></item>
+	<item id="SN"><![CDATA[2014030516j0w40gMGW7]]></item>
+	<item id="RevisionDateline"><![CDATA[1384430401]]></item>
+	<item id="Data">
+		<item id="/discuz_plugin_wmff_jianfan_SC_GBK.xml"><![CDATA[effffe7e018e6ef9cbd7e5e4fc022cc7]]></item>
+		<item id="/discuz_plugin_wmff_jianfan_SC_UTF8.xml"><![CDATA[6b7545cdaf56b9cfa290431f174bc7d4]]></item>
+		<item id="/discuz_plugin_wmff_jianfan_TC_BIG5.xml"><![CDATA[3b9eaa66ed3174cac74ad7e5af610ea3]]></item>
+		<item id="/discuz_plugin_wmff_jianfan_TC_UTF8.xml"><![CDATA[441dce123df4662bcd0bdfb6c3e5942a]]></item>
+		<item id="/index.html"><![CDATA[d41d8cd98f00b204e9800998ecf8427e]]></item>
+		<item id="/template/extend_module.css"><![CDATA[fd0309d0f17fc15c42ae76feb34297cd]]></item>
+		<item id="/template/index.htm"><![CDATA[d41d8cd98f00b204e9800998ecf8427e]]></item>
+		<item id="/template/top_1.htm"><![CDATA[bfd839c151654ccd0dfbc052287690ea]]></item>
+		<item id="/template/wmff_cjtg.css"><![CDATA[38a8fe5a19d9932cb64c04fbf5be767b]]></item>
+		<item id="/template/wmff_jianfan.htm"><![CDATA[b6b21aa27f0fe5a87ae058fa150885dc]]></item>
+		<item id="/template/wmff_jianfan_shuoming.htm"><![CDATA[df9aac24a76510c88f303584b9840224]]></item>
+		<item id="/template/wmff_plugin_ls.htm"><![CDATA[0f163fe0356982415beeecedc022bf83]]></item>
+		<item id="/wanmeiff.com_js/12344279923_gbk.js"><![CDATA[d1f2c003a4de311838b06cddea8b1d93]]></item>
+		<item id="/wanmeiff.com_js/12344279923_utf8.js"><![CDATA[47463aec09af795a31710d8523371183]]></item>
+		<item id="/wanmeiff.com_js/fanti_corvert_gbk.js"><![CDATA[9cb36e20b6adff1a9cd0483e7ed7ae60]]></item>
+		<item id="/wanmeiff.com_js/fanti_corvert_utf8.js"><![CDATA[c919047c69d68545830d6edd1ed1936e]]></item>
+		<item id="/wmffyxha.inc.php"><![CDATA[349a563a41ba1fbe03226db251481213]]></item>
+		<item id="/wmff_jianfan.class.php"><![CDATA[91e3151c3705366925283e085b4e4d85]]></item>
+		<item id="/wmff_jianfan.inc.php"><![CDATA[ad799691e71e15b15a5dea913ef41b12]]></item>
+		<item id="/wmff_jianfan_shuoming.inc.php"><![CDATA[b10b53f6fe9134f075d6114e8e338682]]></item>
+		<item id="/wmff_pluginls.inc.php"><![CDATA[66e5ea0558b7b18a01206519b2615731]]></item>
+	</item>
+</root>

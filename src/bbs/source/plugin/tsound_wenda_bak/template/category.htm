@@ -1,0 +1,77 @@
+<!--{template tsound_wenda:header}-->
+<div id="bd" class="grid-3 clearfix">
+<div class="crumb" id="hd-crumb" style="line-height:20px"><a href="$baseurl&action=category">{lang tsound_wenda:allquestion}</a> $where</div>
+  <div id="carticle" class="article">
+    <div class="mod-category" id="mod-category">
+      <div class="hd">
+        <h3>{$category}</h3>
+      </div>
+      <div class="bd">
+        <h4>{lang tsound_wenda:list_cate}</h4>
+        <div class="list">
+          <ul class="clearfix">
+            <!--{loop $list1 $rs}-->
+              <li><a href="$baseurl&action=category&cid=$rs['cid']" target="_blank">$rs['name']</a></li>
+            <!--{/loop}-->
+          </ul>
+        </div>
+        <h4>{lang tsound_wenda:list_q}</h4>
+        <div class="form">
+          <form action="?" method="get">
+            <div class="sh-ipt">
+              <input name="q" value="$q" maxlength="30" type="text">
+              <input name="action" value="category" type="hidden">
+              <input name="id" value="tsound_wenda:wenda" type="hidden">
+            </div>
+            <div class="sh-btn">
+              <button type="submit" text="mod-category-search">{lang tsound_wenda:search}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="mod-answer-list" id="mod-answer-list">
+      <div class="hd">
+        <ul class="tab-card">
+          <li{$question0}><a text="list-resolved" href="$baseurl&action=category&cid=$cid&type=wait">{lang tsound_wenda:list_wait}</a></li>
+          <li{$question1}><a text="list-resolved" href="$baseurl&action=category&cid=$cid&type=success">{lang tsound_wenda:list_success}</a></li>
+          <li{$question2}><a text="list-highreward" href="$baseurl&action=category&cid=$cid&type=high">{lang tsound_wenda:list_high}</a></li>
+          <li{$question3}><a text="list-noanswer" href="$baseurl&action=category&cid=$cid&type=none">{lang tsound_wenda:list_none}</a></li>
+        </ul>
+      </div>
+      <div class="bd">
+        <div class="cls-qa-table">
+          <table>
+            <tbody>
+              <tr class="">
+                <th class="s0">{lang tsound_wenda:title}</th>
+                <th class="s1">{lang tsound_wenda:answercount}</th>
+                <th class="s2" style="width:100px">{lang tsound_wenda:time}</th>
+              </tr>
+            <!--{loop $list2 $rs}-->
+              <tr>
+                <td class="title"><div class="tit-mini">
+                    <div class="wrap"><a text="list-item" target="_blank" title="$rs['title']" href="$baseurl&action=question&qid=$rs['qid']" class="lnk">$rs['title']</a>&nbsp;<span class="cate">[<a text="list-item-cate" target="_blank" href="$baseurl&action=category&cid=$rs['cid']">$rs['catname']</a>]</span></div>
+                    <div class="js-answer-tips" data-answered-text="$rs['status']" style="display:none;">$rs['status']</div>
+                  </div>
+                  <div class="answer-success"></div></td>
+                <td>$rs['answer']</td>
+                <td>$rs['time']</td>
+              </tr>
+            <!--{/loop}-->
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="list-page">
+          <p class="pages">{$multi}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="aside" id="caside">
+    <!--{template tsound_wenda:side}-->
+  </div>
+</div>
+
+
+<!--{template tsound_wenda:footer}-->

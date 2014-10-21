@@ -1,0 +1,25 @@
+<!--{template milu_seotool:header}-->
+<script language='javascript' src='{PLUGIN_URL}lib/MyFCPHPClassCharts/FusionCharts/FusionCharts.js'></script>
+<style>
+#tipslis span{  margin-right:5px; float:left}
+#tipslis font{ color:#60C; margin:0 5px; font-size:12px}
+</style>
+
+<form id="form12" name="form12" action="?{PLUGIN_GO}{$submit_pmod}&myac={$submit_action}" method="post"> 
+<div class="tb tb2 ">
+<span class="partition">{lang milu_seotool:base_data}</span>
+<label for="select"></label>
+<select name="search_type" id="search_type">
+  <option {if $info['search_type'] != 2}selected="selected"{/if} value="1">{lang milu_seotool:baidu}</option>
+  <option {if $info['search_type'] == 2}selected="selected"{/if}  value="2">{lang milu_seotool:google}</option>
+</select>
+<button type="submit" class="pn pnc"><strong>{lang milu_seotool:view}</strong></button>
+</div>
+{if $info['cache_dateline']}
+<div class="notice_1">{lang milu_seotool:cache_data1} {$info['cache_dateline']} {lang milu_seotool:be_modify} {$info['next_dateline']} <a href="?{PLUGIN_GO}{$submit_pmod}&myac=base_data_count&clear_cache=1&search_type={$info['search_type']}">{lang milu_seotool:modify_run}</a> </div>
+{/if}
+{$info['show']}
+</form>
+<table class="tb tb2 " id="tips">
+<tbody><tr><th class="partition">{lang milu_seotool:status_data}</th></tr>
+<tr><td class="tipsblock" s="1"><ul id="tipslis"><ul><li><span>{lang milu_seotool:auto_check_included}:</span>{$info['status']['auto_check']}</li><li><span>{lang milu_seotool:auto_ping}:</span>{$info['status']['auto_ping']}</li></ul></ul></td></tr></tbody></table>

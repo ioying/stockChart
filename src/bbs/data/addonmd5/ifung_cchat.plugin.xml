@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[ifung_cchat.plugin]]></item>
+	<item id="RevisionID"><![CDATA[17706]]></item>
+	<item id="SN"><![CDATA[2014053120Xgb8023xAg]]></item>
+	<item id="RevisionDateline"><![CDATA[1370415265]]></item>
+	<item id="Data">
+		<item id="/cchat.inc.php"><![CDATA[80c4f8989d3740be1eff8b2a455944af]]></item>
+		<item id="/discuz_plugin_ifung_cchat_SC_GBK.xml"><![CDATA[4ed0ec5483c95eff6b7b3318b67bd3e3]]></item>
+		<item id="/discuz_plugin_ifung_cchat_SC_UTF8.xml"><![CDATA[de3b2574d694389624b21e19128bde81]]></item>
+		<item id="/discuz_plugin_ifung_cchat_TC_BIG5.xml"><![CDATA[39559b7e239372ce13b6c2323673b80b]]></item>
+		<item id="/discuz_plugin_ifung_cchat_TC_UTF8.xml"><![CDATA[a934a434aad999b0379110999e0e460a]]></item>
+		<item id="/template/cchat.htm"><![CDATA[d76ac3534e29a2de1939aee73d839e82]]></item>
+		<item id="/template/cchat.swf"><![CDATA[a1f6613b9d94c02f2592b13f942d1d06]]></item>
+		<item id="/template/cchat.xml"><![CDATA[1336cea9aa5ff1dd3eed42634c394565]]></item>
+		<item id="/template/cmp/cchat.swf"><![CDATA[2e422a8e8167b7c133d810ea514151f3]]></item>
+		<item id="/template/cmp/kmc.swf"><![CDATA[0376ddaed5ab2b864df3d7963328bf6e]]></item>
+		<item id="/template/cmp/krc.swf"><![CDATA[93927c5c68cb1be1a45fc3867aef3c11]]></item>
+		<item id="/template/cmp/list.xml"><![CDATA[0296dc1f0589d7a162c56dbbe8dc338d]]></item>
+		<item id="/template/cmp/logo.png"><![CDATA[a9be72f0902c561f3dfd274e5db8c088]]></item>
+		<item id="/template/cmp/p2plive.swf"><![CDATA[82ca7a1b25ae53b3e9912dc5fd7fbac6]]></item>
+		<item id="/template/cmp/p2pstream.swf"><![CDATA[1e622baf9e689f1ce1562aa07d388cf1]]></item>
+		<item id="/template/cmp/youku.swf"><![CDATA[34f5fb0e9e4ecc797c79cc4dd5ebd87b]]></item>
+		<item id="/template/cmp.js"><![CDATA[9834a87b2f5870267c376f0842e988d7]]></item>
+		<item id="/template/cmp.swf"><![CDATA[9dbb60758b02b6782fb4298eacc4bada]]></item>
+		<item id="/template/config.xml"><![CDATA[e11f1e8ad9573adb2a89e3c08f11689e]]></item>
+		<item id="/template/enter.mp3"><![CDATA[ee3b4d9b191a6a38440dd9e9da75442d]]></item>
+		<item id="/template/list.xml"><![CDATA[1f8095328a59ce435b4429de92180dc8]]></item>
+		<item id="/template/message.mp3"><![CDATA[79458010354bf6883b2ec613b946212d]]></item>
+	</item>
+</root>

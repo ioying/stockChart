@@ -1,0 +1,64 @@
+<!--{template common/header_iread}-->
+<div class="iread-header">
+    <div class="wrap clearfix">
+        <a href="portal.php?mod=portalcp&ac=article" class="write-btn btn">写故事</a>
+        <div class="text">
+            <p class="iread-title">iRead</p>
+            <p class="iread-meta">讲述每个人的想法和故事</p>
+            <p class="en-iread-meta">Everyone’s ideas and stories</p>
+        </div>
+        <ul class="iread-nav">
+           <!--{loop $_G['cache']['portalcategory'] $category}-->
+<!--{if $category['closed'] != 1}-->
+	<li class="<!--{if $category['catid'] == $catid}-->on<!--{/if}-->"><a href="{$category[caturl]}">$category[catname]</a></li>
+<!--{/if}-->
+<!--{/loop}-->
+<!-- 
+           <li><a href="/" class="last">我的iRead</a></li>
+            -->
+        </ul>
+    </div>
+</div>
+<!--[name]{lang portalcategory_listtplname}[/name]-->
+<!--{eval $list = array();}-->
+<!--{eval $wheresql = category_get_wheresql($cat);}-->
+<!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
+
+<style id="diy_style" type="text/css"></style>
+
+	<div class="main wrap">
+				 
+			<!--{loop $list['list'] $value}-->
+				<!--{eval $highlight = article_title_style($value);}-->
+				<!--{eval $article_url = fetch_article_url($value);}-->
+				<ul class="iread-list">
+					<li>
+		                <div class="meta clearfix"><div class="lf"><!--{if $value[author]}-->来自另客网友$value[author]<!--{else}-->由另客网发布<!--{/if}--></div><div class="rf"><span class="last-time">$value[dateline]</span><span class="attention">$value[viewnum]次点击</span></div></div>
+		                <h2><a href="$article_url" target="_blank" class="xi2">$value[title]</a> <!--{if $value[status] == 1}-->({lang moderate_need})<!--{/if}--></h2>
+		                <p><!--{if $value[pic]}--><div class="atc"><a href="$article_url" target="_blank"><img src="$value[pic]" alt="$value[title]" class="tn" /></a></div><!--{/if}-->
+						$value[summary]</p>
+		                <div class="postmeta">
+		                <img src="$value[avatar]http://avatar.links123.cn/avatar.jpg" width="32" height="32"><!--{if $value[author]}-->$value[author]<!--{else}-->另客网<!--{/if}-->
+		                <!--{if $value[catname] && $cat[subs]}-->{lang category}: <label><a href="{$portalcategory[$value['catid']]['caturl']}" class="xi2">$value[catname]</a></label>&nbsp;&nbsp;<!--{/if}-->
+						<!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $value['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $value['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+						<span class="xg1">
+							<span class="pipe">|</span>
+							<label><a href="portal.php?mod=portalcp&ac=article&op=edit&aid=$value[aid]">{lang edit}</a></label>
+							<span class="pipe">|</span>
+							<label><a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$value[aid]" id="article_delete_$value[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a></label>
+						</span>
+						<!--{/if}-->
+		                </div>
+		            </li>
+				</ul>
+			<!--{/loop}-->
+		<!--{if $list['multi']}--><div class="pgs cl">{$list['multi']}
+		<ul class="page-nav clearfix">
+            <li><a href="/">1</a></li>
+            <li><a href="/">上一页</a></li>
+            <li><a href="/">下一页</a></li>
+        </ul></div><!--{/if}-->
+
+	</div>
+
+<!--{template common/footer_iread}-->

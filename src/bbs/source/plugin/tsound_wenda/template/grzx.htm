@@ -1,0 +1,279 @@
+{subtemplate common/header}
+
+<script src="./source/plugin/tsound_wenda/template/jquery15.min.js" ></script>
+<script type="text/javascript">
+var jqwenda = jQuery.noConflict(true);
+jqwenda(function(){
+	
+	if(jqwenda(".wp").width()>960){
+
+		  {if $mod=='wdsy'}
+		  jqwenda(".aside").css("width","215px");
+		  
+
+		  
+			  jqwenda(".mod-ql-list").css("width",jqwenda(".wp").width()-280);
+		  
+		  jqwenda(".article_bg").css("width",jqwenda(".wp").width()-270);
+		  jqwenda(".article-index").css("width",jqwenda(".wp").width()-219);
+	
+		  {else}
+		  		jqwenda(".aside").css("width","195px");
+		  
+			  
+			  jqwenda(".article_bg").css("width",jqwenda(".wp").width()-250)
+		  {/if}
+	} else{
+		  jqwenda(".aside").css("width","200px");
+
+		  {if $mod=='wdsy'}
+			 jqwenda(".article_bg").css("width","690px");
+			 jqwenda(".mod-ql-list").css("width","700px");
+			  jqwenda(".article-index").css("width","741px");
+		  {else}
+			  
+		     jqwenda(".article_bg").css("width","702px");
+
+		  {/if}
+		  
+	}
+	  
+})
+function resizeWe(){
+	if(jqwenda(".wp").width()>960){
+			
+		  {if $mod=='wdsy'}
+		  	jqwenda(".aside").css("width","215px");
+		  
+		  
+  			  jqwenda(".mod-ql-list").css("width",jqwenda(".wp").width()-280);
+			  
+			  jqwenda(".article_bg").css("width",jqwenda(".wp").width()-270);
+			  jqwenda(".article-index").css("width",jqwenda(".wp").width()-219);
+	
+		  {else}
+		  	  jqwenda(".aside").css("width","195px");
+		  
+		 	 
+			  jqwenda(".article_bg").css("width",jqwenda(".wp").width()-250)
+		  {/if}
+	} else{
+		 jqwenda(".aside").css("width","200px");
+
+		  {if $mod=='wdsy'}
+			 jqwenda(".article_bg").css("width","690px");
+			 jqwenda(".mod-ql-list").css("width","700px");
+			  jqwenda(".article-index").css("width","741px");
+		  {else}
+		     jqwenda(".article_bg").css("width","702px");
+		   
+		  {/if}
+	
+		  
+	}
+ 
+	setTimeout("resizeWe()",1000);
+}
+
+setTimeout("resizeWe()",1000);
+ 
+ 
+</script>
+
+<div id="wp" class="wp">
+<link rel="stylesheet" href="source/plugin/tsound_wenda/template/2.css">
+
+<div id="bd" class="grid-2 clearfix">
+<div class="aside" id="user-aside">
+<div class="mod-userinfo">
+<div class="hd"></div>
+<div class="bd">
+<div class="info"><a text="user-pic" target="_blank" href="#"
+	  class="pic"><img text="user-pic"
+	src="uc_server/avatar.php?uid={$_G[uid]}&size=small"></a>
+<div class="text"><p class="name"><a text="user-name" href="#">{$_G[username]}</a></p>
+<p>{lang tsound_wenda:jf}:&nbsp;<a text="user-name" class="wealth" href="#">{eval echo $singuser['extcredits'.$credit]}</a></p>
+</div>
+</div>
+<div class="status">
+<table>
+	<tbody>
+		<tr>
+			<th class="first">{lang tsound_wenda:hds}</th>
+			<th>{lang tsound_wenda:cnl}</th>
+			<th>{lang tsound_wenda:tws}</th>
+		</tr>
+		<tr>
+			<td class="first">{$singhds}</td>
+			<td><a target="_blank" href="javascript:;">{eval echo sprintf("%.2f", $singcnl);}%</a></td>
+			<td>{$singtws}</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+<div class="ft"></div>
+</div>
+<div class="mod-usercate">
+<div class="hd"></div>
+<div class="bd">
+<ul class="list">
+	<li $actives[wdsy]><span class="my-page"></span><a text="my-page"
+		href="plugin.php?id=tsound_wenda&action=wdsy">{lang tsound_wenda:wdsy}</a></li>
+	<li $actives[wdtw]><span class="my-q"></span><a text="my-q" href="plugin.php?id=tsound_wenda&action=wdtw">{lang tsound_wenda:wdtw}</a></li>
+	<li $actives[wdhd]><span class="my-a"></span><a text="my-a" href="plugin.php?id=tsound_wenda&action=wdhd">{lang tsound_wenda:wdhd}</a></li>
+	<li class="last"></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+{if $mod=='wdsy'}
+<div class="article-index">
+
+<div class="article_bg">
+<div class="mod-status">
+<div class="hd">
+<h3>{lang tsound_wenda:wdsy}</h3>
+</div>
+<div class="bd">
+<ul>
+	<li>{lang tsound_wenda:jf}: <em>{eval echo $singuser['extcredits'.$credit]}</em></li>
+	<li>{lang tsound_wenda:cnl}: <em><a target="_blank" href="#">{eval echo sprintf("%.2f", $singcnl);}%</a></em></li>
+	<div class="clear"></div>
+</ul>
+<div class="clear"></div>
+</div>
+<div class="ft"></div>
+</div>
+<div class="mod-ql-list" style="margin-top: 16px" id="ql-list">
+<div class="hd"><a text="my-ql-more" href="plugin.php?id=tsound_wenda&action=wdtw">{lang tsound_wenda:more}&gt;&gt;</a>
+<h4>{lang tsound_wenda:wdtw}</h4>
+<span class="gray"> ({lang tsound_wenda:gong}<em>{$qcount}</em>{lang tsound_wenda:tiao})</span></div>
+<div class="bd">
+<div class="cls-qa-list-2">
+<table>
+	<thead>
+		<tr>
+			<th class="align-l">{lang tsound_wenda:bt}</th>
+			<th width="60">{lang tsound_wenda:hds}</th>
+			<th width="70" class="align-r">{lang tsound_wenda:cjsj}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--{loop $questionlist $v}-->
+	
+		<tr>
+			<td class="align-l"><a text="my-ql-item" target="_blank"
+				href="plugin.php?id=tsound_wenda&action=question&qid={$v[qid]}" title="$v[title]">$v[title]</a><span class="cate">[<a
+				text="my-ql-item-cate" target="_blank" href="#">$v[cname]</a>]</span></td>
+			<td class="quick-num">{$v[num]}</td>
+			<td class="quick-time align-r">{eval echo dgmdate($v[time],'Y-m-d')}</td>
+		</tr>
+		<!--{/loop}-->	
+	</tbody>
+</table>
+</div>
+</div>
+<div class="ft"></div>
+</div>
+<div class="mod-ql-list" id="al-list">
+<div class="hd"><a text="my-al-more" href="plugin.php?id=tsound_wenda&action=wdhd">{lang tsound_wenda:more}&gt;&gt;</a>
+<h4>{lang tsound_wenda:wdhd}</h4>
+<span class="gray"> ({lang tsound_wenda:gong}<em>{$acount}</em>{lang tsound_wenda:tiao})</span></div>
+<div class="bd">
+<div class="cls-qa-list-2">
+<table>
+	<thead>
+		<tr>
+			<th class="align-l">{lang tsound_wenda:bt}</th>
+			<th width="60">{lang tsound_wenda:hds}</th>
+			<th width="70" class="align-r">{lang tsound_wenda:gxsj}</th>
+		</tr>
+	</thead>
+	<tbody>
+			<!--{loop $answerlist $v}-->
+	
+		<tr>
+			<td class="align-l"><a text="my-al-item" target="_blank"
+				href="plugin.php?id=tsound_wenda&action=question&qid={$v[qid]}" title="$v[title]">{$v[title]}</a><span class="cate">[<a
+				text="my-al-item-cate" target="_blank" href="plugin.php?id=tsound_wenda&action=category&cid={$v[cid]}">$v[cname]</a>]</span></td>
+			<td class="quick-num">{$v[num]}</td>
+			<td class="quick-time align-r">{eval echo dgmdate($v[time],'Y-m-d')}</td>
+		</tr>
+		<!--{/loop}-->
+	</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+{else}
+<!--wdtw wdhd start-->
+<div class="article article_bg">
+<div class="mod-status">
+<div class="hd">
+<h3>{if $action=='wdtw'}{lang tsound_wenda:wdtw}{else}{lang tsound_wenda:wdhd}{/if}</h3>
+</div>
+</div>
+<div class="cls-tab-card">
+{if $action=='wdtw'}
+<li $oper[dai]>{if !$oper[dai]}<a href="plugin.php?id=tsound_wenda&action=wdtw&oper=dai">{lang tsound_wenda:djjdwt}</a>{else}<span>{lang tsound_wenda:djjdwt}</span>{/if}</li>
+<li $oper[ok]>{if !$oper[ok]}<a href="plugin.php?id=tsound_wenda&action=wdtw&oper=ok">{lang tsound_wenda:yjjdwt}</a>{else}<span>{lang tsound_wenda:yjjdwt}</span>{/if}</li>
+{else}
+<li $oper[all]>{if !$oper[dai]}<a href="plugin.php?id=tsound_wenda&action=wdhd&oper=all">{lang tsound_wenda:qbhd}</a>{else}<span>{lang tsound_wenda:qbhd}</span>{/if}</li>
+<li $oper[ok]>{if !$oper[ok]}<a href="plugin.php?id=tsound_wenda&action=wdhd&oper=ok">{lang tsound_wenda:bcndhd}</a>{else}<span>{lang tsound_wenda:bcndhd}</span>{/if}</li>
+{/if}
+</div>
+<div class="clear"></div>
+<div class="cls-qa-list-2">
+<table>
+	<thead>
+		<tr>
+			<th class="align-l">{lang tsound_wenda:bt}</th>
+			<th width="60">{lang tsound_wenda:hds}</th>
+			<th width="70" class="align-r">{lang tsound_wenda:twsj}</th>
+		</tr>
+	</thead>
+	<tbody>
+	
+	{if $action=='wdtw'}
+	<!--{loop $questionlist $v}-->
+		<tr>
+			<td class="align-l"><a target="_blank"
+				href="plugin.php?id=tsound_wenda&action=question&qid={$v[qid]}" title="$v[title]">{$v[title]}</a><span
+				class="cate">[<a target="_blank" href="plugin.php?id=tsound_wenda&action=category&cid={$v[cid]}">{$v[cname]}</a>]</span></td>
+			<td class="quick-num">{$v[num]}</td>
+			<td class="quick-time align-r">{eval echo dgmdate($v[time],'Y-m-d')}</td>
+		</tr>
+		<!--{/loop}-->
+	
+	{else}
+	<!--{loop $answerlist $v}-->
+		<tr>
+			<td class="align-l"><a target="_blank"
+				href="plugin.php?id=tsound_wenda&action=question&qid={$v[qid]}" title="$v[title]">{$v[title]}</a><span
+				class="cate">[<a target="_blank" href="plugin.php?id=tsound_wenda&action=category&cid={$v[cid]}">{$v[cname]}</a>]</span></td>
+			<td class="quick-num">{$v[num]}</td>
+			<td class="quick-time align-r">{eval echo dgmdate($v[time],'Y-m-d')}</td>
+		</tr>
+		<!--{/loop}-->
+	
+	{/if}
+		
+		
+	</tbody>
+</table>
+</div>
+</div>
+<!--wdtw wdhd end-->
+{/if}
+
+</div>
+
+
+<!--{template tsound_wenda:footer}-->
+

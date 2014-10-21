@@ -1,0 +1,221 @@
+<!--{template common/header_bbs}-->
+
+<script type="text/javascript">
+jQuery.noConflict();
+function preview_note(thread_id, tbody, lastpost, dateline, author, subject, lastposter) {
+	var noteObj = jQuery('.note-content');
+		noteObj.find('.title').text(subject);
+		noteObj.find('.meta').html('');
+	if (subject) {
+		noteObj.find('.meta').html('<span>创建时间: ' + dateline + ' by <span class="name">' + author + '</span></span><span>修改时间：' + lastpost + '  by <span class="name">' + lastposter + '</span></span>');
+	}
+		noteObj.find('.text').html('');
+		noteObj.find('.text').attr('id', tbody);
+	if (thread_id) {
+		previewThread(thread_id, tbody);
+	}
+}
+</script>
+
+<!--{if $_G['forum']['ismoderator']}-->
+	<script type="text/javascript" src="{$_G[setting][jspath]}forum_moderate.js?{VERHASH}"></script>
+<!--{/if}-->
+<style id="diy_style" type="text/css"></style>
+<!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
+
+<!-- 面包屑导航 为节省网页横向空间，关闭， 或以后移至其他地方 by TT 20140309-- >
+<div id="pt" class="bm cl"> 
+	<div class="z">
+		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
+	</div>
+</div>
+<!-- 面包屑导航结束 -->
+
+<!--{ad/text/wp a_t}-->
+<div class="wp">
+	<!--[diy=diy1]--><div id="diy1" class="area"> </div><!--[/diy]-->
+</div>
+<div class="boardnav">  <!-- 板块导航 by TT -->
+	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"> 
+				
+		<div class="mn"  > 
+			<div class="bm bml pbn"  >
+				<!--{if $_G[forum][banner] && !$subforumonly}--><img src="$_G[forum][banner]" alt="$_G['forum'][name]" /><!--{/if}-->
+				<!--@Summer 没找到css定义 下面 style 临时的 -->
+				<div class=" " style='padding-top:15px;padding-left:10px;'>  
+				<!--was class='cl' 版块最上条  可简化 太大 上下间隙太多-->
+				<!-- 发新帖按钮  -->
+					<!--{if !$_GET['archiveid'] }--><a href="javascript:;" id="newspecial" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"{if !$_G['forum']['allowspecialonly'] && empty($_G['forum']['picstyle']) && !$_G['forum']['threadsorts']['required']} onclick="showWindow('newthread', 'forum.php?mod=post&action=newthread&fid=$_G[fid]')"{else} onclick="location.href='forum.php?mod=post&action=newthread&fid=$_G[fid]';return false;"{/if} title="{lang send_posts}"><img src="{IMGDIR}/pn_post.png" alt="{lang send_posts}"  /></a>
+				<!--{/if}-->
+				
+				<!-- 面包屑导航  $navigation-->
+				<strong class="font-gray">&nbsp&nbsp您的位置：</strong>
+						<!--论坛名/网站名 <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em> -->
+						<a href="forum.php">{$_G[setting][navs][2][navname]}</a>
+							<span>&gt;</span>
+						<!--@Summer class="active" 效果图上是黑色字，这里不是 -->	
+						<a href="forum.php?mod=forumdisplay&fid=$_G[fid]" class="active">$_G['forum'][name]</a>
+							
+						<!-- <a href="###" class="active">另客论坛</a> -->
+					
+				<!-- 面包屑导航结束 --><span class="pipe">|</span>
+				<!--今日主题-->
+				<span class="xs1 xw0 i">今日主题: <strong class="xi1">$_G[forum][todayposts]</strong>
+				
+				<span class="pipe">|</span>
+
+                     
+				<!-- @Summer 此处DZ 自动给版主项加上了链接和class，class="notabs"  -->
+				<span class="">版主: $moderatedby 
+
+				</span>
+
+					<form action="" class="pull-right">
+							<input type="text" placeholder="搜索论坛"/>
+							<button class="btn">搜索</button>
+					</form>
+					<!-- {subtemplate common/pubsearchform} 搜索框-->
+					
+					
+					
+					
+					
+					<span class="y"> <!--收藏本版  订阅 rss  回收站  管理面板 -->
+						
+						
+						
+						<!-- 收藏 功能 暂时关闭 by TT 20140402 -->
+						<!--{if 1>2}-->
+						<a href="home.php?mod=spacecp&ac=favorite&type=forum&id=$_G[fid]&handlekey=favoriteforum&formhash={FORMHASH}" id="a_favorite" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);">{lang forum_favorite} <strong class="xi1" id="number_favorite" {if !$_G[forum][favtimes]} style="display:none;"{/if}>(<span id="number_favorite_num">$_G[forum][favtimes]</span>)</strong></a>
+						<!--{/if}-->
+						<!-- rss 订阅 功能 暂时关闭 by TT 20140309 -->
+						<!--{if 1>2 &&　rssforumperm($_G['forum']) && $_G[setting][rssstatus] && !$_GET['archiveid'] && !$subforumonly}--><span class="pipe">|</span><a href="forum.php?mod=rss&fid=$_G[fid]&auth=$rssauth" class="fa_rss" target="_blank" title="RSS">{lang rss_subscribe_this}</a><!--{/if}-->
+						<!--{if !empty($forumarchive)}-->
+							<span class="pipe">|</span><a id="forumarchive" href="javascript:;" class="fa_achv" onmouseover="showMenu(this.id)"><!--{if $_GET['archiveid']}-->$forumarchive[$_GET['archiveid']]['displayname']<!--{else}-->{lang forum_archive}<!--{/if}--></a>
+						<!--{/if}-->
+						
+						<!--收藏本版  订阅 rss  结束-->
+						
+						<!--{hook/forumdisplay_forumaction}-->
+
+						<!--{if $_G['forum']['ismoderator']}--> <!--版主以上管理功能-->
+						<!--{if $_G['forum']['recyclebin']}-->  <!--回收站--> 
+							<span class="pipe">|</span><a href="{if $_G['adminid'] == 1}admin.php?mod=forum&action=recyclebin&frames=yes{elseif $_G['forum']['ismoderator']}forum.php?mod=modcp&action=recyclebin&fid=$_G[fid]{/if}" class="fa_bin" target="_blank">{lang forum_recyclebin}</a>
+						<!--{/if}-->
+						<!--{if $_G['forum']['ismoderator'] && !$_GET['archiveid']}-->
+							<span class="pipe">|</span><strong>
+							<!--{if $_G['forum']['status'] != 3}--><!--管理面板-->
+								<a href="forum.php?mod=modcp&fid=$_G[fid]"> {lang modcp}</a> 
+							<!--{else}-->
+								<a href="forum.php?mod=group&action=manage&fid=$_G[fid]">{lang modcp}</a>
+							<!--{/if}-->
+							</strong>
+						<!--{/if}-->
+						<!--{hook/forumdisplay_modlink}-->
+						<!--{/if}-->
+					</span>
+					
+
+				</div>
+				
+				<!-- 版规 内容 -->
+				<!--{if 1>2}-->
+				<!--{if (!empty($_G[forum][domain]) && !empty($_G['setting']['domain']['root']['forum'])) || $moderatedby || ($_G['page'] == 1 && $_G['forum']['rules'])}-->
+					<div class="bm_c cl pbn">
+						<!--{if !empty($_G[forum][domain]) && !empty($_G['setting']['domain']['root']['forum'])}-->
+							<div class="pbn">{lang forum_domain}: <a href="http://{$_G[forum][domain]}.{$_G['setting']['domain']['root']['forum']}" id="group_link">http://{$_G[forum][domain]}.{$_G['setting']['domain']['root']['forum']}</a></div>
+						<!--{/if}-->  
+						<!--显示版主-->
+						<!--{if $moderatedby}--><div>{lang forum_modedby}: <span class="xi2">$moderatedby</span></div><!--{/if}-->
+						<!--{if $_G['page'] == 1 && $_G['forum']['rules']}-->
+							<div id="forum_rules_{$_G[fid]}" style="$collapse['forum_rules'];">
+								<div class="ptn xg2">$_G['forum'][rules]</div>
+							</div>
+						<!--{/if}-->
+					</div>
+				<!--{/if}-->
+				<!--{/if}-->
+				<!-- 版规 内容 结束-->
+				
+				
+				<!--{if !empty($forumarchive)} || 1=1 --> <!-- 干松墨滴～ @@-->	
+					<div id="forumarchive_menu" class="p_pop" style="display:none">222
+						<ul>
+							<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]">xxx{lang threads_all}</a></li>
+							<!--{loop $forumarchive $id $info}-->
+							<li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&archiveid=$id">zzz{$info['displayname']} ({$info['threads']})</a></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				
+				<!--{/if}-->
+			</div>    
+			<!-- 版块基本情况头部分结束 omg -->
+
+			<!--{hook/forumdisplay_top}-->
+
+			<!--{if $subexists && $_G['page'] == 1}--><!--{template forum/forumdisplay_subforum}--><!--{/if}-->
+
+			<div class="drag">
+				<!--[diy=diy4]--><div id="diy4" class="area"></div><!--[/diy]-->
+			</div>
+
+			<!-- 推荐主题 -->
+
+			
+
+			<!--{hook/forumdisplay_middle}-->
+
+			<!--{if !$subforumonly}-->
+
+
+
+				
+ 		
+
+				
+
+				
+				<!--主题列表-->
+				<!--{hook/forumdisplay_threadtype_extra}-->
+				<!--{if empty($_G['forum']['sortmode'])}-->
+					<!--{subtemplate forum/forumdisplay_list}-->
+				<!--{else}-->
+					<!--{subtemplate forum/forumdisplay_sort}-->
+				<!--{/if}-->
+				
+			<!--{/if}-->
+			
+			
+
+
+			<!-- 快速发帖 关闭 -->	
+			<!--{if  $fastpost  && 1>2 }-->
+				<!--{template forum/forumdisplay_fastpost}-->
+			<!--{/if}-->
+
+			<!--{hook/forumdisplay_bottom}-->
+
+		</div>
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--{if empty($_G['setting']['disfixednv_forumdisplay']) }--><script>fixed_top_nv();</script><!--{/if}-->
+
+<script src="http://a.links123.net/village/src/carousel.js"></script>
+
+<!--{template common/footer}-->
